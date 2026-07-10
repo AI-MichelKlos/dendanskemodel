@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flex &amp; Tryghed · Den Danske Model</title>
+<meta property="og:type" content="website">
+<meta property="og:title" content="Flex &amp; Tryghed: Den Danske Model">
+<meta property="og:description" content="10 afgørende øjeblikke i den danske models historie, 10 valg. Kender du din flexicurity? Test dig selv som praktikant ved forhandlingsbordet.">
+<meta property="og:url" content="https://ai-michelklos.github.io/Michelsspil/flex-og-tryghed/">
+<meta property="og:image" content="https://ai-michelklos.github.io/Michelsspil/flex-og-tryghed/images/stauning.jpg">
+<meta property="og:locale" content="da_DK">
+<meta name="twitter:card" content="summary">
+<meta name="description" content="10 afgørende øjeblikke i den danske models historie. Kender du din flexicurity, dine dagpenge og din danske model?">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;700&family=Permanent+Marker&display=swap" rel="stylesheet">
+<style>
+  /* ============ DET GRØNNE BORD ============
+     Flaskegrøn mødebordsfilt, messing og segl-rødt.
+     Variabelnavnene er bevaret fra v1, kun værdierne
+     (og enkelte detaljer) er skiftet ud. */
+  :root{
+    --ink:#0e3b2e;   --ink-2:#0b2f25;  --ink-3:#14483a;   /* filten */
+    --paper:#f6f1e2; --paper-2:#ece4cf;                    /* dokumenterne */
+    --text:#26221a;  --muted:#9db3a6;  --muted-paper:#7d745d;
+    --green:#3d8a60; --green-dk:#2e6b4f;                   /* rigtigt svar */
+    --red:#b03a2e;   --red-dk:#8c2d24;                     /* seglrød */
+    --gold:#c2a35d;  --gold-dk:#8f7433;                    /* messing */
+    --line:rgba(194,163,93,.28); --line-paper:#d8d0ba;
+    --shadow:0 28px 55px -20px rgba(0,0,0,.6);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    font-family:'Inter',system-ui,sans-serif;
+    background:
+      radial-gradient(900px 480px at 50% -120px, rgba(255,241,205,.13) 0%, transparent 65%),
+      radial-gradient(130% 115% at 50% 45%, transparent 55%, rgba(0,0,0,.40) 100%),
+      url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNjAiIGhlaWdodD0iMTYwIj48ZmlsdGVyIGlkPSJuIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iMC44IiBudW1PY3RhdmVzPSIyIiBzdGl0Y2hUaWxlcz0ic3RpdGNoIi8+PGZlQ29sb3JNYXRyaXggdHlwZT0ic2F0dXJhdGUiIHZhbHVlcz0iMCIvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSIxNjAiIGhlaWdodD0iMTYwIiBmaWx0ZXI9InVybCgjbikiIG9wYWNpdHk9IjAuNSIvPjwvc3ZnPg=="),
+      var(--ink);
+    background-blend-mode:normal,normal,soft-light,normal;
+    color:var(--paper);min-height:100%;
+    display:flex;flex-direction:column;align-items:center;
+    padding:18px 16px 40px;-webkit-font-smoothing:antialiased;
+  }
+  .stage{width:100%;max-width:640px;display:flex;flex-direction:column;gap:14px}
+
+  header.bar{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding:2px 4px 8px;flex-wrap:wrap;border-bottom:1px solid var(--line)}
+  .brand{display:flex;align-items:baseline;gap:10px;line-height:1}
+  .brand .logo{font-family:'Fraunces',serif;font-weight:700;font-size:22px;letter-spacing:.5px;text-transform:uppercase}
+  .brand .logo .amp{color:var(--gold);font-style:italic}
+  .brand .tag{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:2px}
+  .casecount{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--gold);letter-spacing:1px;white-space:nowrap}
+
+  .record{display:flex;align-items:center;gap:10px;background:var(--ink-2);border:1px solid var(--line);border-radius:12px;padding:11px 14px}
+  .segs{display:flex;gap:5px;flex:1}
+  .seg{flex:1;height:18px;border-radius:4px;background:#07231b;display:grid;place-items:center;font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:700;color:#fff;line-height:1;transition:background .4s,box-shadow .2s}
+  .seg.r{background:var(--green)} .seg.w{background:var(--red)}
+  .seg.cur{box-shadow:0 0 0 2px var(--gold)}
+  .rec-lbl{font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#b7c6bc;white-space:nowrap;letter-spacing:.5px}
+  .rec-lbl b{color:var(--gold)}
+
+  .panel{position:relative}
+  .card{background:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNjAiIGhlaWdodD0iMTYwIj48ZmlsdGVyIGlkPSJuIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iMC44IiBudW1PY3RhdmVzPSIyIiBzdGl0Y2hUaWxlcz0ic3RpdGNoIi8+PGZlQ29sb3JNYXRyaXggdHlwZT0ic2F0dXJhdGUiIHZhbHVlcz0iMCIvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSIxNjAiIGhlaWdodD0iMTYwIiBmaWx0ZXI9InVybCgjbikiIG9wYWNpdHk9IjAuNSIvPjwvc3ZnPg=="),linear-gradient(180deg,var(--paper) 0%,var(--paper-2) 100%);background-blend-mode:soft-light;color:var(--text);border-radius:4px;padding:26px 24px 24px;position:relative;overflow:hidden;border:1px solid var(--line-paper);
+    transform:rotate(-.3deg);
+    box-shadow:0 1px 0 rgba(0,0,0,.05), 0 12px 0 -6px var(--paper-2), 0 13px 0 -5px rgba(0,0,0,.22), var(--shadow)}
+  .card > *{position:relative;z-index:1}
+  .card > .stamp{position:absolute;z-index:3}
+  .card::before{content:"";position:absolute;top:0;left:0;right:0;height:7px;background:repeating-linear-gradient(90deg,var(--red) 0 30px,#f2ece0 30px 38px);opacity:.9;z-index:2}
+  .card::after{content:"DET GR\00d8NNE BORD";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-20deg);font-family:'Fraunces',serif;font-weight:700;font-size:clamp(34px,10vw,58px);letter-spacing:7px;color:rgba(14,59,46,.07);white-space:nowrap;pointer-events:none;z-index:0}
+  .stamp{position:absolute;top:16px;right:-4px;transform:rotate(-6deg);font-family:'Permanent Marker','Fraunces',serif;font-weight:400;font-size:16px;letter-spacing:1.2px;text-transform:uppercase;color:var(--red);padding:3px 12px;opacity:.85;border:none;background:transparent}
+  .stamp::before{content:"";position:absolute;left:-3px;right:-5px;top:-2px;bottom:-1px;border:2.5px solid var(--red);border-radius:9px 4px 10px 5px;transform:rotate(1.4deg) skewX(-2deg);opacity:.85;pointer-events:none}
+  .stamp::after{content:"";position:absolute;left:1px;right:-1px;top:1px;bottom:2px;border-top:2px solid var(--red);border-right:1.5px solid var(--red);border-radius:5px 9px 3px 7px;transform:rotate(-0.8deg);opacity:.45;pointer-events:none}
+  .portrait{position:absolute;top:18px;left:18px;width:64px;height:64px;border-radius:50%;overflow:hidden;border:3px solid #fbf7ea;box-shadow:0 4px 12px rgba(0,0,0,.3),0 0 0 1px rgba(143,116,51,.5);background:#2c2823;z-index:2}
+  .portrait img{width:100%;height:100%;object-fit:cover;display:block;filter:contrast(1.05) sepia(.15) saturate(.85)}
+  .card.has-portrait .meta,.card.has-portrait .case-title,.card.has-portrait .country,.card.has-portrait .cardsub{padding-left:78px}
+  .stamp.land{animation:stampIn .55s cubic-bezier(.18,1.25,.3,1) both}
+  @keyframes stampIn{0%{opacity:0;transform:rotate(7deg) scale(2.7)}55%{opacity:.85;transform:rotate(7deg) scale(.9)}75%{transform:rotate(7deg) scale(1.05)}100%{opacity:.78;transform:rotate(7deg) scale(1)}}
+  .meta{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted-paper);letter-spacing:1px;text-transform:uppercase;margin:6px 0 2px}
+  .case-title{font-family:'Fraunces',serif;font-weight:700;font-size:clamp(25px,6.6vw,36px);line-height:1.04;text-transform:uppercase;letter-spacing:.3px;margin:2px 0 12px;color:#221c10}
+  .situation{font-size:15.5px;line-height:1.55;color:#2c2823}
+  .question{font-size:16px;line-height:1.45;color:#2c2823;font-weight:500;margin:0 0 14px}
+  .answer{margin:4px 0 0;padding:12px 14px;background:rgba(46,107,79,.12);border-left:3px solid var(--green-dk);border-radius:4px;font-size:14.5px;line-height:1.5;color:#2a2620}
+  .answer .alab{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:1.2px;text-transform:uppercase;color:var(--green-dk);display:block;margin-bottom:6px}
+  .prompt{font-family:'Fraunces',serif;font-weight:600;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:#6b6457;margin:20px 0 10px;display:flex;align-items:center;gap:8px}
+  .prompt::after{content:"";flex:1;height:1px;background:var(--line-paper)}
+
+  .choices{display:flex;flex-direction:column;gap:10px}
+  .choice{text-align:left;width:100%;cursor:pointer;background:#fbf7ea;border:1.5px solid var(--line-paper);border-radius:6px;padding:14px 16px;display:flex;gap:13px;align-items:flex-start;font-family:inherit;font-size:14.5px;line-height:1.45;color:#2a2620;transition:transform .12s ease,border-color .15s,background .15s,box-shadow .15s}
+  .choice:hover{transform:translateY(-1px);border-color:#b3a67f;background:#fff;box-shadow:0 6px 16px -10px rgba(0,0,0,.4)}
+  .choice:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+  .choice .key{font-family:'Fraunces',serif;font-weight:700;font-size:17px;width:30px;height:30px;flex:none;border-radius:50%;display:grid;place-items:center;background:linear-gradient(160deg,#d5b872,var(--gold) 55%,var(--gold-dk));color:#241c0c;box-shadow:inset 0 1px 0 rgba(255,255,255,.5),0 1px 2px rgba(0,0,0,.25)}
+
+  .verdict{display:flex;align-items:center;gap:11px;font-family:'Fraunces',serif;font-weight:700;font-size:clamp(23px,6.6vw,29px);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
+  .verdict .dot{width:15px;height:15px;border-radius:50%;flex:none}
+  .verdict.good{color:var(--green-dk)} .verdict.good .dot{background:var(--green)}
+  .verdict.bad{color:var(--red-dk)} .verdict.bad .dot{background:var(--red)}
+  .vsub{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.5px;color:#6b6457;margin-bottom:14px}
+  .truth{margin-top:16px;padding:13px 15px;background:rgba(176,58,46,.09);border-left:3px solid var(--red);border-radius:4px;font-size:13.5px;line-height:1.5;color:#4a443a}
+  .truth .lab{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:1.2px;text-transform:uppercase;color:var(--red-dk);display:block;margin-bottom:7px}
+  .country{display:inline-block;font-family:'Fraunces',serif;font-weight:700;font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--paper);background:var(--ink-3);padding:4px 11px;border-radius:4px;margin:2px 0 9px}
+  .cardsub{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted-paper);letter-spacing:.5px;margin:-4px 0 14px}
+  .cover-title{font-family:'Fraunces',serif;font-weight:700;font-size:clamp(33px,8.6vw,50px);line-height:1;text-transform:uppercase;letter-spacing:.5px;color:#221c10;margin:6px 0 2px}
+  .cover-title .amp{color:var(--red);font-style:italic}
+  .cover-sub{font-family:'Fraunces',serif;font-weight:400;font-style:italic;font-size:clamp(15px,4vw,19px);letter-spacing:4px;text-transform:uppercase;color:var(--muted-paper);margin-bottom:16px}
+  .dossier{border-top:1px solid var(--line-paper);border-bottom:1px solid var(--line-paper);padding:12px 0;margin:0 0 16px;display:flex;flex-direction:column;gap:8px}
+  .drow{display:flex;gap:12px;align-items:center;font-size:13.5px}
+  .dk{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:1.2px;text-transform:uppercase;color:var(--muted-paper);width:92px;flex:none}
+  .dv{color:#2c2823}
+  .redact{display:inline-block;height:15px;background:#26221a;border-radius:2px}
+  .qbox{margin-top:14px;padding:12px 15px;background:rgba(194,163,93,.16);border-left:3px solid var(--gold);border-radius:4px}
+  .qbox .qlab{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1.2px;text-transform:uppercase;color:var(--gold-dk);margin-bottom:5px}
+  .qbox .qt{font-family:'Fraunces',serif;font-size:15px;line-height:1.55;color:#3f3a31;font-style:italic}
+  .qbox .qk{margin-top:7px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.4px;color:var(--muted-paper)}
+  .share-modal{position:fixed;inset:0;background:rgba(3,19,13,.78);display:flex;align-items:center;justify-content:center;z-index:100;padding:20px;backdrop-filter:blur(4px)}
+  .share-box{background:var(--paper);border-radius:10px;padding:22px;max-width:340px;width:100%;box-shadow:0 20px 46px rgba(0,0,0,.5)}
+  .share-box h3{font-family:'Fraunces',serif;text-transform:uppercase;letter-spacing:1.5px;font-size:16px;margin:0 0 14px;color:#211d18}
+  .share-list{display:flex;flex-direction:column;gap:8px}
+  .share-btn{display:flex;align-items:center;gap:12px;padding:11px 14px;background:#fff;border:1px solid rgba(0,0,0,.12);border-radius:6px;font-family:'Inter',sans-serif;font-size:14px;color:#2c2823;cursor:pointer;text-align:left;text-decoration:none}
+  .share-btn:hover{background:#f5efe0;border-color:rgba(0,0,0,.25)}
+  .share-btn .ico{width:24px;height:24px;flex:none;display:flex;align-items:center;justify-content:center;border-radius:5px;color:#fff;font-weight:700;font-size:12px}
+  .share-btn .ico.fb{background:#1877f2}
+  .share-btn .ico.x{background:#000}
+  .share-btn .ico.wa{background:#25d366}
+  .share-btn .ico.tg{background:#229ed9}
+  .share-btn .ico.cp{background:var(--gold);color:#1a1710}
+  .share-close{margin-top:14px;width:100%;padding:10px;background:transparent;border:1px solid rgba(0,0,0,.2);border-radius:5px;font-family:'Fraunces',serif;text-transform:uppercase;letter-spacing:1px;font-size:12px;color:#4a443a;cursor:pointer}
+  .sharegrid{font-size:20px;letter-spacing:3px;margin:14px 0 2px}
+
+  .actions{margin-top:18px;display:flex;justify-content:flex-end}
+  .btn{font-family:'Fraunces',serif;font-weight:600;font-size:15px;letter-spacing:1px;text-transform:uppercase;cursor:pointer;border:1px solid var(--line);border-radius:6px;padding:13px 24px;background:var(--ink-3);color:var(--paper);transition:transform .12s,box-shadow .15s,background .15s}
+  .btn:hover{transform:translateY(-1px);box-shadow:0 8px 20px -10px rgba(0,0,0,.6);background:#1a584a}
+  .btn:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+  .btn.go{background:linear-gradient(160deg,#d5b872,var(--gold) 55%,#a8894a);color:#241c0c;border-color:transparent;box-shadow:inset 0 1px 0 rgba(255,255,255,.45),0 2px 6px rgba(0,0,0,.3)}
+  .btn.go:hover{background:linear-gradient(160deg,#e2c885,#cfae66 55%,#b39451)}
+  .btn.big{font-size:18px;padding:16px 32px}
+
+  .screen{background:var(--ink-2);border:1px solid var(--line);border-radius:12px;padding:34px 28px;box-shadow:var(--shadow)}
+  .kicker{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+  .hero-title{font-family:'Fraunces',serif;font-weight:700;font-size:clamp(33px,9.4vw,54px);line-height:.98;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px}
+  .hero-title .amp{color:var(--gold);font-style:italic}
+  .hero-sub{font-family:'Fraunces',serif;font-weight:400;font-style:italic;font-size:clamp(16px,4vw,20px);letter-spacing:4px;text-transform:uppercase;color:var(--muted);margin-bottom:22px}
+  .lede{font-size:15.5px;line-height:1.6;color:#d5ddd6;max-width:54ch}
+  .lede + .lede{margin-top:12px}
+  .lede strong{color:var(--paper)}
+  .phone{font-size:46px;line-height:1;margin-bottom:8px;animation:ring 1.6s ease-in-out infinite}
+  @keyframes ring{0%,60%,100%{transform:rotate(0)}10%,30%,50%{transform:rotate(-12deg)}20%,40%{transform:rotate(12deg)}}
+
+  .rank-badge{font-family:'Fraunces',serif;font-weight:700;font-size:clamp(25px,6.6vw,38px);text-transform:uppercase;letter-spacing:.5px;margin:6px 0 10px;line-height:1.08}
+  .bigscore{font-family:'Fraunces',serif;font-weight:700;font-size:54px;line-height:1;margin:18px 0 2px;color:var(--gold)}
+  .scoreline{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--muted);margin-top:4px}
+
+  .league{margin-top:24px;border-top:1px solid var(--line);padding-top:18px;text-align:left}
+  .league h3{font-family:'Fraunces',serif;font-weight:600;font-size:14px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin-bottom:4px}
+  .league .lsub{font-size:13px;color:#a9bcae;margin-bottom:14px;line-height:1.45}
+  .leg{display:flex;gap:12px;padding:11px 13px;border-radius:9px;background:var(--ink-3);margin-bottom:8px;border:1px solid transparent}
+  .leg.me{border-color:var(--gold);background:rgba(194,163,93,.14)}
+  .leg .rk{font-family:'Fraunces',serif;font-weight:700;font-size:18px;color:var(--gold);width:22px;flex:none;text-align:center;line-height:1.35}
+  .leg .nm{font-family:'Fraunces',serif;font-weight:600;font-size:15px;color:var(--paper);display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .leg .nm .you{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:1px;background:var(--gold);color:#241c0c;padding:2px 7px;border-radius:10px;text-transform:uppercase}
+  .leg .ds{font-size:12.5px;line-height:1.45;color:#b7c6bc;margin-top:3px}
+
+  .fade{animation:fade .45s ease}
+  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+  .footer{text-align:center;font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#6f8478;letter-spacing:.5px;line-height:1.6;margin-top:4px}
+  .footer span{color:var(--gold)}
+
+  @media (max-width:430px){
+    .card{padding:24px 18px 20px}
+    .screen{padding:26px 20px}
+  }
+  @media (prefers-reduced-motion:reduce){*{animation:none !important;transition:none !important}}
+  .protokol{margin-top:26px;text-align:left}
+  .protokol h3{font-family:'Fraunces',serif;text-transform:uppercase;letter-spacing:2px;font-size:15px;color:var(--gold);margin-bottom:4px}
+  .protokol .psub{font-size:13px;color:#a9bcae;margin-bottom:12px}
+  .prow{display:flex;align-items:center;gap:12px;padding:9px 10px;border:1px solid var(--line);border-radius:6px;margin-bottom:7px;background:rgba(255,255,255,.02)}
+  .prow .pmark{font-family:'Permanent Marker',cursive;font-size:19px;width:26px;text-align:center;flex-shrink:0}
+  .prow .pmark.r{color:var(--green)}
+  .prow .pmark.w{color:var(--red)}
+  .prow .pnm{font-family:'Fraunces',serif;font-size:15px;letter-spacing:.4px}
+  .prow .pln{font-size:12px;color:var(--muted)}
+  .gate{min-height:62vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:24px;padding:50px 20px}
+  .gate .gmeta{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:2px;color:#8fa596;text-transform:uppercase}
+  .gate .gline{font-family:'Fraunces',serif;text-transform:uppercase;letter-spacing:3px;font-size:clamp(19px,5vw,27px);color:#f2ede2}
+  .gate-btn{background:transparent;border:2px solid var(--gold);color:var(--gold);font-family:'Fraunces',serif;text-transform:uppercase;letter-spacing:3px;font-size:16px;padding:14px 32px;border-radius:6px;cursor:pointer;transition:background .2s}
+  .gate-btn:hover{background:rgba(194,163,93,.14)}
+  .gate .ghint{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:1px;color:#8fa596}
+  .film-overlay{position:fixed;inset:0;background:#03130d;z-index:9998;display:flex;align-items:center;justify-content:center;opacity:1;transition:opacity .45s ease}
+  .film-overlay.out{opacity:0}
+  .film-card{opacity:0;transition:opacity .6s ease;text-align:center;padding:0 26px;max-width:760px;width:100%}
+  .film-card.vis{opacity:1}
+  .film-title{font-family:'Fraunces',serif;text-transform:uppercase;letter-spacing:4px;font-size:clamp(22px,6vw,40px);color:#f2ede2}
+  .film-sub{font-family:'IBM Plex Mono',monospace;font-size:13px;color:#8fa596;margin-top:14px;letter-spacing:1px}
+  .film-hoved{font-family:'Fraunces',serif;text-transform:uppercase;letter-spacing:6px;font-weight:600;font-size:clamp(30px,9vw,58px);color:var(--gold);text-shadow:0 0 30px rgba(194,163,93,.35)}
+  .film-hoved .amp{color:var(--red);font-style:italic}
+  .film-skip{position:fixed;right:16px;bottom:16px;background:transparent;border:1px solid rgba(242,237,226,.3);color:rgba(242,237,226,.75);font-family:'Fraunces',serif;text-transform:uppercase;letter-spacing:2px;font-size:12px;padding:8px 14px;border-radius:5px;cursor:pointer;z-index:9999}
+  .videoframe{position:relative;width:100%;padding-top:56.25%;background:#000;border:1px solid var(--line);border-radius:6px;overflow:hidden;box-shadow:0 0 40px rgba(194,163,93,.12)}
+  .videoframe iframe,.videoframe #yt-player{position:absolute;inset:0;width:100%;height:100%;border:0}
+  button{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+</style>
+</head>
+<body>
+<div class="stage">
+
+  <header class="bar">
+    <div class="brand">
+      <span class="logo">Flex <span class="amp">&amp;</span> Tryghed</span>
+      <span class="tag"><span style="color:var(--gold)">▲</span> Den Danske Model</span>
+    </div>
+    <span class="casecount" id="casecount"></span>
+  </header>
+
+  <div class="record" id="record" style="display:none">
+    <div class="segs" id="segs"></div>
+    <span class="rec-lbl" id="rec-lbl"><b>0</b> rigtige</span>
+  </div>
+
+  <div id="app"></div>
+
+  <div class="footer">
+    Udviklet af <span>KlosKlos og Reagan Production</span>
+  </div>
+</div>
+
+<script>
+/* ---------------------------------------------------------
+   FLEX & TRYGHED · DEN DANSKE MODEL
+   10 sager fra 1899 til i dag. Tre svar pr. sag, kun ét er sandt.
+   Portrætter kan lægges i images/ (filnavne i PORTRAITS),
+   spillet virker også uden billeder.
+--------------------------------------------------------- */
+
+/* === VIDEOKLIP (YouTube) ===================================
+   Klippet vises som filmisk interlude lige efter sag 04
+   (Thomas Nielsens afskedstale). Ret id/start/stop her:
+   - id:    YouTube-videoens id
+   - start: sekunder inde i videoen (37 = 0:37)
+   - end:   sekunder hvor klippet stopper (61 = 1:01)
+=========================================================== */
+const VIDEO_KLIP = {
+  id: "OyT4KL6a3fI",
+  start: 37,
+  end: 61,
+  titel: "LO-formand Thomas Nielsens afskedstale",
+  under: "LO's kongres · 16. februar 1982"
+};
+
+const LEVELS = [
+  { sag:"01", titel:"Septemberforliget", based:"Danmark · DA & De samvirkende Fagforbund · 1899",
+    situation:"Over tre måneders storlockout har lammet landet, og omkring 40.000 arbejdere er sendt hjem. Den 5. september 1899 sætter arbejdsgivere og fagbevægelse sig ved bordet i København og skriver under på det, der siden er blevet kaldt arbejdsmarkedets grundlov.",
+    spm:"Hvad blev de to parter enige om i Septemberforliget?",
+    svar:[
+      {t:"De anerkendte hinanden gensidigt: arbejderne fik ret til at organisere sig, og arbejdsgiverne fik retten til at lede og fordele arbejdet.", ok:true},
+      {t:"Staten fik ret til at fastsætte lønnen ved lov, hvis parterne ikke selv kunne blive enige.", ok:false},
+      {t:"Strejker og lockouter blev forbudt en gang for alle, og alle tvister skulle afgøres ved domstolene.", ok:false}
+    ],
+    forklaring:"Efter over tre måneders storlockout indgik parterne den 5. september 1899 det forlig, der siden er blevet kaldt arbejdsmarkedets grundlov. Arbejdsgiverne anerkendte arbejdernes ret til at organisere sig og forhandle kollektivt, og fagbevægelsen anerkendte arbejdsgivernes ret til at lede og fordele arbejdet. Samtidig kom der spilleregler for varsling af konflikter. Princippet om, at parterne selv regulerer arbejdsmarkedet uden statslig indblanding, står stadig som fundamentet under den danske model." },
+
+  { sag:"02", titel:"A-kassernes fødsel", based:"Danmark · Rigsdagen · 1907",
+    situation:"Arbejdsløshed er i 1907 stadig et privat problem, og hjælpen afhænger af fagforeningernes egne kasser og sognerådets nåde. Rigsdagen skal nu beslutte, hvordan Danmark vil forsikre sine ledige.",
+    spm:"Hvordan valgte Danmark at organisere arbejdsløshedsforsikringen i 1907?",
+    svar:[
+      {t:"Som frivillig forsikring i statsanerkendte a-kasser med tæt tilknytning til fagforeningerne og med tilskud fra staten.", ok:true},
+      {t:"Som obligatorisk statslig forsikring, hvor alle lønmodtagere automatisk blev trukket i løn.", ok:false},
+      {t:"Som ren kommunal hjælp, hvor sognerådet skønnede fra sag til sag, om den ledige var værdigt trængende.", ok:false}
+    ],
+    forklaring:"Med loven om anerkendte arbejdsløshedskasser fra 1907 valgte Danmark den såkaldte Ghent-model, opkaldt efter den belgiske by, hvor systemet først blev afprøvet. Forsikringen er frivillig, kasserne er fagligt afgrænsede og historisk tæt knyttet til fagforeningerne, og staten giver tilskud. Modellen gav fagbevægelsen en central rolle og regnes som en vigtig forklaring på den høje danske organisationsgrad. I dag findes Ghent-systemet i sin rene form kun i Danmark, Sverige, Finland og Island." },
+
+  { sag:"03", titel:"Kanslergadeforliget", based:"Danmark · Thorvald Stauning · 1933",
+    situation:"Verdenskrisen har sendt hver tredje fagforeningsmedlem ud i ledighed, landbruget bløder, og arbejdsgiverne har varslet en storlockout med krav om store lønnedgange. Natten til den 30. januar 1933 mødes parti&shy;lederne i Staunings lejlighed i Kanslergade, mens whiskyen står på bordet.",
+    spm:"Hvad betød Kanslergadeforliget for arbejdsmarkedet?",
+    svar:[
+      {t:"En varslet storlockout blev afværget, ved at overenskomsterne blev forlænget ved lov i et år.", ok:true},
+      {t:"Fagbevægelsen blev sat under statslig administration, indtil krisen var overstået.", ok:false},
+      {t:"Der blev indført lovbestemt mindsteløn for at holde hånden under de laveste lønninger.", ok:false}
+    ],
+    forklaring:"Natten mellem den 29. og 30. januar 1933 indgik Socialdemokratiet, Radikale og Venstre det bredeste kriseforlig i danmarkshistorien. Den varslede storlockout blev afværget ved at forlænge overenskomsterne ved lov i et år, kronen blev devalueret for at hjælpe landbruget, og Steinckes socialreform gjorde almisser til rettigheder. Samme nat blev Hitler udnævnt til rigskansler i Berlin. Forliget cementerede traditionen for brede kompromiser hen over midten, når krisen kradser." },
+
+  { sag:"04", titel:"Sejret ad helvede til", based:"Danmark · Thomas Nielsen, LO · 1982",
+    situation:"LO-formand Thomas Nielsen går efter 15 år på posten på talerstolen en sidste gang. Foran kongressen gør den bramfri formand status over fagbevægelsens march fra fattigdom til parcelhus, og så falder de ord, der skal blive stående.",
+    spm:"Hvad mente Thomas Nielsen med, at fagbevægelsen havde sejret ad helvede til?",
+    svar:[
+      {t:"At bevægelsen havde nået sine mål i en grad, så medlemmernes velstand truede med at gøre den overflødig i deres egne øjne.", ok:true},
+      {t:"At fagbevægelsen havde tabt kampen om velfærden og måtte starte forfra.", ok:false},
+      {t:"At sejrene var købt for dyrt, fordi kontingentet var blevet alt for højt.", ok:false}
+    ],
+    forklaring:"Citatet faldt i afskedstalen på LO's kongres den 16. februar 1982 og blev straks udødeligt. Nielsen pegede på paradokset: Fagbevægelsen havde skaffet medlemmerne parcelhus, bil og charterferie i et omfang, så mange ikke længere følte, at de havde brug for bevægelsen. Sejren var så total, at den truede med at underminere sammenholdet. Sætningen citeres stadig, hver gang debatten om fagbevægelsens fremtid blusser op. Om lidt kan du selv høre ham sige det." },
+
+  { sag:"05", titel:"Flexicurity", based:"Danmark · Poul Nyrup Rasmussen · 1990'erne",
+    situation:"Ledigheden har bidt sig fast over 10 procent, og udlandet undrer sig: Hvordan kan et land med nogle af verdens letteste fyringsregler samtidig have trygge lønmodtagere? I 1990'erne får den danske cocktail et internationalt navn.",
+    spm:"Hvad består flexicurity-modellens gyldne trekant af?",
+    svar:[
+      {t:"Fleksible regler for at hyre og fyre, et generøst sikkerhedsnet med dagpenge og en aktiv arbejdsmarkedspolitik.", ok:true},
+      {t:"Lav skat på arbejde, høj mindsteløn og korte opsigelsesvarsler.", ok:false},
+      {t:"Livslang ansættelsesgaranti, ret til efteruddannelse og tidlig pension.", ok:false}
+    ],
+    forklaring:"Begrebet flexicurity satte i 1990'erne internationalt navn på en gammel dansk cocktail: liberale regler for at hyre og fyre, et forholdsvis generøst dagpengesystem og en aktiv arbejdsmarkedspolitik, der stiller krav om jobsøgning og opkvalificering. Nyrup-regeringens arbejdsmarkedsreformer fra 1994 og frem strammede den aktive del betydeligt. Kombinationen kaldes den gyldne trekant og betyder, at op mod hver fjerde dansker skifter job hvert år, uden at trygheden forsvinder. EU og OECD har flere gange fremhævet modellen som forbillede." },
+
+  { sag:"06", titel:"Mindstelønnen der ikke findes", based:"Danmark · Arbejdsmarkedets parter · Altid",
+    situation:"En udenlandsk journalist ringer til Beskæftigelsesministeriet og beder om at få oplyst den danske mindsteløn. Der bliver stille i røret. Journalisten prøver igen: Hvem bestemmer, hvad en dansker mindst skal have i timen?",
+    spm:"Hvem fastsætter mindstelønnen i Danmark?",
+    svar:[
+      {t:"Ingen lov gør: Lønnen aftales i overenskomster mellem fagforeninger og arbejdsgivere, branche for branche.", ok:true},
+      {t:"Folketinget regulerer hvert år en lovbestemt mindsteløn i finansloven.", ok:false},
+      {t:"Beskæftigelsesministeriet fastsætter den administrativt efter indstilling fra Det Økonomiske Råd.", ok:false}
+    ],
+    forklaring:"Der findes ingen lov om mindsteløn i Danmark. Lønnen fastsættes i overenskomster mellem fagforeninger og arbejdsgiverorganisationer, branche for branche, og håndhæves af parterne selv, om nødvendigt med konfliktvåbnet. Godt otte ud af ti lønmodtagere er dækket af en overenskomst. Det er netop dette princip, aftaler frem for lovgivning, der får både fagbevægelse og arbejdsgivere til at reagere allergisk, når politikere eller EU nærmer sig lønspørgsmålet." },
+
+  { sag:"07", titel:"Gærkrisen", based:"Danmark · Hele landet · 1998",
+    situation:"Et mæglingsforslag er stemt ned, og omkring 450.000 privatansatte har nedlagt arbejdet i den største konflikt siden 1985. Butikshylderne tømmes for mælk og toiletpapir, og foran bagerierne står danskerne i kø efter noget helt bestemt: gær.",
+    spm:"Hvordan endte storkonflikten i 1998?",
+    svar:[
+      {t:"Regeringen greb ind efter 11 dage og ophøjede et justeret mæglingsforslag til lov.", ok:true},
+      {t:"Parterne forhandlede selv en løsning på plads efter tre måneders konflikt.", ok:false},
+      {t:"Konflikten løb ud i sandet, da strejkekasserne var tomme, og arbejdet blev genoptaget uden aftale.", ok:false}
+    ],
+    forklaring:"Da mæglingsforslaget blev stemt ned i foråret 1998, gik omkring 450.000 privatansatte i konflikt i 11 dage. Danskerne hamstrede gær, mælk og toiletpapir, og konflikten fik hurtigt tilnavnet gærkrisen. Da parterne ikke selv kunne lande en løsning, greb Nyrup-regeringen ind og ophøjede et justeret mæglingsforslag til lov, blandt andet med ekstra fridage, som senere banede vejen for den sjette ferieuge. Indgrebet viste bagsiden af modellen: Når parterne ikke kan selv, står staten klar med lovgivningsmaskinen." },
+
+  { sag:"08", titel:"Efterlønsgarantien", based:"Danmark · Poul Nyrup Rasmussen · 1998-2001",
+    situation:"Valgkampen i marts 1998 er tæt, og rygterne svirrer om, at efterlønnen står for skud. Statsminister Poul Nyrup Rasmussen ser direkte ind i kameraet og garanterer, at man trygt kan stemme på Socialdemokratiet, hvis man vil bevare efterlønnen. Han vinder valget med et mulehår.",
+    spm:"Hvad skete der med efterlønnen efter valget i 1998?",
+    svar:[
+      {t:"Få måneder efter garantien indgik regeringen et forlig, der ændrede ordningen markant, og løftebruddet klæbede til Nyrup frem til 2001.", ok:true},
+      {t:"Efterlønnen blev fredet i hele valgperioden, præcis som lovet.", ok:false},
+      {t:"Ordningen blev afskaffet med øjeblikkelig virkning for alle under 50 år.", ok:false}
+    ],
+    forklaring:"I efteråret 1998, få måneder efter garantien, indgik regeringen et bredt forlig, der ændrede efterlønnen markant, blandt andet med efterlønsbevis, modregning af pensionsopsparing og en reelt senere tilbagetrækning. Ændringerne blev opfattet som et klokkeklart løftebrud, og sagen klæbede til Nyrup frem til valgnederlaget i 2001. Efterlønssagen er siden blevet selve lærestykket i, hvad brudte garantier om tilbagetrækning koster, og en advarsel, enhver dansk politiker kender." },
+
+  { sag:"09", titel:"Dagpengereformen", based:"Danmark · VK-regeringen & DF · 2010",
+    situation:"Finanskrisen har slået hul i statskassen, og i maj 2010 lander VK-regeringen og Dansk Folkeparti Genopretningsaftalen. Et af de mest omdiskuterede punkter gemmer sig i dagpengesystemet, og få aner, hvor mange det kommer til at ramme.",
+    spm:"Hvad ændrede dagpengereformen i 2010?",
+    svar:[
+      {t:"Dagpengeperioden blev halveret fra fire til to år, og genoptjeningskravet blev fordoblet fra 26 til 52 uger.", ok:true},
+      {t:"Dagpengesatsen blev sat op, mod at perioden blev gjort afhængig af konjunkturerne.", ok:false},
+      {t:"A-kasserne blev nedlagt, og udbetalingen blev flyttet til kommunerne.", ok:false}
+    ],
+    forklaring:"Som led i Genopretningsaftalen blev dagpengeperioden i 2010 halveret fra fire til to år, og kravet for at genoptjene retten blev fordoblet fra 26 til 52 ugers arbejde. Regnestykket forudsagde, at nogle få tusinde ville miste dagpengeretten, men alene i 2013 faldt over 30.000 ud af systemet. Det udløste akutpakker, en dagpengekommission og justeringer i 2015, hvor genoptjeningen blev gjort mere fleksibel. Reformen præger stadig enhver diskussion om dagpengenes længde og dækning." },
+
+  { sag:"10", titel:"Slaget om mindstelønnen", based:"Danmark og EU · Folketinget · 2022-2025",
+    situation:"EU vil sikre alle europæiske lønmodtagere en passende mindsteløn og vedtager i 2022 et direktiv om sagen. I København slår både fagbevægelse, arbejdsgivere og et næsten samlet Folketing alarm: Nu står selve den danske model på spil.",
+    spm:"Hvad gjorde Danmark, da EU vedtog mindstelønsdirektivet i 2022?",
+    svar:[
+      {t:"Stemte imod og lagde som noget helt usædvanligt sag an mod EU ved Domstolen for at værne om den danske model.", ok:true},
+      {t:"Stemte for efter at have fået en juridisk bindende undtagelse for lande med overenskomstmodel.", ok:false},
+      {t:"Undlod at stemme og valgte at implementere direktivet med en symbolsk lav mindsteløn.", ok:false}
+    ],
+    forklaring:"Danmark og Sverige stemte som de eneste imod, da EU i 2022 vedtog direktivet om passende mindstelønninger, og Danmark tog derefter det sjældne skridt at lægge sag an mod Ministerrådet og Europa-Parlamentet ved EU-Domstolen. Frygten var, at direktivet ville åbne for lovbestemt løndannelse og undergrave overenskomstmodellen. I november 2025 afsagde Domstolen dom: Direktivet består, men centrale bestemmelser om kriterier for lovbestemte mindstelønninger blev annulleret, og lande som Danmark uden lovfastsat mindsteløn skal ikke indføre en. Begge sider erklærede sig som vindere, og debatten om EU og den danske model er langtfra slut." }
+];
+
+const SLOTS = ["A","B","C"];
+const RUNDE = 10;
+const FASTE = ["01","02","03","04","05","06","07","08","09","10"];
+
+/* Forhandlerligaen, rangeret 1 (mest legendarisk) → 7. Score-krav: 10→#1 … 5→#6; under 5 → #7 */
+const LEGENDS = [
+  { navn:"Thorvald Stauning", pron:"han", flavor:"landsfaderen, der forhandlede Danmark gennem 30'ernes krise",
+    desc:"Statsminister 1924-26 og 1929-42, manden bag Kanslergadeforliget og symbolet på det brede kompromis. Cigarrygende bryggeriarbejder, der endte som landsfader." },
+  { navn:"Louis Pio", pron:"han", flavor:"pioneren, der startede hele arbejderbevægelsen",
+    desc:"Grundlagde den danske arbejderbevægelse i 1871, indkaldte til mødet, der endte som Slaget på Fælleden, og blev fængslet for sine anstrengelser. Endte sine dage i Amerika, men bevægelsen bestod." },
+  { navn:"Jens Jensen", pron:"han", flavor:"fagbevægelsens første general og medarkitekt bag Septemberforliget",
+    desc:"Formand for De samvirkende Fagforbund fra 1898 og medunderskriver af Septemberforliget i 1899. Blev senere Københavns første socialdemokratiske finansborgmester." },
+  { navn:"Thomas Nielsen", pron:"han", flavor:"LO-formanden, der sejrede ad helvede til",
+    desc:"LO-formand 1967-82, kendt for sin bramfri stil og for afskedstalens berømte ord om fagbevægelsens paradoksale succes." },
+  { navn:"Niels Andersen", pron:"han", flavor:"arbejdsgivernes stålsatte general fra 1899",
+    desc:"Entreprenør og formand for Dansk Arbejdsgiverforening under storlockouten i 1899. Holdt ud i over tre måneder og fik retten til at lede og fordele arbejdet skrevet ind i forliget." },
+  { navn:"Lizette Risgaard", pron:"hun", flavor:"den første formand for det samlede FH",
+    desc:"Stod i spidsen, da LO og FTF i 2019 fusionerede til Fagbevægelsens Hovedorganisation, og talte dermed for omkring 1,3 millioner lønmodtagere." },
+  { navn:"Bjarne Corydon", pron:"han", flavor:"konkurrencestatens far",
+    desc:"Finansminister 2011-15, kendt for nødvendighedens politik, lærerlockouten i 2013 og DONG-salget. Ringer mest, fordi ingen af de andre gjorde." }
+];
+
+const CITATER = {
+  "01":{ t:"Arbejdsgiverne leder og fordeler arbejdet.", k:"Septemberforliget, 1899" },
+  "02":{ t:"Hjælp til selvhjælp.", k:"Tidens socialpolitiske motto" },
+  "03":{ t:"Danmark for Folket.", k:"Socialdemokratiets program, 1934" },
+  "04":{ t:"Vi har sejret ad helvede til. Godt.", k:"Thomas Nielsen, 1982" },
+  "05":{ t:"Let at fyre, men trygt at være ledig.", k:"Flexicurity-modellens grundtanke" },
+  "06":{ t:"Aftaler er bedre end lov.", k:"Den danske models grundprincip" },
+  "07":{ t:"Man skal ikke gå i panik. Men køb nu bare den gær.", k:"Folkevid under gærkrisen, 1998" },
+  "08":{ t:"Man kan trygt stemme på Socialdemokratiet, hvis man vil bevare efterlønnen.", k:"Poul Nyrup Rasmussen, valgkampen 1998" },
+  "09":{ t:"Den, der vil bevare, må forandre.", k:"Frit efter Edmund Burke" },
+  "10":{ t:"Løn fastsættes ved forhandlingsbordet, ikke ved lov.", k:"Fælles dansk melding til Bruxelles" }
+};
+
+const PORTRAITS = {
+  "01":"septemberforliget.jpg", "02":"akasse1907.jpg", "03":"stauning.jpg",
+  "04":"thomasnielsen.jpg", "05":"nyrup.jpg", "06":"parterne.jpg",
+  "07":"gaer.jpg", "08":"efterloen.jpg", "09":"dagpenge2010.jpg", "10":"eu.jpg"
+};
+
+let state = { i:0, history:[], rigtige:0, slots:[], started:false };
+let creditsShown = false;
+
+const app = document.getElementById('app');
+const recordEl = document.getElementById('record');
+const segsEl = document.getElementById('segs');
+const recLbl = document.getElementById('rec-lbl');
+const caseCount = document.getElementById('casecount');
+
+for(let i=0;i<RUNDE;i++){ const d=document.createElement('div'); d.className='seg'; d.id='seg-'+i; segsEl.appendChild(d); }
+
+function renderRecord(){
+  [...Array(RUNDE)].forEach((_,i)=>{
+    const seg = document.getElementById('seg-'+i);
+    seg.className = 'seg' + (state.history[i]===true?' r':state.history[i]===false?' w':'');
+    seg.textContent = state.history[i]===true ? '\u2713' : state.history[i]===false ? '\u2717' : '';
+    if(i===state.i && state.history[i]===undefined) seg.classList.add('cur');
+  });
+  recLbl.innerHTML = `<b>${state.rigtige}</b> rigtige`;
+}
+
+/* ---------- Filmiske interludes ---------- */
+const CREDITS_FILM = [
+  { line1:"KlosKlos og Reagan Production", line2:"præsenterer" },
+  { hoved:'Flex <span class="amp">&</span> Tryghed', line2:"Den Danske Model · ti afgørende øjeblikke" }
+];
+
+function playFilm(cards, next){
+  const ov = document.createElement('div');
+  ov.className = 'film-overlay';
+  document.body.appendChild(ov);
+  const skip = document.createElement('button');
+  skip.className = 'film-skip'; skip.textContent = 'Spring over \u25b8';
+  document.body.appendChild(skip);
+  let idx = 0, timer = null, done = false;
+  function finish(){
+    if(done) return; done = true;
+    clearTimeout(timer);
+    ov.classList.add('out');
+    setTimeout(()=>{ ov.remove(); skip.remove(); next(); }, 460);
+  }
+  skip.onclick = finish;
+  function showCard(){
+    if(idx >= cards.length){ finish(); return; }
+    const c = cards[idx];
+    ov.innerHTML = `<div class="film-card">
+        ${c.hoved ? `<div class="film-hoved">${c.hoved}</div>` : `<div class="film-title">${c.line1}</div>`}
+        ${c.line2 ? `<div class="film-sub">${c.line2}</div>` : ''}
+      </div>`;
+    requestAnimationFrame(()=> ov.querySelector('.film-card').classList.add('vis'));
+    idx++;
+    timer = setTimeout(()=>{
+      const card = ov.querySelector('.film-card');
+      if(card) card.classList.remove('vis');
+      timer = setTimeout(showCard, 650);
+    }, 2300);
+  }
+  showCard();
+}
+
+/* ---------- Video-interlude (Thomas Nielsen, 1982) ---------- */
+let ytApiLoaded = false;
+function loadYouTubeAPI(cb){
+  if(window.YT && window.YT.Player){ cb(); return; }
+  if(!ytApiLoaded){
+    ytApiLoaded = true;
+    const s = document.createElement('script');
+    s.src = "https://www.youtube.com/iframe_api";
+    document.head.appendChild(s);
+  }
+  const prev = window.onYouTubeIframeAPIReady;
+  window.onYouTubeIframeAPIReady = function(){ if(prev) prev(); cb(); };
+  /* fallback hvis API'et ikke loader inden 4 sek. */
+  setTimeout(()=>{ if(!(window.YT && window.YT.Player)) cb(); }, 4000);
+}
+
+function videoInterlude(next){
+  const ov = document.createElement('div');
+  ov.className = 'film-overlay';
+  ov.innerHTML = `
+    <div class="film-card vis">
+      <div class="film-title" style="font-size:clamp(17px,4.5vw,26px);margin-bottom:6px">Arkivet \u00b7 ${VIDEO_KLIP.titel}</div>
+      <div class="film-sub" style="margin:0 0 16px">${VIDEO_KLIP.under}</div>
+      <div class="videoframe"><div id="yt-player"></div></div>
+    </div>`;
+  document.body.appendChild(ov);
+  const skip = document.createElement('button');
+  skip.className = 'film-skip'; skip.textContent = 'Videre \u25b8';
+  document.body.appendChild(skip);
+  let done = false;
+  function finish(){
+    if(done) return; done = true;
+    ov.classList.add('out');
+    setTimeout(()=>{ ov.remove(); skip.remove(); next(); }, 460);
+  }
+  skip.onclick = finish;
+
+  loadYouTubeAPI(()=>{
+    if(window.YT && window.YT.Player){
+      new YT.Player('yt-player', {
+        videoId: VIDEO_KLIP.id,
+        playerVars: { start: VIDEO_KLIP.start, end: VIDEO_KLIP.end, autoplay: 1, rel: 0, modestbranding: 1, playsinline: 1 },
+        events: {
+          onStateChange: (e)=>{ if(e.data === YT.PlayerState.ENDED) setTimeout(finish, 900); }
+        }
+      });
+    } else {
+      /* nødplan: almindelig iframe, klippet stopper selv ved 1:01, brugeren trykker Videre */
+      document.getElementById('yt-player').outerHTML =
+        `<iframe src="https://www.youtube.com/embed/${VIDEO_KLIP.id}?start=${VIDEO_KLIP.start}&end=${VIDEO_KLIP.end}&autoplay=1&rel=0&playsinline=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+    }
+  });
+}
+
+/* ---------- Spillets skærme ---------- */
+function gate(){
+  recordEl.style.display = 'none';
+  caseCount.textContent = '';
+  app.innerHTML = `
+    <div class="gate fade">
+      <div class="gmeta">Fortroligt materiale // adgang kun for indkaldte</div>
+      <div class="gline">Forhandlingsbordet venter p\u00e5 dig.</div>
+      <div class="ghint">Spilles bedst med lyd \u00b7 ca. 10 minutter</div>
+      <button class="gate-btn" id="gate-go">Er du klar? \u25b8</button>
+    </div>`;
+  document.getElementById('gate-go').onclick = ()=>{
+    if(document.getElementById('gate-go').disabled) return;
+    document.getElementById('gate-go').disabled = true;
+    creditsShown = true;
+    playFilm(CREDITS_FILM, intro);
+  };
+}
+
+function intro(){
+  recordEl.style.display = 'none';
+  caseCount.textContent = '';
+  app.innerHTML = `
+    <div class="panel fade">
+      <div class="card">
+        <div class="stamp land">Fortroligt</div>
+        <div class="meta">Sagsmappe // den danske model</div>
+        <h1 class="cover-title">Flex <span class="amp">&amp;</span> Tryghed</h1>
+        <div class="cover-sub">Den Danske Model</div>
+        <svg class="gtri" viewBox="0 0 240 158" aria-hidden="true">
+          <polygon points="120,26 18,134 222,134"/>
+          <text x="120" y="14" text-anchor="middle">Fleksibilitet</text>
+          <text x="14" y="152" text-anchor="start">Dagpenge</text>
+          <text x="226" y="152" text-anchor="end">Aktiv indsats</text>
+        </svg>
+        <div class="dossier">
+          <div class="drow"><span class="dk">Klient</span><span class="redact" style="width:150px"></span></div>
+          <div class="drow"><span class="dk">Din status</span><span class="dv">Praktikant ved forhandlingsbordet</span></div>
+          <div class="drow"><span class="dk">Opgave</span><span class="dv">10 \u00f8jeblikke. Kend din model.</span></div>
+        </div>
+        <p class="situation">Du er helt ny i maskinrummet bag den danske model. Inden forhandlerlegenderne lukker dig ind ved det store bord, s\u00e6tter de dig p\u00e5 pr\u00f8ve: Kender du overhovedet modellens historie?</p>
+        <p class="situation" style="margin-top:12px">Ti afg\u00f8rende \u00f8jeblikke fra 1899 til i dag, fra Septemberforliget over flexicurity til slaget om mindstel\u00f8nnen. For hvert skal du svare p\u00e5, hvad der faktisk skete. Tre svarmuligheder, alle plausible, men kun \u00e9n er sand. Jo flere du rammer, jo mere legendarisk en mentor ringer til sidst.</p>
+        <button class="btn go big" id="start" style="margin-top:18px">\ud83e\udd1d Tag plads ved bordet \u25b8</button>
+      </div>
+    </div>`;
+  document.getElementById('start').onclick = startGame;
+}
+
+function startGame(){
+  state = { i:0, history:[], rigtige:0, slots:[], started:true, videoDone:false, deck:FASTE.map(s=> LEVELS.findIndex(l=>l.sag===s)) };
+  recordEl.style.display = 'flex';
+  renderRecord();
+  if(!creditsShown){
+    creditsShown = true;
+    playFilm(CREDITS_FILM, showCase);
+  } else {
+    showCase();
+  }
+}
+
+function shuffle(a){ a=a.slice(); for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+function parseBased(b){ const p=b.split('\u00b7').map(s=>s.trim()); return {land:p[0]||'', person:p[1]||'', aar:p[p.length-1]||''}; }
+
+function showCase(){
+  const lv = LEVELS[state.deck[state.i]];
+  const b = parseBased(lv.based);
+  const nr = String(state.i+1).padStart(2,'0');
+  const ord = shuffle([0,1,2]);
+  state.slots = ord;
+  caseCount.textContent = 'SAG ' + (state.i+1) + ' / 10';
+  renderRecord();
+
+  const buttons = ord.map((optIdx,slot)=>{
+    const o = lv.svar[optIdx];
+    return `<button class="choice" data-slot="${slot}"><span class="key">${SLOTS[slot]}</span><span>${o.t}</span></button>`;
+  }).join('');
+
+  app.innerHTML = `
+    <div class="panel fade">
+      <div class="card has-portrait">
+        <div class="stamp">Aktiv sag</div>
+        <div class="portrait"><img src="images/${PORTRAITS[lv.sag]}" alt="${b.person}" onerror="this.parentElement.style.display='none';this.closest('.card').classList.remove('has-portrait')"></div>
+        <div class="meta">Sag nr. ${nr}</div>
+        <div class="country">${b.land}</div>
+        <h2 class="case-title">${lv.titel}</h2>
+        <div class="cardsub">${b.person} \u00b7 ${b.aar}</div>
+        <p class="situation">${lv.situation}</p>
+        <div class="prompt">Sp\u00f8rgsm\u00e5l</div>
+        <p class="question">${lv.spm}</p>
+        <div class="choices">${buttons}</div>
+      </div>
+    </div>`;
+  window.scrollTo(0, 0);
+  app.querySelectorAll('.choice').forEach(b=>{ b.onclick = ()=> choose(parseInt(b.dataset.slot,10)); });
+}
+
+function choose(slot){
+  const lv = LEVELS[state.deck[state.i]];
+  const b = parseBased(lv.based);
+  const nr = String(state.i+1).padStart(2,'0');
+  const picked = lv.svar[ state.slots[slot] ];
+  const good = !!picked.ok;
+  const correct = lv.svar.find(o=>o.ok);
+  const q = CITATER[lv.sag];
+
+  state.history[state.i] = good;
+  if(good) state.rigtige++;
+  renderRecord();
+
+  app.innerHTML = `
+    <div class="panel fade">
+      <div class="card has-portrait">
+        <div class="stamp land" style="${good?'color:var(--green)':''}">${good ? 'Rigtigt' : 'Forkert'}</div>
+        <div class="portrait"><img src="images/${PORTRAITS[lv.sag]}" alt="${b.person}" onerror="this.parentElement.style.display='none';this.closest('.card').classList.remove('has-portrait')"></div>
+        <div class="meta">Sag nr. ${nr} \u00b7 dit svar</div>
+        <div class="country">${b.land}</div>
+        <h2 class="case-title">${lv.titel}</h2>
+        <div class="verdict ${good?'good':'bad'}"><span class="dot"></span>${good ? 'Rigtigt svar' : 'Forkert svar'}</div>
+        ${good ? '' : `<div class="vsub">Du svarede: ${picked.t}</div>`}
+        <div class="answer"><span class="alab">Det rigtige svar</span>${correct.t}</div>
+        <div class="truth"><span class="lab">S\u00e5dan gik det i virkeligheden \u00b7 ${b.aar}</span>${lv.forklaring}</div>
+        <div class="qbox"><div class="qlab">Til eftertanke</div><div class="qt">${q.t}</div><div class="qk">${q.k}</div></div>
+        <div class="actions" id="act"></div>
+      </div>
+    </div>`;
+
+  window.scrollTo(0, 0);
+  const act = document.getElementById('act');
+  if(state.i === RUNDE - 1){
+    act.innerHTML = `<button class="btn go big" id="next">Se hvem der ringer \u25b8</button>`;
+    document.getElementById('next').onclick = ()=> ending();
+  } else {
+    /* Efter sag 04 (Thomas Nielsen) vises videoklippet som interlude */
+    if(lv.sag === "04" && !state.videoDone){
+      act.innerHTML = `<button class="btn go big" id="next">\ud83c\udfac Se klippet fra 1982 \u25b8</button>`;
+      document.getElementById('next').onclick = ()=>{
+        state.videoDone = true;
+        videoInterlude(()=>{ state.i++; showCase(); });
+      };
+    } else {
+      act.innerHTML = `<button class="btn big" id="next">N\u00e6ste sag \u25b8</button>`;
+      document.getElementById('next').onclick = ()=>{ state.i++; showCase(); };
+    }
+  }
+}
+
+function ending(){
+  const r = state.rigtige;
+  const rankIdx = r >= 5 ? (10 - r) : 6;
+  const leg = LEGENDS[rankIdx];
+  const grid = state.history.map(h=> h ? '\u2705' : '\u274c').join('');
+
+  caseCount.textContent = 'AFSLUTTET';
+  recordEl.style.display = 'flex';
+  renderRecord();
+
+  const league = LEGENDS.map((L,i)=>`
+    <div class="leg ${i===rankIdx?'me':''}">
+      <div class="rk">${i+1}</div>
+      <div>
+        <div class="nm">${L.navn} ${i===rankIdx?'<span class="you">Din mentor</span>':''}</div>
+        <div class="ds">${L.desc}</div>
+      </div>
+    </div>`).join('');
+
+  const protokol = state.history.map((h,i)=>{
+    const lv = LEVELS[state.deck[i]];
+    const b = parseBased(lv.based);
+    return `<div class="prow">
+      <div class="pmark ${h?'r':'w'}">${h?'\u2713':'\u2717'}</div>
+      <div><div class="pnm">${lv.titel}</div><div class="pln">${b.person} \u00b7 ${b.aar}</div></div>
+    </div>`;
+  }).join('');
+
+  app.innerHTML = `
+    <div class="screen fade" style="text-align:center">
+      <div class="phone">\ud83d\udcde</div>
+      <div class="kicker">Telefonen ringer</div>
+      <div class="rank-badge">${leg.navn} vil tale med dig</div>
+      <p class="lede" style="margin:0 auto">I r\u00f8ret: ${leg.flavor}. ${leg.pron==='hun'?'Hun':'Han'} har fulgt din pr\u00f8ve og tilbyder dig en plads ved forhandlingsbordet.</p>
+      <div class="bigscore">${r}<span style="font-size:26px;color:var(--muted)">/10</span></div>
+      <div class="scoreline">rigtige svar om den danske model</div>
+      <div class="sharegrid">${grid}</div>
+      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:18px">
+        <button class="btn go" id="share">Del dit resultat</button>
+        <button class="btn" id="again">Pr\u00f8v igen \u25b8</button>
+      </div>
+      <div class="league">
+        <h3>Forhandlerligaen</h3>
+        <div class="lsub">Jo flere rigtige, jo mere legendarisk en mentor ringer. 10 rigtige giver Stauning selv i r\u00f8ret.</div>
+        ${league}
+      </div>
+      <div class="protokol">
+        <h3>Protokollen</h3>
+        <div class="psub">Dine ti sager, som de blev f\u00f8rt til protokols.</div>
+        ${protokol}
+      </div>
+    </div>`;
+  window.scrollTo(0, 0);
+  document.getElementById('again').onclick = startGame;
+  document.getElementById('share').onclick = ()=> showShareMenu(r, leg.navn, grid);
+}
+
+function showShareMenu(r, mentor, grid){
+  const text = 'Flex & Tryghed: Den Danske Model\n' + r + '/10, mentor: ' + mentor + '\n' + grid + '\nKan du sl\u00e5 mig? ' + location.href;
+  const eText = encodeURIComponent(text);
+  const eUrl = encodeURIComponent(location.href);
+  const modal = document.createElement('div');
+  modal.className = 'share-modal';
+  modal.innerHTML = `
+    <div class="share-box">
+      <h3>Del dit resultat</h3>
+      <div class="share-list">
+        <a class="share-btn" href="https://www.facebook.com/sharer/sharer.php?u=${eUrl}" target="_blank" rel="noopener"><span class="ico fb">f</span>Facebook</a>
+        <a class="share-btn" href="https://twitter.com/intent/tweet?text=${eText}" target="_blank" rel="noopener"><span class="ico x">\ud835\udd4f</span>X</a>
+        <a class="share-btn" href="https://wa.me/?text=${eText}" target="_blank" rel="noopener"><span class="ico wa">\u2706</span>WhatsApp</a>
+        <a class="share-btn" href="https://t.me/share/url?url=${eUrl}&text=${eText}" target="_blank" rel="noopener"><span class="ico tg">\u2708</span>Telegram</a>
+        <button class="share-btn" id="share-copy"><span class="ico cp">\u2398</span>Kopi\u00e9r resultat</button>
+      </div>
+      <button class="share-close" id="share-close">Luk</button>
+    </div>`;
+  document.body.appendChild(modal);
+  modal.addEventListener('click', e=>{ if(e.target===modal) modal.remove(); });
+  document.getElementById('share-close').onclick = ()=> modal.remove();
+  document.getElementById('share-copy').onclick = ()=>{
+    navigator.clipboard.writeText(text).then(()=>{
+      const b = document.getElementById('share-copy');
+      b.innerHTML = '<span class="ico cp">\u2713</span>Kopieret!';
+    });
+  };
+}
+
+/* Til test: previewEnding(7) i konsollen viser slutsk\u00e6rmen med en given score */
+function previewEnding(fakeScore){
+  state.deck = FASTE.map(s=> LEVELS.findIndex(l=>l.sag===s));
+  state.rigtige = fakeScore;
+  state.history = [...Array(RUNDE)].map((_,i)=> i < fakeScore);
+  ending();
+}
+
+gate();
+</script>
+</body>
+</html>
