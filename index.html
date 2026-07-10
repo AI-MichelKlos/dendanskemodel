@@ -474,6 +474,7 @@ function videoInterlude(next){
       <div class="film-title" style="font-size:clamp(17px,4.5vw,26px);margin-bottom:6px">Arkivet \u00b7 ${VIDEO_KLIP.titel}</div>
       <div class="film-sub" style="margin:0 0 16px">${VIDEO_KLIP.under}</div>
       <div class="videoframe"><div id="yt-player"></div></div>
+      <div class="film-sub" id="vid-hint" style="margin-top:12px">Tryk \u25b6 p\u00e5 videoen for at afspille klippet (0:37 til 1:01)</div>
     </div>`;
   document.body.appendChild(ov);
   const skip = document.createElement('button');
@@ -493,7 +494,13 @@ function videoInterlude(next){
         videoId: VIDEO_KLIP.id,
         playerVars: { start: VIDEO_KLIP.start, end: VIDEO_KLIP.end, autoplay: 1, rel: 0, modestbranding: 1, playsinline: 1 },
         events: {
-          onStateChange: (e)=>{ if(e.data === YT.PlayerState.ENDED) setTimeout(finish, 900); }
+          /* iOS blokerer autoplay med lyd, saa vi forsoeger, men regner ikke med det */
+          onReady: (e)=>{ try{ e.target.playVideo(); }catch(_){} },
+          onStateChange: (e)=>{
+            const hint = document.getElementById('vid-hint');
+            if(e.data === YT.PlayerState.PLAYING && hint) hint.style.visibility = 'hidden';
+            if(e.data === YT.PlayerState.ENDED) setTimeout(finish, 900);
+          }
         }
       });
     } else {
