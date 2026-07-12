@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Forlig før daggry · Dansk arbejdsmarkedspolitik</title>
+<title>Forlig før daggry · En arbejdsmarkedspolitisk quiz</title>
 <meta property="og:type" content="website">
-<meta property="og:title" content="Forlig før daggry: Dansk arbejdsmarkedspolitik">
+<meta property="og:title" content="Forlig før daggry: En arbejdsmarkedspolitisk quiz">
 <meta property="og:description" content="Klokken er over midnat i Forligsinstitutionen. 13 knuder skal løses inden daggry. Kender du dansk arbejdsmarkedspolitiks historie fra Bismarck til i dag?">
 <meta property="og:url" content="https://ai-michelklos.github.io/Michelsspil/flex-og-tryghed/">
 <meta property="og:image" content="https://ai-michelklos.github.io/Michelsspil/flex-og-tryghed/images/stauning.jpg">
@@ -107,6 +107,22 @@
   .cover-title{font-family:'Fraunces',serif;font-weight:700;font-size:clamp(33px,8.6vw,50px);line-height:1;text-transform:uppercase;letter-spacing:.5px;color:#221c10;margin:6px 0 2px}
   .cover-title .amp{color:var(--red);font-style:italic}
   .cover-sub{font-family:'Fraunces',serif;font-weight:400;font-style:italic;font-size:clamp(15px,4vw,19px);letter-spacing:4px;text-transform:uppercase;color:var(--muted-paper);margin-bottom:16px}
+  .fors{min-height:72vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 10px 30px}
+  .fors .fpraes{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:20px}
+  .fors .ftitle{font-family:'Fraunces',serif;font-weight:700;font-size:clamp(44px,13.5vw,84px);line-height:.96;text-transform:uppercase;letter-spacing:.5px;color:#f2ede2;text-shadow:0 0 46px rgba(194,163,93,.22)}
+  .fors .fsub{font-family:'Fraunces',serif;font-style:italic;font-size:clamp(16px,4.6vw,22px);letter-spacing:3.5px;text-transform:uppercase;color:var(--muted);margin-top:16px}
+  .collage{display:flex;justify-content:center;align-items:center;margin:34px 0 8px;padding:0 6px}
+  .collage img{width:21%;max-width:104px;height:auto;border:2px solid rgba(194,163,93,.65);border-radius:2px;box-shadow:0 14px 30px -10px rgba(0,0,0,.75);filter:sepia(.22) contrast(1.02);margin:0 -9px}
+  .collage img.p0{transform:rotate(-7deg) translateY(10px)}
+  .collage img.p1{transform:rotate(3.5deg) translateY(-4px);z-index:2}
+  .collage img.p2{transform:rotate(-1.5deg) translateY(-12px);z-index:4;width:24%;max-width:118px}
+  .collage img.p3{transform:rotate(5deg) translateY(-2px);z-index:3}
+  .collage img.p4{transform:rotate(-4.5deg) translateY(12px)}
+  .collage img.portrait-crop{object-fit:cover;aspect-ratio:3/4}
+  .fors .fbtn{margin-top:30px}
+  .praes{font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:700;letter-spacing:2.4px;text-transform:uppercase;color:var(--muted-paper);text-align:center;margin:4px 0 10px}
+  .playnote{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin:0 0 16px}
+  .playnote span{font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;color:var(--gold-dk);border:1px solid rgba(143,116,51,.45);border-radius:3px;padding:6px 11px;background:rgba(194,163,93,.10)}
   .dossier{border-top:1px solid var(--line-paper);border-bottom:1px solid var(--line-paper);padding:12px 0;margin:0 0 16px;display:flex;flex-direction:column;gap:8px}
   .drow{display:flex;gap:12px;align-items:center;font-size:13.5px}
   .dk{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:1.2px;text-transform:uppercase;color:var(--muted-paper);width:92px;flex:none}
@@ -193,7 +209,7 @@
   .gate .gline{font-family:'Fraunces',serif;text-transform:uppercase;letter-spacing:3px;font-size:clamp(19px,5vw,27px);color:#f2ede2}
   .gate-btn{background:transparent;border:2px solid var(--gold);color:var(--gold);font-family:'Fraunces',serif;text-transform:uppercase;letter-spacing:3px;font-size:16px;padding:14px 32px;border-radius:6px;cursor:pointer;transition:background .2s}
   .gate-btn:hover{background:rgba(194,163,93,.14)}
-  .gate .ghint{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:1px;color:#8fa596}
+  .gate .ghint{font-family:'IBM Plex Mono',monospace;font-size:15px;font-weight:700;letter-spacing:1.6px;color:var(--gold);text-transform:uppercase;line-height:1.7}
   .film-overlay{position:fixed;inset:0;background:#03130d;z-index:9998;display:flex;align-items:center;justify-content:center;opacity:1;transition:opacity .45s ease}
   .film-overlay.out{opacity:0}
   .film-card{opacity:0;transition:opacity .6s ease;text-align:center;padding:0 26px;max-width:760px;width:100%}
@@ -237,8 +253,7 @@
   <header class="bar">
     <div class="brand">
       <span class="logo">Forlig før daggry</span>
-      <span class="tag"><span style="color:var(--gold)">▲</span> Dansk arbejdsmarkedspolitik</span>
-    </div>
+          </div>
     <span style="display:flex;align-items:center;gap:9px">
         <svg id="urskive" viewBox="0 0 24 24" width="26" height="26" aria-hidden="true" style="display:none">
           <circle cx="12" cy="12" r="10.5" fill="#0a231a" stroke="#c2a35d" stroke-width="1.6"/>
@@ -985,7 +1000,7 @@ function gate(){
     <div class="gate fade">
       <div class="gmeta">Forligsinstitutionen \u00b7 natforhandling \u00b7 kl. 02:14</div>
       <div class="gline">Der skal ligge et forlig, inden solen st\u00e5r op.</div>
-      <div class="ghint">Spilles bedst med lyd \u00b7 ca. 10 minutter</div>
+      <div class="ghint">\ud83c\udfa7 Spilles bedst med lyd<br>Ca. 10 minutter</div>
       <button class="gate-btn" id="gate-go">G\u00e5 ind \u25b8</button>
     </div>`;
   document.getElementById('gate-go').onclick = ()=>{
@@ -994,6 +1009,58 @@ function gate(){
     creditsShown = true;
     playFilm(CREDITS_FILM, intro);
   };
+}
+
+function forside(){
+  recordEl.style.display = 'none';
+  caseCount.textContent = '';
+  setUr(null);
+  app.innerHTML = `
+    <div class="fors fade">
+      <div class="fpraes">KlosKlos og Reagan Production pr\u00e6senterer</div>
+      <div class="ftitle">Forlig f\u00f8r daggry</div>
+      <div class="fsub">En arbejdsmarkedspolitisk quiz</div>
+      <div class="collage" id="collage"></div>
+      <button class="gate-btn fbtn" id="fors-go">Videre \u25b8</button>
+    </div>`;
+  byggCollage();
+  document.getElementById('fors-go').onclick = intro;
+}
+
+/* Forsidens billedvifte: proev portraetterne fra images/, og fyld op med
+   Kanslergade-tegningerne for dem der ikke er uploadet. Viser altid 5. */
+function byggCollage(){
+  const boks = document.getElementById('collage');
+  if(!boks) return;
+
+  const oensket = [
+    {src:'images/pio.jpg', crop:true},            /* Faelleden 1872 */
+    {src:'images/thomasnielsen.jpg', crop:true},  /* 1982 */
+    {src:STAUNING_IMG[4], crop:false},            /* underskriften, midterst */
+    {src:'images/anker.jpg', crop:true},          /* ligeloen 1971 */
+    {src:'images/bismarck.jpg', crop:true}        /* 1883 */
+  ];
+  const reserve = [STAUNING_IMG[0], STAUNING_IMG[1], STAUNING_IMG[3], STAUNING_IMG[5], STAUNING_IMG[2]];
+
+  function loader(src){
+    return new Promise(res=>{
+      const im = new Image();
+      im.onload = ()=> res(true);
+      im.onerror = ()=> res(false);
+      im.src = src;
+    });
+  }
+
+  Promise.all(oensket.map(o=> loader(o.src))).then(fundet=>{
+    let r = 0;
+    const endelig = oensket.map((o,i)=>{
+      if(fundet[i]) return o;
+      return { src: reserve[r++ % reserve.length], crop:false };
+    });
+    boks.innerHTML = endelig.map((o,i)=>
+      `<img class="p${i}${o.crop ? ' portrait-crop' : ''}" src="${o.src}" alt="">`
+    ).join('');
+  });
 }
 
 function intro(){
@@ -1006,7 +1073,8 @@ function intro(){
         <div class="stamp land">Natforhandling</div>
         <div class="meta">Forligsinstitutionen \u00b7 kl. 02:14</div>
         <h1 class="cover-title">Forlig før daggry</h1>
-        <div class="cover-sub">Dansk arbejdsmarkedspolitik</div>
+        <div class="cover-sub">En arbejdsmarkedspolitisk quiz</div>
+        <div class="playnote"><span>\ud83c\udfa7 Spilles bedst med lyd</span><span>Ca. 10 minutter</span></div>
         <svg class="fscene" viewBox="0 0 420 230" aria-hidden="true">
   <defs>
     <linearGradient id="wall" x1="0" y1="0" x2="0" y2="1">
@@ -1120,13 +1188,14 @@ function intro(){
         <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted-paper);text-align:center;margin:0 0 14px">Forligsinstitutionen · kl. 02:14</div>
         <div class="dossier">
           <div class="drow"><span class="dk">Emne</span><span class="dv">Dansk arbejdsmarkedspolitik</span></div>
-          <div class="drow"><span class="dk">Parterne</span><span class="dv">Simon Eriksen og Risette Lizgaard</span></div>
+          <div class="drow"><span class="dk">Parterne</span><span class="dv">Simon Eriksen og Risette Larsen</span></div>
           <div class="drow"><span class="dk">Din rolle</span><span class="dv">Mediator, hvis du best\u00e5r pr\u00f8ven</span></div>
           <div class="drow"><span class="dk">Krav</span><span class="dv">Mindst ${BESTAAET} af ${RUNDE} rigtige</span></div>
+          <div class="drow"><span class="dk">Best\u00e5r du</span><span class="dv">Danmarkshistoriens bedste aftale</span></div>
           <div class="drow"><span class="dk">Falder du</span><span class="dv">Strejke og lockout ved daggry</span></div>
         </div>
-        <p class="situation">Klokken er 02:14. Arbejdsgivernes formand <strong>Simon Eriksen</strong> og fagbev\u00e6gelsens forkvinde <strong>Risette Lizgaard</strong> er t\u00e6ttere p\u00e5 et historisk forlig end nogen havde turdet håbe. Alle vil vinde p\u00e5 det. Problemet er bare, at de to ikke kan holde ud at se p\u00e5 hinanden. Han t\u00f8mmer kaffekanden. Hun kigger demonstrativt ud ad vinduet. Ingen af dem siger et ord.</p>
-        <p class="situation" style="margin-top:12px">Derfor er buddet faldet p\u00e5 dig. Du er kendt for at kunne f\u00e5 hvem som helst til at blive gode venner. Men parterne s\u00e6tter \u00e9n betingelse: De vil ikke have en mediator, der ikke kender historien bag det bord, han sidder ved. F\u00f8rst en pr\u00f8ve.</p>
+        <p class="situation">Klokken er 02:14. Arbejdsgivernes formand <strong>Simon Eriksen</strong> og fagbev\u00e6gelsens forkvinde <strong>Risette Larsen</strong> er t\u00e6ttere p\u00e5 et historisk forlig end nogen havde turdet håbe. Alle vil vinde p\u00e5 det. Problemet er bare, at de to ikke kan holde ud at se p\u00e5 hinanden. Han t\u00f8mmer kaffekanden. Hun kigger demonstrativt ud ad vinduet. Ingen af dem siger et ord.</p>
+        <p class="situation" style="margin-top:12px">Derfor er buddet faldet p\u00e5 dig. Du er kendt for at kunne f\u00e5 hvem som helst til at blive gode venner. Men parterne s\u00e6tter \u00e9n betingelse: De vil ikke have en mediator, der ikke kender historien bag det bord, man s\u00e6tter sig ved. F\u00f8rst en pr\u00f8ve.</p>
         <p class="situation" style="margin-top:12px"><strong>${RUNDE} sp\u00f8rgsm\u00e5l</strong> om dansk velf\u00e6rdshistorie og den danske model, fra Bismarcks Berlin over Septemberforliget og Kanslergade til slaget om mindstel\u00f8nnen. Tre svarmuligheder, alle plausible, kun \u00e9n er sand. Best\u00e5r du med mindst <strong>${BESTAAET} rigtige</strong>, f\u00e5r du s\u00e6det, og forliget kan lande. Falder du, g\u00e5r alt i strejke og lockout n\u00e5r solen st\u00e5r op.</p>
         <button class="btn go big" id="start" style="margin-top:18px">\ud83e\udd1d G\u00e5 til pr\u00f8ven \u25b8</button>
       </div>
@@ -1147,12 +1216,7 @@ function startGame(){
       showCase();
     }
   };
-  if(!creditsShown){
-    creditsShown = true;
-    playFilm(CREDITS_FILM, foerst);
-  } else {
-    foerst();
-  }
+  foerst();
 }
 
 function shuffle(a){ a=a.slice(); for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
@@ -1279,7 +1343,7 @@ function ending(){
   const grid = state.history.map(h=> h ? '\u2705' : '\u274c').join('');
   const bestod = r >= BESTAAET;
   const status = bestod
-    ? 'Du fik s\u00e6det. Simon Eriksen og Risette Lizgaard gav h\u00e5nd hen over bordet klokken 05:52, og en historisk overenskomst er landet.'
+    ? 'Du fik s\u00e6det. Simon Eriksen og Risette Larsen gav h\u00e5nd hen over bordet klokken 05:52, og en historisk overenskomst er landet.'
     : 'Parterne rejste sig fra bordet. Strejke og lockout tr\u00e6der i kraft ved daggry.';
   const udfald = bestod ? 'Historisk overenskomst' : 'Strejke og lockout';
 
@@ -1337,7 +1401,7 @@ function ending(){
 }
 
 function showShareMenu(r, mentor, grid){
-  const text = 'Forlig før daggry: Dansk arbejdsmarkedspolitik\n' + (r >= BESTAAET ? 'Historisk overenskomst\n' : 'Strejke og lockout\n') + r + '/' + RUNDE + ', mentor: ' + mentor + '\n' + grid + '\nKan du sl\u00e5 mig? ' + location.href;
+  const text = 'Forlig før daggry: En arbejdsmarkedspolitisk quiz\n' + (r >= BESTAAET ? 'Historisk overenskomst\n' : 'Strejke og lockout\n') + r + '/' + RUNDE + ', mentor: ' + mentor + '\n' + grid + '\nKan du sl\u00e5 mig? ' + location.href;
   const eText = encodeURIComponent(text);
   const eUrl = encodeURIComponent(location.href);
   const modal = document.createElement('div');
@@ -1373,7 +1437,7 @@ function previewEnding(fakeScore){
   ending();
 }
 
-gate();
+forside();
 </script>
 </body>
 </html>
