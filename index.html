@@ -6,12 +6,12 @@
 <title>Forlig før daggry · Dansk arbejdsmarkedspolitik</title>
 <meta property="og:type" content="website">
 <meta property="og:title" content="Forlig før daggry: Dansk arbejdsmarkedspolitik">
-<meta property="og:description" content="Klokken er over midnat i Forligsinstitutionen. 12 knuder skal løses inden daggry. Kender du dansk arbejdsmarkedspolitiks historie fra Bismarck til i dag?">
+<meta property="og:description" content="Klokken er over midnat i Forligsinstitutionen. 13 knuder skal løses inden daggry. Kender du dansk arbejdsmarkedspolitiks historie fra Bismarck til i dag?">
 <meta property="og:url" content="https://ai-michelklos.github.io/Michelsspil/flex-og-tryghed/">
 <meta property="og:image" content="https://ai-michelklos.github.io/Michelsspil/flex-og-tryghed/images/stauning.jpg">
 <meta property="og:locale" content="da_DK">
 <meta name="twitter:card" content="summary">
-<meta name="description" content="Natforhandling om dansk arbejdsmarkedspolitik. 12 afgørende øjeblikke fra Bismarck over Kanslergade til i dag. Løs knuderne inden daggry.">
+<meta name="description" content="Natforhandling om dansk arbejdsmarkedspolitik. 13 afgørende øjeblikke fra Fælleden over Kanslergade til i dag. Løs knuderne inden daggry.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;700&family=Permanent+Marker&display=swap" rel="stylesheet">
@@ -221,6 +221,7 @@
   .ss-imgwrap img{max-width:100%;max-height:100%;object-fit:contain;border:1px solid rgba(194,163,93,.5);border-radius:3px;box-shadow:0 20px 60px -18px rgba(0,0,0,.75);will-change:transform}
   .ss-kb{animation:sskb var(--kb,5s) ease-out both}
   @keyframes sskb{from{transform:scale(1.015)}to{transform:scale(1.075)}}
+  .fx-scene{display:block;width:100%;max-width:520px;height:auto;margin:0 auto 22px;border:1px solid rgba(194,163,93,.45);border-radius:3px;box-shadow:0 18px 44px -18px rgba(0,0,0,.8)}
   .ss-video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#000}
   .ss-bar{position:absolute;left:0;right:0;bottom:0;height:3px;background:rgba(255,255,255,.08)}
   .ss-fill{height:100%;width:0;background:linear-gradient(90deg,var(--gold-dk),var(--gold))}
@@ -286,6 +287,16 @@ const VIDEO_KLIP = {
 };
 
 const LEVELS = [
+  { sag:"13", titel:"M\u00e5let er fuldt", based:"Danmark \u00b7 N\u00f8rre F\u00e6lled \u00b7 5. maj 1872",
+    situation:"Du har set det selv. Husarerne red ind i m\u00e6ngden, F\u00e6lleden blev ryddet, lederne kom i f\u00e6ngsel, og Internationale blev forbudt. Statsmagten var overbevist om, at den havde knust den socialistiske arbejderbev\u00e6gelse i Danmark \u00e9n gang for alle.",
+    spm:"Hvad blev den langsigtede virkning af nederlaget og forbuddet?",
+    svar:[
+      {t:"Forbuddet gav bagslag. Vreden over myndighedernes fremf\u00e6rd drev arbejderne ind i fagforeningerne i stedet, over 20 nye om \u00e5ret i midten af 1870'erne, og i 1874 samlede de sig i en f\u00e6lles centralbestyrelse.", ok:true},
+      {t:"Bev\u00e6gelsen l\u00e5 reelt d\u00f8d i et par \u00e5rtier, og f\u00f8rst Septemberforliget i 1899 fik den p\u00e5 benene igen.", ok:false},
+      {t:"Regeringen fortr\u00f8d hurtigt, oph\u00e6vede forbuddet og gav til geng\u00e6ld arbejderne strejkeret ved lov.", ok:false}
+    ],
+    forklaring:"Slaget knuste ikke bevægelsen, det organiserede den. I stedet for revolution valgte arbejderne fagforeningen og stemmesedlen, og fra 1876 blev grunden lagt til en egentlig partiorganisation ad demokratisk vej. Pio selv fik en marginal rolle og udvandrede til Amerika i 1877. Linjen fra F\u00e6lleden g\u00e5r direkte videre til Septemberforliget i 1899, hvor de samme parter i stedet for sabler brugte underskrifter." },
+
   { sag:"00", titel:"Jernkanslerens gulerod", based:"Tyskland \u00b7 Otto von Bismarck \u00b7 1883",
     situation:"Berlin i 1880'erne. Socialistloven har forbudt socialdemokratiske foreninger, m\u00f8der og aviser, men arbejderbev\u00e6gelsen vokser alligevel under jorden. Rigskansler Otto von Bismarck vil kn\u00e6kke socialismen, og han ved, at forbud og politi ikke er nok. Der skal ogs\u00e5 en gulerod p\u00e5 bordet.",
     spm:"Bismarck bek\u00e6mpede den voksende socialistiske arbejderbev\u00e6gelse med forbud og overv\u00e5gning. Hvad gjorde han samtidig?",
@@ -408,10 +419,10 @@ const LEVELS = [
 ];
 
 const SLOTS = ["A","B","C"];
-const RUNDE = 12;
+const RUNDE = 13;
 const BESTAAET = 6;   /* minimum rigtige for at blive godkendt som mediator */
-const FASTE = ["00","01","02","03","12","04","05","06","07","08","09","10"];
-const TIDER = ["02:14","02:33","02:52","03:11","03:30","03:49","04:08","04:27","04:46","05:05","05:22","05:40"];
+const FASTE = ["13","00","01","02","03","12","04","05","06","07","08","09","10"];
+const TIDER = ["02:14","02:31","02:48","03:05","03:22","03:39","03:56","04:13","04:30","04:47","05:06","05:23","05:40"];
 
 /* Forhandlerligaen, rangeret 1 (mest legendarisk) → 7. Score-krav: 10→#1 … 5→#6; under 5 → #7 */
 const LEGENDS = [
@@ -432,6 +443,7 @@ const LEGENDS = [
 ];
 
 const CITATER = {
+  "13": {t:"I har i \u00e5rtusinder sk\u00e6nket os en bitter livsdrik. Vogt jer nu, m\u00e5let er fuldt.", k:"Louis Pio i Socialisten, 2. maj 1872, tre dage f\u00f8r slaget"},
   "12": {t:"Vi betaler 80 procent af billetten, for vi f\u00e5r 80 procent af l\u00f8nnen.", k:"Frit efter buskampagnen mod l\u00f8ngabet, K\u00f8benhavn, maj 1970"},
   "00": {t:"Den, der har udsigt til en pension, er langt mere tilfreds og langt lettere at regere.", k:"Otto von Bismarck, frit gengivet fra debatten om socialforsikringerne, 1880'erne"},
   "01":{ t:"Arbejdsgiverne leder og fordeler arbejdet.", k:"Septemberforliget, 1899" },
@@ -447,7 +459,7 @@ const CITATER = {
 };
 
 const PORTRAITS = {
-  "00":"bismarck.jpg", "12":"anker.jpg", "01":"septemberforliget.jpg", "02":"akasse1907.jpg", "03":"stauning.jpg",
+  "13":"pio.jpg", "00":"bismarck.jpg", "12":"anker.jpg", "01":"septemberforliget.jpg", "02":"akasse1907.jpg", "03":"stauning.jpg",
   "04":"thomasnielsen.jpg", "05":"nyrup.jpg", "06":"parterne.jpg",
   "07":"gaer.jpg", "08":"efterloen.jpg", "09":"dagpenge2010.jpg", "10":"eu.jpg"
 };
@@ -585,6 +597,209 @@ function videoInterlude(next){
 }
 
 
+
+
+/* ---------- Slaget paa Faelleden (afspilles foer sag 13, spillets foerste punkt) ----------
+   Laeg dit 10-sekunders klip i samme mappe som spillet under navnet faelleden.mp4
+   (eller ret navnet nedenfor). Mangler filen, springes klippet over. */
+const FAELLED_KLIP = 'faelleden.mp4';
+
+const FAELLED_EFTER = [
+  {dur:6000, kicker:'Hvad der skete', body:'Husarerne trak sablerne og red ind i m\u00e6ngden. Arbejderne veg ikke, men svarede igen med sten, kn\u00e6vner og h\u00e5ndfulde snus i \u00f8jnene p\u00e5 heste og betjente. Slagsmaalet b\u00f8lgede frem og tilbage i timevis.'},
+  {dur:6000, kicker:'Regnskabet', body:'F\u00f8rst sidst p\u00e5 eftermiddagen var F\u00e6lleden ryddet. Ingen blev dr\u00e6bt, men der var s\u00e5rede p\u00e5 begge sider. Alene blandt myndighederne blev 74 husarer og 23 betjente indberettet tilskadekomne af stenkast.'},
+  {dur:6000, kicker:'Lederne', body:'De tre ledere var der aldrig. Louis Pio, Harald Brix og Povl Geleff blev anholdt natten f\u00f8r. Efter over et \u00e5r i var\u00e6t\u00e6gt faldt dommene: lange fængselsstraffe, h\u00e5rdest for Pio, og Internationale blev forbudt.'},
+  {dur:6000, kicker:'Statsmagten mente, sagen var lukket', body:'Bev\u00e6gelsen var uden ledere, uden organisation og uden avis. Man havde knust socialismen i Danmark, troede man. Sp\u00f8rgsmaalet er, hvad der s\u00e5 skete.'}
+];
+
+function faelledInterlude(next){
+  const ov = document.createElement('div');
+  ov.className = 'film-overlay';
+  ov.innerHTML = `<div class="ss-frame" id="fx-frame"></div>`;
+  document.body.appendChild(ov);
+  const skip = document.createElement('button');
+  skip.className = 'film-skip'; skip.textContent = 'Videre \u25b8';
+  document.body.appendChild(skip);
+  const frame = ov.querySelector('#fx-frame');
+
+  let done = false, prev = null;
+  function finish(){
+    if(done) return; done = true;
+    frame.querySelectorAll('video').forEach(v=>{ try{ v.pause(); }catch(_){} });
+    ov.classList.add('out');
+    setTimeout(()=>{ ov.remove(); skip.remove(); next(); }, 460);
+  }
+  skip.onclick = finish;
+
+  function swap(el, dur, after){
+    frame.appendChild(el);
+    requestAnimationFrame(()=>{ requestAnimationFrame(()=> el.classList.add('vis')); });
+    if(prev){ const p = prev; p.classList.remove('vis'); setTimeout(()=>{ if(p.parentNode) p.remove(); }, 720); }
+    prev = el;
+    setTimeout(()=>{ if(!done) after(); }, dur);
+  }
+
+  /* 1) Hvor er du */
+  function stedet(){
+    const el = document.createElement('div');
+    el.className = 'ss-slide';
+    el.innerHTML = `
+      <svg class="fx-scene" viewBox="0 0 420 200" aria-hidden="true">
+        <defs>
+          <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#1d2a3d"/>
+            <stop offset="0.45" stop-color="#4a4a52"/>
+            <stop offset="0.72" stop-color="#a8825a"/>
+            <stop offset="1" stop-color="#d9a86b"/>
+          </linearGradient>
+          <linearGradient id="field" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#3f4a33"/>
+            <stop offset="1" stop-color="#232a1c"/>
+          </linearGradient>
+          <radialGradient id="sun" cx="0.5" cy="0.5" r="0.5">
+            <stop offset="0" stop-color="#ffd9a0" stop-opacity="0.9"/>
+            <stop offset="1" stop-color="#ffd9a0" stop-opacity="0"/>
+          </radialGradient>
+          <radialGradient id="vig2" cx="0.5" cy="0.5" r="0.75">
+            <stop offset="0.5" stop-color="#000" stop-opacity="0"/>
+            <stop offset="1" stop-color="#000" stop-opacity="0.6"/>
+          </radialGradient>
+        </defs>
+      
+        <rect width="420" height="200" fill="url(#sky)"/>
+        <ellipse cx="300" cy="140" rx="90" ry="45" fill="url(#sun)"/>
+        <circle cx="300" cy="140" r="13" fill="#ffe0ab" opacity="0.75"/>
+      
+        <!-- by i horisonten -->
+        <g fill="#1a2028" opacity="0.92">
+          <rect x="0" y="120" width="30" height="22"/><rect x="32" y="126" width="22" height="16"/>
+          <rect x="58" y="118" width="26" height="24"/><rect x="88" y="128" width="18" height="14"/>
+          <rect x="352" y="122" width="30" height="20"/><rect x="386" y="128" width="34" height="14"/>
+          <!-- kirketaarn -->
+          <rect x="112" y="96" width="16" height="46"/>
+          <path d="M112 96 L120 76 L128 96 Z"/>
+          <rect x="119" y="66" width="2" height="12"/>
+          <rect x="116" y="70" width="8" height="2"/>
+        </g>
+        <g fill="#e8c67d" opacity="0.5">
+          <rect x="8" y="128" width="3" height="4"/><rect x="18" y="128" width="3" height="4"/>
+          <rect x="64" y="126" width="3" height="4"/><rect x="74" y="126" width="3" height="4"/>
+          <rect x="360" y="130" width="3" height="4"/>
+        </g>
+      
+        <!-- fælleden -->
+        <path d="M0 142 q120 -8 210 2 q110 12 210 -2 L420 200 L0 200 Z" fill="url(#field)"/>
+        <path d="M0 148 q120 -6 210 3 q110 11 210 -3" stroke="#5c6a48" stroke-width="1" fill="none" opacity="0.35"/>
+      
+        <!-- husarer paa hesteryg, hoejre -->
+        <g fill="#101610">
+          <g transform="translate(300,150)">
+            <path d="M0 12 q3 -12 12 -12 l14 0 q9 0 12 10 l1 6 -4 0 -2 -5 -28 0 -2 5 -4 0 z"/>
+            <rect x="2" y="16" width="2.5" height="9"/><rect x="10" y="16" width="2.5" height="9"/>
+            <rect x="24" y="16" width="2.5" height="9"/><rect x="32" y="16" width="2.5" height="9"/>
+            <path d="M34 2 q7 -3 9 4 l-3 5 z"/>
+            <circle cx="18" cy="-8" r="4"/><path d="M13 0 q5 -9 10 0 z"/>
+            <line x1="23" y1="-8" x2="34" y2="-19" stroke="#101610" stroke-width="1.6"/>
+          </g>
+          <g transform="translate(352,152) scale(0.9)">
+            <path d="M0 12 q3 -12 12 -12 l14 0 q9 0 12 10 l1 6 -4 0 -2 -5 -28 0 -2 5 -4 0 z"/>
+            <rect x="2" y="16" width="2.5" height="9"/><rect x="10" y="16" width="2.5" height="9"/>
+            <rect x="24" y="16" width="2.5" height="9"/><rect x="32" y="16" width="2.5" height="9"/>
+            <path d="M34 2 q7 -3 9 4 l-3 5 z"/>
+            <circle cx="18" cy="-8" r="4"/><path d="M13 0 q5 -9 10 0 z"/>
+            <line x1="23" y1="-8" x2="33" y2="-18" stroke="#101610" stroke-width="1.6"/>
+          </g>
+        </g>
+        <!-- sabelglimt -->
+        <line x1="323" y1="131" x2="334" y2="121" stroke="#f0e2bd" stroke-width="1.4" opacity="0.85"/>
+        <line x1="374" y1="134" x2="384" y2="125" stroke="#f0e2bd" stroke-width="1.2" opacity="0.7"/>
+      
+        <!-- arbejdermængden, venstre: tætpakkede silhuetter -->
+        <g fill="#0d1210">
+          <g transform="translate(6,150)">
+            <circle cx="6" cy="0" r="3.6"/><path d="M0 16 q6 -13 12 0 z"/>
+            <circle cx="18" cy="-2" r="3.6"/><path d="M12 15 q6 -13 12 0 z"/>
+            <circle cx="30" cy="1" r="3.6"/><path d="M24 17 q6 -13 12 0 z"/>
+            <circle cx="42" cy="-3" r="3.6"/><path d="M36 14 q6 -13 12 0 z"/>
+            <circle cx="54" cy="0" r="3.6"/><path d="M48 16 q6 -13 12 0 z"/>
+            <circle cx="66" cy="-2" r="3.6"/><path d="M60 15 q6 -13 12 0 z"/>
+            <circle cx="78" cy="1" r="3.6"/><path d="M72 17 q6 -13 12 0 z"/>
+            <circle cx="90" cy="-1" r="3.6"/><path d="M84 16 q6 -13 12 0 z"/>
+            <circle cx="102" cy="-3" r="3.6"/><path d="M96 14 q6 -13 12 0 z"/>
+            <circle cx="114" cy="0" r="3.6"/><path d="M108 16 q6 -13 12 0 z"/>
+            <circle cx="126" cy="-2" r="3.6"/><path d="M120 15 q6 -13 12 0 z"/>
+            <circle cx="138" cy="1" r="3.6"/><path d="M132 17 q6 -13 12 0 z"/>
+          </g>
+          <!-- bagerste raekke, mindre -->
+          <g opacity="0.7" transform="translate(2,142) scale(0.75)">
+            <circle cx="10" cy="0" r="3.6"/><path d="M4 16 q6 -13 12 0 z"/>
+            <circle cx="26" cy="-2" r="3.6"/><path d="M20 15 q6 -13 12 0 z"/>
+            <circle cx="42" cy="0" r="3.6"/><path d="M36 16 q6 -13 12 0 z"/>
+            <circle cx="58" cy="-1" r="3.6"/><path d="M52 16 q6 -13 12 0 z"/>
+            <circle cx="74" cy="1" r="3.6"/><path d="M68 17 q6 -13 12 0 z"/>
+            <circle cx="90" cy="-2" r="3.6"/><path d="M84 15 q6 -13 12 0 z"/>
+            <circle cx="106" cy="0" r="3.6"/><path d="M100 16 q6 -13 12 0 z"/>
+            <circle cx="122" cy="-1" r="3.6"/><path d="M116 16 q6 -13 12 0 z"/>
+            <circle cx="140" cy="0" r="3.6"/><path d="M134 16 q6 -13 12 0 z"/>
+            <circle cx="158" cy="-2" r="3.6"/><path d="M152 15 q6 -13 12 0 z"/>
+          </g>
+        </g>
+        <!-- faner -->
+        <line x1="30" y1="122" x2="30" y2="150" stroke="#0d1210" stroke-width="1.6"/>
+        <path d="M30 122 l16 4 -16 5 z" fill="#8c2f26"/>
+        <line x1="96" y1="126" x2="96" y2="152" stroke="#0d1210" stroke-width="1.4"/>
+        <path d="M96 126 l13 3 -13 4 z" fill="#8c2f26" opacity="0.85"/>
+      
+        <!-- den tomme jord imellem -->
+        <ellipse cx="215" cy="176" rx="42" ry="8" fill="#000" opacity="0.18"/>
+      
+        <rect width="420" height="200" fill="url(#vig2)"/>
+      </svg>
+      <div class="ss-kicker">N\u00f8rre F\u00e6lled \u00b7 s\u00f8ndag den 5. maj 1872</div>
+      <div class="ss-body" style="max-width:26ch">Murerne har strejket siden april for at f\u00e5 arbejdsdagen ned fra elleve til ti timer. Politiet har forbudt m\u00f8det. I morges kom arbejderne alligevel, tusindvis af dem. Overfor holder husarerne.</div>
+      <div class="ss-rule"></div>`;
+    swap(el, 7000, klippet);
+  }
+
+  /* 2) De ti sekunder */
+  function klippet(){
+    const el = document.createElement('div');
+    el.className = 'ss-slide ss-imgslide';
+    const v = document.createElement('video');
+    v.className = 'ss-video';
+    v.src = FAELLED_KLIP;
+    v.playsInline = true; v.setAttribute('playsinline','');
+    v.preload = 'auto';
+    let gaaet = false;
+    const videre = ()=>{ if(gaaet) return; gaaet = true; efterspil(0); };
+    v.onended = videre;
+    v.onerror = videre;
+    v.onclick = ()=>{ if(v.paused){ v.play().catch(()=>{}); } else { v.pause(); } };
+    el.appendChild(v);
+    frame.appendChild(el);
+    requestAnimationFrame(()=>{ requestAnimationFrame(()=> el.classList.add('vis')); });
+    if(prev){ const p = prev; p.classList.remove('vis'); setTimeout(()=>{ if(p.parentNode) p.remove(); }, 720); }
+    prev = el;
+    v.play().catch(()=>{});
+    /* sikkerhedsnet, hvis videoen hverken spiller eller fejler */
+    setTimeout(()=>{ if(!done && v.paused && v.currentTime === 0) videre(); }, 12000);
+  }
+
+  /* 3) Efterspillet over fire kort */
+  function efterspil(i){
+    if(done) return;
+    if(i >= FAELLED_EFTER.length){ finish(); return; }
+    const s = FAELLED_EFTER[i];
+    const el = document.createElement('div');
+    el.className = 'ss-slide';
+    el.innerHTML = `
+      <div class="ss-kicker">${s.kicker}</div>
+      <div class="ss-body">${s.body}</div>
+      <div class="ss-rule"></div>`;
+    swap(el, s.dur, ()=> efterspil(i+1));
+  }
+
+  stedet();
+}
 
 /* ---------- Ligeloens-klippene (afspilles foer sag 12) ----------
    Laeg dine to tegnefilm i samme mappe som spillet med navnene
@@ -920,14 +1135,23 @@ function intro(){
 }
 
 function startGame(){
-  state = { i:0, history:[], rigtige:0, slots:[], started:true, videoDone:false, stauningDone:false, ligelonDone:false, deck:FASTE.map(s=> LEVELS.findIndex(l=>l.sag===s)) };
+  state = { i:0, history:[], rigtige:0, slots:[], started:true, videoDone:false, stauningDone:false, ligelonDone:false, faelledDone:false, deck:FASTE.map(s=> LEVELS.findIndex(l=>l.sag===s)) };
   recordEl.style.display = 'flex';
   renderRecord();
+  /* Foerste punkt er Faelleden, saa scenen sættes inden det foerste spoergsmaal */
+  const foerst = ()=>{
+    if(!state.faelledDone && LEVELS[state.deck[0]].sag === "13"){
+      state.faelledDone = true;
+      faelledInterlude(showCase);
+    } else {
+      showCase();
+    }
+  };
   if(!creditsShown){
     creditsShown = true;
-    playFilm(CREDITS_FILM, showCase);
+    playFilm(CREDITS_FILM, foerst);
   } else {
-    showCase();
+    foerst();
   }
 }
 
@@ -1050,7 +1274,7 @@ function choose(slot){
 
 function ending(){
   const r = state.rigtige;
-  const rankIdx = r >= 7 ? Math.max(0, 12 - r) : 6;
+  const rankIdx = r >= 8 ? Math.max(0, 13 - r) : 6;
   const leg = LEGENDS[rankIdx];
   const grid = state.history.map(h=> h ? '\u2705' : '\u274c').join('');
   const bestod = r >= BESTAAET;
@@ -1098,7 +1322,7 @@ function ending(){
       </div>
       <div class="league">
         <h3>Forhandlerligaen</h3>
-        <div class="lsub">Jo flere rigtige, jo mere legendarisk en mentor ringer. 12 rigtige giver Stauning selv i r\u00f8ret.</div>
+        <div class="lsub">Jo flere rigtige, jo mere legendarisk en mentor ringer. 13 rigtige giver Stauning selv i r\u00f8ret.</div>
         ${league}
       </div>
       <div class="protokol">
