@@ -170,7 +170,6 @@
   .phone{font-size:46px;line-height:1;margin-bottom:8px;animation:ring 1.6s ease-in-out infinite}
   @keyframes ring{0%,60%,100%{transform:rotate(0)}10%,30%,50%{transform:rotate(-12deg)}20%,40%{transform:rotate(12deg)}}
 
-  .rank-badge{font-family:'Fraunces',serif;font-weight:700;font-size:clamp(25px,6.6vw,38px);text-transform:uppercase;letter-spacing:.5px;margin:6px 0 10px;line-height:1.08}
   .bigscore{font-family:'Fraunces',serif;font-weight:700;font-size:54px;line-height:1;margin:18px 0 2px;color:var(--gold)}
   .scoreline{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--muted);margin-top:4px}
 
@@ -184,6 +183,15 @@
   .leg .nm .you{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:1px;background:var(--gold);color:#241c0c;padding:2px 7px;border-radius:10px;text-transform:uppercase}
   .leg .ds{font-size:12.5px;line-height:1.45;color:#b7c6bc;margin-top:3px}
 
+  /* ---------- Morgenavisen ---------- */
+  .avis{background:linear-gradient(180deg,#f7f2e2 0%,#efe7d0 100%);color:#221d13;border-radius:2px;padding:20px 20px 16px;border:1px solid var(--line-paper);transform:rotate(.4deg);box-shadow:0 1px 0 rgba(0,0,0,.05),0 14px 0 -7px #e6dcc0,0 15px 0 -6px rgba(0,0,0,.2),var(--shadow);margin-bottom:16px}
+  .avis .ahoved{font-family:'Fraunces',serif;font-weight:700;font-size:clamp(24px,7vw,34px);letter-spacing:4px;text-align:center;text-transform:uppercase;border-bottom:3.5px double #221d13;padding-bottom:8px}
+  .avis .adato{display:flex;justify-content:space-between;font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:1px;text-transform:uppercase;color:#6b6457;border-bottom:1px solid #c9bd9d;padding:6px 2px}
+  .avis .arubrik{font-family:'Fraunces',serif;font-weight:700;font-size:clamp(30px,8.8vw,46px);line-height:1.0;text-transform:uppercase;text-align:center;margin:18px 4px 10px}
+  .avis .aunder{font-family:'Fraunces',serif;font-style:italic;font-size:clamp(14.5px,4.2vw,17px);line-height:1.45;text-align:center;color:#3f3a2e;margin:0 8px 14px}
+  .avis .acitat{border-top:1px solid #c9bd9d;border-bottom:1px solid #c9bd9d;padding:11px 10px;font-size:13.5px;line-height:1.5;text-align:center;color:#33302a}
+  .avis .acitat b{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#8f7433;display:block;margin-bottom:4px}
+  .avis .anotits{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.6px;color:#6b6457;text-align:center;margin-top:11px}
   .fade{animation:fade .45s ease}
   @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 
@@ -440,22 +448,6 @@ const FASTE = ["13","00","01","02","03","12","04","05","06","07","08","09","10"]
 const TIDER = ["02:14","02:31","02:48","03:05","03:22","03:39","03:56","04:13","04:30","04:47","05:06","05:23","05:40"];
 
 /* Forhandlerligaen, rangeret 1 (mest legendarisk) → 7. Score-krav: 10→#1 … 5→#6; under 5 → #7 */
-const LEGENDS = [
-  { navn:"Thorvald Stauning", pron:"han", flavor:"landsfaderen, der forhandlede Danmark gennem 30'ernes krise",
-    desc:"Statsminister 1924-26 og 1929-42, manden bag Kanslergadeforliget og symbolet på det brede kompromis. Cigarrygende bryggeriarbejder, der endte som landsfader." },
-  { navn:"Louis Pio", pron:"han", flavor:"pioneren, der startede hele arbejderbevægelsen",
-    desc:"Grundlagde den danske arbejderbevægelse i 1871, indkaldte til mødet, der endte som Slaget på Fælleden, og blev fængslet for sine anstrengelser. Endte sine dage i Amerika, men bevægelsen bestod." },
-  { navn:"Jens Jensen", pron:"han", flavor:"fagbevægelsens første general og medarkitekt bag Septemberforliget",
-    desc:"Formand for De samvirkende Fagforbund fra 1898 og medunderskriver af Septemberforliget i 1899. Blev senere Københavns første socialdemokratiske finansborgmester." },
-  { navn:"Thomas Nielsen", pron:"han", flavor:"LO-formanden, der sejrede ad helvede til",
-    desc:"LO-formand 1967-82, kendt for sin bramfri stil og for afskedstalens berømte ord om fagbevægelsens paradoksale succes." },
-  { navn:"Niels Andersen", pron:"han", flavor:"arbejdsgivernes stålsatte general fra 1899",
-    desc:"Entreprenør og formand for Dansk Arbejdsgiverforening under storlockouten i 1899. Holdt ud i over tre måneder og fik retten til at lede og fordele arbejdet skrevet ind i forliget." },
-  { navn:"Lizette Risgaard", pron:"hun", flavor:"den første formand for det samlede FH",
-    desc:"Stod i spidsen, da LO og FTF i 2019 fusionerede til Fagbevægelsens Hovedorganisation, og talte dermed for omkring 1,3 millioner lønmodtagere." },
-  { navn:"Bjarne Corydon", pron:"han", flavor:"konkurrencestatens far",
-    desc:"Finansminister 2011-15, kendt for nødvendighedens politik, lærerlockouten i 2013 og DONG-salget. Ringer mest, fordi ingen af de andre gjorde." }
-];
 
 const CITATER = {
   "13": {t:"I har i \u00e5rtusinder sk\u00e6nket os en bitter livsdrik. Vogt jer nu, m\u00e5let er fuldt.", k:"Louis Pio i Socialisten, 2. maj 1872, tre dage f\u00f8r slaget"},
@@ -480,7 +472,6 @@ const PORTRAITS = {
 };
 
 let state = { i:0, history:[], rigtige:0, slots:[], started:false };
-let creditsShown = false;
 
 const app = document.getElementById('app');
 const recordEl = document.getElementById('record');
@@ -512,44 +503,6 @@ function renderRecord(){
 }
 
 /* ---------- Filmiske interludes ---------- */
-const CREDITS_FILM = [
-  { line1:"KlosKlos og Reagan Production", line2:"præsenterer" },
-  { hoved:'Forlig før daggry', line2:"Natforhandlingen · dansk arbejdsmarkedspolitik" }
-];
-
-function playFilm(cards, next){
-  const ov = document.createElement('div');
-  ov.className = 'film-overlay';
-  document.body.appendChild(ov);
-  const skip = document.createElement('button');
-  skip.className = 'film-skip'; skip.textContent = 'Spring over \u25b8';
-  document.body.appendChild(skip);
-  let idx = 0, timer = null, done = false;
-  function finish(){
-    if(done) return; done = true;
-    clearTimeout(timer);
-    ov.classList.add('out');
-    setTimeout(()=>{ ov.remove(); skip.remove(); next(); }, 460);
-  }
-  skip.onclick = finish;
-  function showCard(){
-    if(idx >= cards.length){ finish(); return; }
-    const c = cards[idx];
-    ov.innerHTML = `<div class="film-card">
-        ${c.hoved ? `<div class="film-hoved">${c.hoved}</div>` : `<div class="film-title">${c.line1}</div>`}
-        ${c.line2 ? `<div class="film-sub">${c.line2}</div>` : ''}
-      </div>`;
-    requestAnimationFrame(()=> ov.querySelector('.film-card').classList.add('vis'));
-    idx++;
-    timer = setTimeout(()=>{
-      const card = ov.querySelector('.film-card');
-      if(card) card.classList.remove('vis');
-      timer = setTimeout(showCard, 650);
-    }, 2300);
-  }
-  showCard();
-}
-
 /* ---------- Video-interlude (Thomas Nielsen, 1982) ---------- */
 let ytApiLoaded = false;
 function loadYouTubeAPI(cb){
@@ -620,10 +573,10 @@ function videoInterlude(next){
 const FAELLED_KLIP = 'faelleden.mp4';
 
 const FAELLED_EFTER = [
-  {dur:6000, kicker:'Hvad der skete', body:'Husarerne trak sablerne og red ind i m\u00e6ngden. Arbejderne veg ikke, men svarede igen med sten, kn\u00e6vner og h\u00e5ndfulde snus i \u00f8jnene p\u00e5 heste og betjente. Slagsmaalet b\u00f8lgede frem og tilbage i timevis.'},
+  {dur:6000, kicker:'Hvad der skete', body:'Husarerne trak sablerne og red ind i m\u00e6ngden. Arbejderne veg ikke, men svarede igen med sten, knytn\u00e6ver og h\u00e5ndfulde snus i \u00f8jnene p\u00e5 heste og betjente. Slagsm\u00e5let b\u00f8lgede frem og tilbage i timevis.'},
   {dur:6000, kicker:'Regnskabet', body:'F\u00f8rst sidst p\u00e5 eftermiddagen var F\u00e6lleden ryddet. Ingen blev dr\u00e6bt, men der var s\u00e5rede p\u00e5 begge sider. Alene blandt myndighederne blev 74 husarer og 23 betjente indberettet tilskadekomne af stenkast.'},
-  {dur:6000, kicker:'Lederne', body:'De tre ledere var der aldrig. Louis Pio, Harald Brix og Povl Geleff blev anholdt natten f\u00f8r. Efter over et \u00e5r i var\u00e6t\u00e6gt faldt dommene: lange fængselsstraffe, h\u00e5rdest for Pio, og Internationale blev forbudt.'},
-  {dur:6000, kicker:'Statsmagten mente, sagen var lukket', body:'Bev\u00e6gelsen var uden ledere, uden organisation og uden avis. Man havde knust socialismen i Danmark, troede man. Sp\u00f8rgsmaalet er, hvad der s\u00e5 skete.'}
+  {dur:6000, kicker:'Lederne', body:'De tre ledere var der aldrig. Louis Pio, Harald Brix og Povl Geleff blev anholdt natten f\u00f8r. Efter over et \u00e5r i varet\u00e6gt faldt dommene: lange fængselsstraffe, h\u00e5rdest for Pio, og Internationale blev forbudt.'},
+  {dur:6000, kicker:'Statsmagten mente, sagen var lukket', body:'Bev\u00e6gelsen var uden ledere, uden organisation og uden avis. Man havde knust socialismen i Danmark, troede man. Sp\u00f8rgsm\u00e5let er, hvad der s\u00e5 skete.'}
 ];
 
 function faelledInterlude(next){
@@ -955,6 +908,7 @@ function stauningInterlude(next){
     if(done) return; done = true;
     if(raf) cancelAnimationFrame(raf);
     try{ audio.pause(); }catch(_){}
+    document.removeEventListener('visibilitychange', visHandler);
     ov.classList.add('out');
     setTimeout(()=>{ ov.remove(); skip.remove(); next(); }, 460);
   }
@@ -970,21 +924,25 @@ function stauningInterlude(next){
     raf = requestAnimationFrame(tick);
   }
 
+  function doPause(){
+    if(done || paused) return;
+    paused = true; pausedAt = performance.now();
+    if(raf) cancelAnimationFrame(raf);
+    try{ audio.pause(); }catch(_){}
+    ov.classList.add('ss-paused');
+  }
+  function doResume(){
+    if(done || !paused) return;
+    paused = false; pausedAcc += performance.now() - pausedAt;
+    ov.classList.remove('ss-paused');
+    try{ audio.play().catch(()=>{}); }catch(_){}
+    raf = requestAnimationFrame(tick);
+  }
   skip.onclick = finish;
-  ov.addEventListener('click', ()=>{
-    if(done) return;
-    if(!paused){
-      paused = true; pausedAt = performance.now();
-      if(raf) cancelAnimationFrame(raf);
-      try{ audio.pause(); }catch(_){}
-      ov.classList.add('ss-paused');
-    } else {
-      paused = false; pausedAcc += performance.now() - pausedAt;
-      ov.classList.remove('ss-paused');
-      try{ audio.play().catch(()=>{}); }catch(_){}
-      raf = requestAnimationFrame(tick);
-    }
-  });
+  ov.addEventListener('click', ()=>{ paused ? doResume() : doPause(); });
+  /* skifter man fane eller laaser telefonen, holder film og musik synkront pause */
+  const visHandler = ()=>{ if(document.hidden) doPause(); };
+  document.addEventListener('visibilitychange', visHandler);
 
   /* klik paa knappen der aabnede filmen taeller som brugerhandling, saa lyden maa spille */
   try{ audio.play().catch(()=>{}); }catch(_){}
@@ -992,25 +950,6 @@ function stauningInterlude(next){
 }
 
 /* ---------- Spillets skærme ---------- */
-function gate(){
-  recordEl.style.display = 'none';
-  caseCount.textContent = '';
-  setUr(null);
-  app.innerHTML = `
-    <div class="gate fade">
-      <div class="gmeta">Forligsinstitutionen \u00b7 natforhandling \u00b7 kl. 02:14</div>
-      <div class="gline">Der skal ligge et forlig, inden solen st\u00e5r op.</div>
-      <div class="ghint">\ud83c\udfa7 Spilles bedst med lyd<br>Ca. 10 minutter</div>
-      <button class="gate-btn" id="gate-go">G\u00e5 ind \u25b8</button>
-    </div>`;
-  document.getElementById('gate-go').onclick = ()=>{
-    if(document.getElementById('gate-go').disabled) return;
-    document.getElementById('gate-go').disabled = true;
-    creditsShown = true;
-    playFilm(CREDITS_FILM, intro);
-  };
-}
-
 function forside(){
   recordEl.style.display = 'none';
   caseCount.textContent = '';
@@ -1255,6 +1194,12 @@ function showCase(){
     </div>`;
   window.scrollTo(0, 0);
   app.querySelectorAll('.choice').forEach(b=>{ b.onclick = ()=> choose(parseInt(b.dataset.slot,10)); });
+  /* A/B/C eller 1/2/3 paa tastatur */
+  window.onkeydown = (e)=>{
+    const map = {a:0, b:1, c:2, '1':0, '2':1, '3':2};
+    const k = (e.key || '').toLowerCase();
+    if(k in map){ const btns = app.querySelectorAll('.choice'); if(btns[map[k]]) btns[map[k]].click(); }
+  };
   const bb = document.getElementById('backbtn');
   if(bb) bb.onclick = ()=>{
     state.i--;
@@ -1296,6 +1241,8 @@ function choose(slot){
   window.scrollTo(0, 0);
   const act = document.getElementById('act');
   act.style.justifyContent = 'space-between';
+  /* Enter gaar videre */
+  window.onkeydown = (e)=>{ if(e.key === 'Enter'){ const n = document.getElementById('next'); if(n) n.click(); } };
   const backHtml = `<button class="backlink" id="reanswer">\u2039 Svar om</button>`;
   if(state.i === RUNDE - 1){
     act.innerHTML = backHtml + `<button class="btn go big" id="next">Se hvem der ringer \u25b8</button>`;
@@ -1337,58 +1284,61 @@ function choose(slot){
 }
 
 function ending(){
-  const r = state.rigtige;
-  const rankIdx = r >= 8 ? Math.max(0, 13 - r) : 6;
-  const leg = LEGENDS[rankIdx];
-  const grid = state.history.map(h=> h ? '\u2705' : '\u274c').join('');
+  const r = state.rigtige;  const grid = state.history.map(h=> h ? '\u2705' : '\u274c').join('');
   const bestod = r >= BESTAAET;
-  const status = bestod
-    ? 'Du fik s\u00e6det. Simon Eriksen og Risette Larsen gav h\u00e5nd hen over bordet klokken 05:52, og en historisk overenskomst er landet.'
-    : 'Parterne rejste sig fra bordet. Strejke og lockout tr\u00e6der i kraft ved daggry.';
   const udfald = bestod ? 'Historisk overenskomst' : 'Strejke og lockout';
+
+  /* Morgenavisens forside afhaenger af nattens resultat */
+  let rubrik, under, citat;
+  if(r === RUNDE){
+    rubrik = 'MIRAKLET I FORLIGS\u00adINSTITUTIONEN';
+    under = 'Ukendt m\u00e6gler l\u00f8ser samtlige 13 knuder p\u00e5 \u00e9n nat. Danmarkshistoriens bedste aftale underskrevet kl. 05:52. Eksperter m\u00e5ll\u00f8se.';
+    citat = '<b>Simon Eriksen, arbejdsgiverformand</b>\u201dJeg s\u00e5 Risette smile i nat. Det var ubehageligt, men historisk.\u201d';
+  } else if(bestod && r >= 10){
+    rubrik = 'HISTORISK AFTALE I HUS F\u00d8R DAGGRY';
+    under = 'Efter en lang nat i Forligsinstitutionen gav parterne h\u00e5nd kl. 05:52. En n\u00e6sten ukendt m\u00e6gler f\u00e5r \u00e6ren for gennembruddet.';
+    citat = '<b>Risette Larsen, forkvinde</b>\u201dSimon h\u00e6ldte faktisk kaffe op til mig kl. fire. S\u00e5 vidste jeg, at det nok skulle g\u00e5.\u201d';
+  } else if(bestod){
+    rubrik = 'FORLIG I ALLERSIDSTE \u00d8JEBLIK';
+    under = 'Aftalen kom i hus f\u00e5 minutter f\u00f8r solopgang. Enkelte knuder m\u00e5tte if\u00f8lge kilder l\u00f8ses med tape, men den holder.';
+    citat = '<b>Kilde t\u00e6t p\u00e5 forhandlingerne</b>\u201dM\u00e6gleren var ikke n\u00f8dvendigvis den skarpeste i lokalet, men absolut den mest udholdende.\u201d';
+  } else if(r >= 4){
+    rubrik = 'STORKONFLIKT!';
+    under = 'Forhandlingerne br\u00f8d sammen kl. 05:47. Strejke og lockout tr\u00e6der i kraft fra i dag. Landet g\u00e5r i st\u00e5.';
+    citat = '<b>Simon Eriksen og Risette Larsen, f\u00e6lles udtalelse</b>\u201dVi er for f\u00f8rste gang nogensinde helt enige: Aldrig igen den m\u00e6gler.\u201d';
+  } else {
+    rubrik = 'STORKONFLIKT! LANDET LUKKER';
+    under = 'Nattens forhandlinger endte i \u00e5bent sk\u00e6nderi om, hvorn\u00e5r Kanslergadeforliget blev indg\u00e5et. Alt g\u00e5r i st\u00e5 fra i morges.';
+    citat = '<b>Risette Larsen, forkvinde</b>\u201dM\u00e6gleren troede, Septemberforliget var en slags h\u00f8stfest. S\u00e5 rejste Simon og jeg os. Sammen, faktisk.\u201d';
+  }
+  const notits = bestod ? 'Side 9: Murerne f\u00e5r omsider deres time \u00b7 Vejret: Daggry, siden opklaring' : 'Side 2: S\u00e5dan hamstrer du kaffe \u00b7 Vejret: M\u00f8rke skyer';
 
   caseCount.textContent = 'KL. 06:00 \u00b7 DAGGRY';
   setUr('06:00');
   recordEl.style.display = 'flex';
   renderRecord();
-
-  const league = LEGENDS.map((L,i)=>`
-    <div class="leg ${i===rankIdx?'me':''}">
-      <div class="rk">${i+1}</div>
-      <div>
-        <div class="nm">${L.navn} ${i===rankIdx?'<span class="you">Din mentor</span>':''}</div>
-        <div class="ds">${L.desc}</div>
-      </div>
-    </div>`).join('');
-
-  const protokol = state.history.map((h,i)=>{
-    const lv = LEVELS[state.deck[i]];
-    const b = parseBased(lv.based);
-    return `<div class="prow">
-      <div class="pmark ${h?'r':'w'}">${h?'\u2713':'\u2717'}</div>
-      <div><div class="pnm">${lv.titel}</div><div class="pln">${b.person} \u00b7 ${b.aar}</div></div>
-    </div>`;
-  }).join('');
-
   app.innerHTML = `
+    <div class="panel fade">
+      <div class="avis">
+        <div class="ahoved">Morgenposten</div>
+        <div class="adato"><span>Mandag morgen</span><span>kl. 06:12</span><span>25 \u00f8re</span></div>
+        <div class="arubrik">${rubrik}</div>
+        <div class="aunder">${under}</div>
+        <div class="acitat">${citat}</div>
+        <div class="anotits">${notits}</div>
+      </div>
+    </div>
     <div class="screen fade" style="text-align:center">
       <div class="phone">\ud83d\udcde</div>
       <div class="kicker">Kl. 06:00 \u00b7 ${udfald}</div>
-      <div class="rank-badge">${leg.navn} vil tale med dig</div>
-      <p class="lede" style="margin:0 auto">I r\u00f8ret: ${leg.flavor}. ${leg.pron==='hun'?'Hun':'Han'} har fulgt din pr\u00f8ve og tilbyder dig en plads ved forhandlingsbordet.</p>
       <div class="bigscore">${r}<span style="font-size:26px;color:var(--muted)">/${RUNDE}</span></div>
       <div class="scoreline">knuder l\u00f8st ved nattens bord</div>
-      <p class="lede" style="margin:14px auto 0;color:${bestod ? '#8fd6ac' : '#e0836f'}"><strong>${status}</strong></p>
       <div class="sharegrid">${grid}</div>
       <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:18px">
         <button class="btn go" id="share">Del dit resultat</button>
         <button class="btn" id="again">Pr\u00f8v igen \u25b8</button>
       </div>
-      <div class="league">
-        <h3>Forhandlerligaen</h3>
-        <div class="lsub">Jo flere rigtige, jo mere legendarisk en mentor ringer. 13 rigtige giver Stauning selv i r\u00f8ret.</div>
-        ${league}
-      </div>
+
       <div class="protokol">
         <h3>Protokollen</h3>
         <div class="psub">Dine ti sager, som de blev f\u00f8rt til protokols.</div>
@@ -1397,11 +1347,11 @@ function ending(){
     </div>`;
   window.scrollTo(0, 0);
   document.getElementById('again').onclick = startGame;
-  document.getElementById('share').onclick = ()=> showShareMenu(r, leg.navn, grid);
+  document.getElementById('share').onclick = ()=> showShareMenu(r, grid);
 }
 
-function showShareMenu(r, mentor, grid){
-  const text = 'Forlig før daggry: En arbejdsmarkedspolitisk quiz\n' + (r >= BESTAAET ? 'Historisk overenskomst\n' : 'Strejke og lockout\n') + r + '/' + RUNDE + ', mentor: ' + mentor + '\n' + grid + '\nKan du sl\u00e5 mig? ' + location.href;
+function showShareMenu(r, grid){
+  const text = 'Forlig før daggry: En arbejdsmarkedspolitisk quiz\n' + (r >= BESTAAET ? 'Historisk overenskomst\n' : 'Strejke og lockout\n') + r + '/' + RUNDE + '\n' + grid + '\nKan du sl\u00e5 mig? ' + location.href;
   const eText = encodeURIComponent(text);
   const eUrl = encodeURIComponent(location.href);
   const modal = document.createElement('div');
