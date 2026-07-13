@@ -32,6 +32,7 @@
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html,body{height:100%}
+  body{overflow-x:hidden}
   body{
     font-family:'Inter',system-ui,sans-serif;
     background:
@@ -49,8 +50,6 @@
   header.bar{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding:2px 4px 8px;flex-wrap:wrap;border-bottom:1px solid var(--line)}
   .brand{display:flex;align-items:baseline;gap:10px;line-height:1}
   .brand .logo{font-family:'Fraunces',serif;font-weight:700;font-size:22px;letter-spacing:.5px;text-transform:uppercase}
-  .brand .logo .amp{color:var(--gold);font-style:italic}
-  .brand .tag{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:2px}
   .casecount{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--gold);letter-spacing:1px;white-space:nowrap}
 
   .record{display:flex;align-items:center;gap:10px;background:transparent;border:none;border-top:1px solid var(--line);border-bottom:1px solid var(--line);border-radius:0;padding:9px 4px}
@@ -62,6 +61,7 @@
   .rec-lbl b{color:var(--gold)}
 
   .panel{position:relative}
+  .card,.screen,.avis{overflow-wrap:break-word;min-width:0}
   .card{padding-top:56px !important;background:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNjAiIGhlaWdodD0iMTYwIj48ZmlsdGVyIGlkPSJuIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iMC44IiBudW1PY3RhdmVzPSIyIiBzdGl0Y2hUaWxlcz0ic3RpdGNoIi8+PGZlQ29sb3JNYXRyaXggdHlwZT0ic2F0dXJhdGUiIHZhbHVlcz0iMCIvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSIxNjAiIGhlaWdodD0iMTYwIiBmaWx0ZXI9InVybCgjbikiIG9wYWNpdHk9IjAuNSIvPjwvc3ZnPg=="),linear-gradient(180deg,#f7f1de 0%,#efe6cc 58%,#e2d5b2 100%);background-blend-mode:soft-light;color:var(--text);border-radius:4px;padding:26px 24px 24px;position:relative;overflow:hidden;border:1px solid var(--line-paper);
     transform:rotate(-.3deg);
     box-shadow:0 1px 0 rgba(0,0,0,.05), 0 12px 0 -6px var(--paper-2), 0 13px 0 -5px rgba(0,0,0,.22), var(--shadow)}
@@ -78,7 +78,7 @@
   .stamp.land{animation:stampIn .55s cubic-bezier(.18,1.25,.3,1) both}
   @keyframes stampIn{0%{opacity:0;transform:rotate(7deg) scale(2.7)}55%{opacity:.85;transform:rotate(7deg) scale(.9)}75%{transform:rotate(7deg) scale(1.05)}100%{opacity:.78;transform:rotate(7deg) scale(1)}}
   .meta{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted-paper);letter-spacing:1px;text-transform:uppercase;margin:6px 0 2px}
-  .case-title{font-family:'Fraunces',serif;font-weight:700;font-size:clamp(25px,6.6vw,36px);line-height:1.04;text-transform:uppercase;letter-spacing:.3px;margin:2px 0 12px;color:#221c10}
+  .case-title{hyphens:auto;-webkit-hyphens:auto;overflow-wrap:break-word;font-family:'Fraunces',serif;font-weight:700;font-size:clamp(25px,6.6vw,36px);line-height:1.04;text-transform:uppercase;letter-spacing:.3px;margin:2px 0 12px;color:#221c10}
   .situation{font-size:15.5px;line-height:1.55;color:#2c2823}
   .question{font-size:16px;line-height:1.45;color:#2c2823;font-weight:500;margin:0 0 14px}
   .answer{margin:4px 0 0;padding:12px 14px;background:rgba(46,107,79,.12);border-left:3px solid var(--green-dk);border-radius:4px;font-size:14.5px;line-height:1.5;color:#2a2620}
@@ -104,12 +104,11 @@
   .country{display:inline-block;font-family:'Fraunces',serif;font-weight:700;font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--paper);background:var(--ink-3);padding:4px 11px;border-radius:4px;margin:2px 0 9px}
   .cardsub{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted-paper);letter-spacing:.5px;margin:-4px 0 14px}
   .fscene{display:block;width:100%;height:auto;margin:10px 0 4px;border:1px solid var(--line-paper);border-radius:3px;box-shadow:0 10px 26px -12px rgba(0,0,0,.55)}
-  .cover-title{font-family:'Fraunces',serif;font-weight:700;font-size:clamp(33px,8.6vw,50px);line-height:1;text-transform:uppercase;letter-spacing:.5px;color:#221c10;margin:6px 0 2px}
-  .cover-title .amp{color:var(--red);font-style:italic}
+  .cover-title{hyphens:auto;-webkit-hyphens:auto;overflow-wrap:break-word;font-family:'Fraunces',serif;font-weight:700;font-size:clamp(33px,8.6vw,50px);line-height:1;text-transform:uppercase;letter-spacing:.5px;color:#221c10;margin:6px 0 2px}
   .cover-sub{font-family:'Fraunces',serif;font-weight:400;font-style:italic;font-size:clamp(15px,4vw,19px);letter-spacing:4px;text-transform:uppercase;color:var(--muted-paper);margin-bottom:16px}
   .fors{min-height:72vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 10px 30px}
   .fors .fpraes{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:20px}
-  .fors .ftitle{font-family:'Fraunces',serif;font-weight:700;font-size:clamp(44px,13.5vw,84px);line-height:.96;text-transform:uppercase;letter-spacing:.5px;color:#f2ede2;text-shadow:0 0 46px rgba(194,163,93,.22)}
+  .fors .ftitle{hyphens:auto;-webkit-hyphens:auto;overflow-wrap:break-word;font-family:'Fraunces',serif;font-weight:700;font-size:clamp(44px,13.5vw,84px);line-height:.96;text-transform:uppercase;letter-spacing:.5px;color:#f2ede2;text-shadow:0 0 46px rgba(194,163,93,.22)}
   .fors .fsub{font-family:'Fraunces',serif;font-style:italic;font-size:clamp(16px,4.6vw,22px);letter-spacing:3.5px;text-transform:uppercase;color:var(--muted);margin-top:16px}
   .collage{display:flex;justify-content:center;align-items:center;margin:34px 0 8px;padding:0 6px}
   .collage img{width:21%;max-width:104px;height:auto;border:2px solid rgba(194,163,93,.65);border-radius:2px;box-shadow:0 14px 30px -10px rgba(0,0,0,.75);filter:sepia(.22) contrast(1.02);margin:0 -9px}
@@ -120,14 +119,12 @@
   .collage img.p4{transform:rotate(-4.5deg) translateY(12px)}
   .collage img.portrait-crop{object-fit:cover;aspect-ratio:3/4}
   .fors .fbtn{margin-top:30px}
-  .praes{font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:700;letter-spacing:2.4px;text-transform:uppercase;color:var(--muted-paper);text-align:center;margin:4px 0 10px}
   .playnote{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin:0 0 16px}
   .playnote span{font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;color:var(--gold-dk);border:1px solid rgba(143,116,51,.45);border-radius:3px;padding:6px 11px;background:rgba(194,163,93,.10)}
   .dossier{border-top:1px solid var(--line-paper);border-bottom:1px solid var(--line-paper);padding:12px 0;margin:0 0 16px;display:flex;flex-direction:column;gap:8px}
   .drow{display:flex;gap:12px;align-items:center;font-size:13.5px}
   .dk{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:1.2px;text-transform:uppercase;color:var(--muted-paper);width:92px;flex:none}
   .dv{color:#2c2823}
-  .redact{display:inline-block;height:15px;background:#26221a;border-radius:2px}
   .qbox{margin-top:14px;padding:12px 15px;background:rgba(194,163,93,.16);border-left:3px solid var(--gold);border-radius:4px}
   .qbox .qlab{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1.2px;text-transform:uppercase;color:var(--gold-dk);margin-bottom:5px}
   .qbox .qt{font-family:'Fraunces',serif;font-size:15px;line-height:1.55;color:#3f3a31;font-style:italic}
@@ -161,33 +158,18 @@
 
   .screen{background:var(--ink-2);border:1px solid var(--line);border-radius:12px;padding:34px 28px;box-shadow:var(--shadow)}
   .kicker{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
-  .hero-title{font-family:'Fraunces',serif;font-weight:700;font-size:clamp(33px,9.4vw,54px);line-height:.98;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px}
-  .hero-title .amp{color:var(--gold);font-style:italic}
-  .hero-sub{font-family:'Fraunces',serif;font-weight:400;font-style:italic;font-size:clamp(16px,4vw,20px);letter-spacing:4px;text-transform:uppercase;color:var(--muted);margin-bottom:22px}
-  .lede{font-size:15.5px;line-height:1.6;color:#d5ddd6;max-width:54ch}
-  .lede + .lede{margin-top:12px}
-  .lede strong{color:var(--paper)}
   .phone{font-size:46px;line-height:1;margin-bottom:8px;animation:ring 1.6s ease-in-out infinite}
   @keyframes ring{0%,60%,100%{transform:rotate(0)}10%,30%,50%{transform:rotate(-12deg)}20%,40%{transform:rotate(12deg)}}
 
   .bigscore{font-family:'Fraunces',serif;font-weight:700;font-size:54px;line-height:1;margin:18px 0 2px;color:var(--gold)}
   .scoreline{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--muted);margin-top:4px}
 
-  .league{margin-top:24px;border-top:1px solid var(--line);padding-top:18px;text-align:left}
-  .league h3{font-family:'Fraunces',serif;font-weight:600;font-size:14px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin-bottom:4px}
-  .league .lsub{font-size:13px;color:#a9bcae;margin-bottom:14px;line-height:1.45}
-  .leg{display:flex;gap:12px;padding:11px 13px;border-radius:9px;background:var(--ink-3);margin-bottom:8px;border:1px solid transparent}
-  .leg.me{border-color:var(--gold);background:rgba(194,163,93,.14)}
-  .leg .rk{font-family:'Fraunces',serif;font-weight:700;font-size:18px;color:var(--gold);width:22px;flex:none;text-align:center;line-height:1.35}
-  .leg .nm{font-family:'Fraunces',serif;font-weight:600;font-size:15px;color:var(--paper);display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-  .leg .nm .you{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:1px;background:var(--gold);color:#241c0c;padding:2px 7px;border-radius:10px;text-transform:uppercase}
-  .leg .ds{font-size:12.5px;line-height:1.45;color:#b7c6bc;margin-top:3px}
 
   /* ---------- Morgenavisen ---------- */
   .avis{background:linear-gradient(180deg,#f7f2e2 0%,#efe7d0 100%);color:#221d13;border-radius:2px;padding:20px 20px 16px;border:1px solid var(--line-paper);transform:rotate(.4deg);box-shadow:0 1px 0 rgba(0,0,0,.05),0 14px 0 -7px #e6dcc0,0 15px 0 -6px rgba(0,0,0,.2),var(--shadow);margin-bottom:16px}
-  .avis .ahoved{font-family:'Fraunces',serif;font-weight:700;font-size:clamp(24px,7vw,34px);letter-spacing:4px;text-align:center;text-transform:uppercase;border-bottom:3.5px double #221d13;padding-bottom:8px}
+  .avis .ahoved{overflow-wrap:break-word;font-family:'Fraunces',serif;font-weight:700;font-size:clamp(24px,7vw,34px);letter-spacing:4px;text-align:center;text-transform:uppercase;border-bottom:3.5px double #221d13;padding-bottom:8px}
   .avis .adato{display:flex;justify-content:space-between;font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:1px;text-transform:uppercase;color:#6b6457;border-bottom:1px solid #c9bd9d;padding:6px 2px}
-  .avis .arubrik{font-family:'Fraunces',serif;font-weight:700;font-size:clamp(30px,8.8vw,46px);line-height:1.0;text-transform:uppercase;text-align:center;margin:18px 4px 10px}
+  .avis .arubrik{hyphens:auto;-webkit-hyphens:auto;overflow-wrap:break-word;font-family:'Fraunces',serif;font-weight:700;font-size:clamp(30px,8.8vw,46px);line-height:1.0;text-transform:uppercase;text-align:center;margin:18px 4px 10px}
   .avis .aunder{font-family:'Fraunces',serif;font-style:italic;font-size:clamp(14.5px,4.2vw,17px);line-height:1.45;text-align:center;color:#3f3a2e;margin:0 8px 14px}
   .avis .acitat{border-top:1px solid #c9bd9d;border-bottom:1px solid #c9bd9d;padding:11px 10px;font-size:13.5px;line-height:1.5;text-align:center;color:#33302a}
   .avis .acitat b{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#8f7433;display:block;margin-bottom:4px}
@@ -212,20 +194,14 @@
   .prow .pmark.w{color:var(--red)}
   .prow .pnm{font-family:'Fraunces',serif;font-size:15px;letter-spacing:.4px}
   .prow .pln{font-size:12px;color:var(--muted)}
-  .gate{min-height:62vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:24px;padding:50px 20px}
-  .gate .gmeta{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:2px;color:#8fa596;text-transform:uppercase}
-  .gate .gline{font-family:'Fraunces',serif;text-transform:uppercase;letter-spacing:3px;font-size:clamp(19px,5vw,27px);color:#f2ede2}
   .gate-btn{background:transparent;border:2px solid var(--gold);color:var(--gold);font-family:'Fraunces',serif;text-transform:uppercase;letter-spacing:3px;font-size:16px;padding:14px 32px;border-radius:6px;cursor:pointer;transition:background .2s}
   .gate-btn:hover{background:rgba(194,163,93,.14)}
-  .gate .ghint{font-family:'IBM Plex Mono',monospace;font-size:15px;font-weight:700;letter-spacing:1.6px;color:var(--gold);text-transform:uppercase;line-height:1.7}
   .film-overlay{position:fixed;inset:0;background:#03130d;z-index:9998;display:flex;align-items:center;justify-content:center;opacity:1;transition:opacity .45s ease}
   .film-overlay.out{opacity:0}
   .film-card{opacity:0;transition:opacity .6s ease;text-align:center;padding:0 26px;max-width:760px;width:100%}
   .film-card.vis{opacity:1}
   .film-title{font-family:'Fraunces',serif;text-transform:uppercase;letter-spacing:4px;font-size:clamp(22px,6vw,40px);color:#f2ede2}
   .film-sub{font-family:'IBM Plex Mono',monospace;font-size:13px;color:#8fa596;margin-top:14px;letter-spacing:1px}
-  .film-hoved{font-family:'Fraunces',serif;text-transform:uppercase;letter-spacing:6px;font-weight:600;font-size:clamp(30px,9vw,58px);color:var(--gold);text-shadow:0 0 30px rgba(194,163,93,.35)}
-  .film-hoved .amp{color:var(--red);font-style:italic}
   .film-skip{position:fixed;right:16px;bottom:16px;background:transparent;border:1px solid rgba(242,237,226,.3);color:rgba(242,237,226,.75);font-family:'Fraunces',serif;text-transform:uppercase;letter-spacing:2px;font-size:12px;padding:8px 14px;border-radius:5px;cursor:pointer;z-index:9999}
   .videoframe{position:relative;width:100%;padding-top:56.25%;background:#000;border:1px solid var(--line);border-radius:6px;overflow:hidden;box-shadow:0 0 40px rgba(194,163,93,.12)}
   .videoframe iframe,.videoframe #yt-player{position:absolute;inset:0;width:100%;height:100%;border:0}
@@ -236,7 +212,7 @@
   .ss-slide{position:absolute;inset:0;opacity:0;transition:opacity .7s ease;display:flex;align-items:center;justify-content:center;padding:34px 30px;flex-direction:column;text-align:center}
   .ss-slide.vis{opacity:1}
   .ss-kicker{font-family:'IBM Plex Mono',monospace;font-size:12.5px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:20px}
-  .ss-title{font-family:'Fraunces',serif;font-weight:700;font-size:clamp(32px,9.5vw,54px);line-height:1.02;text-transform:uppercase;letter-spacing:1px;color:#f2ede2}
+  .ss-title{hyphens:auto;-webkit-hyphens:auto;overflow-wrap:break-word;font-family:'Fraunces',serif;font-weight:700;font-size:clamp(32px,9.5vw,54px);line-height:1.02;text-transform:uppercase;letter-spacing:1px;color:#f2ede2}
   .ss-sub{font-family:'Fraunces',serif;font-style:italic;font-size:clamp(14px,4.2vw,19px);letter-spacing:3px;text-transform:uppercase;color:#8fa596;margin-top:14px}
   .ss-body{font-family:'Fraunces',serif;font-weight:400;font-size:clamp(19px,5.4vw,26px);line-height:1.5;color:#eef1ea;max-width:21ch;margin-top:4px}
   .ss-rule{width:46px;height:2px;background:var(--gold);opacity:.7;margin:22px auto 0}
@@ -258,7 +234,7 @@
 <body>
 <div class="stage">
 
-  <header class="bar">
+  <header class="bar" id="bar">
     <div class="brand">
       <span class="logo">Forlig før daggry</span>
           </div>
@@ -567,6 +543,69 @@ function videoInterlude(next){
 
 
 
+
+/* ---------- Bismarck-filmen (afspilles foer sag 00) ----------
+   Laeg videoen i samme mappe som spillet under navnet bismarck.mp4
+   (eller ret navnet nedenfor). Mangler filen, springes den over. */
+const BISMARCK_KLIP = 'bismarck.mp4';
+
+function bismarckInterlude(next){
+  const ov = document.createElement('div');
+  ov.className = 'film-overlay';
+  ov.innerHTML = `<div class="ss-frame" id="bm-frame"></div>`;
+  document.body.appendChild(ov);
+  const skip = document.createElement('button');
+  skip.className = 'film-skip'; skip.textContent = 'Videre \u25b8';
+  document.body.appendChild(skip);
+  const frame = ov.querySelector('#bm-frame');
+
+  let done = false, prev = null;
+  function finish(){
+    if(done) return; done = true;
+    frame.querySelectorAll('video').forEach(v=>{ try{ v.pause(); }catch(_){} });
+    ov.classList.add('out');
+    setTimeout(()=>{ ov.remove(); skip.remove(); next(); }, 460);
+  }
+  skip.onclick = finish;
+
+  function titleCard(){
+    const el = document.createElement('div');
+    el.className = 'ss-slide';
+    el.innerHTML = `
+      <div class="ss-kicker">Berlin \u00b7 1883</div>
+      <div class="ss-title">Jernkansleren</div>
+      <div class="ss-sub">Manden der opfandt socialforsikringen, for at sl\u00e5 socialisterne</div>
+      <div class="ss-rule"></div>`;
+    frame.appendChild(el);
+    requestAnimationFrame(()=>{ requestAnimationFrame(()=> el.classList.add('vis')); });
+    prev = el;
+    setTimeout(()=>{
+      if(done) return;
+      el.classList.remove('vis');
+      setTimeout(()=>{ if(el.parentNode) el.remove(); spilVideo(); }, 720);
+    }, 3200);
+  }
+
+  function spilVideo(){
+    if(done) return;
+    const v = document.createElement('video');
+    v.className = 'ss-video';
+    v.src = BISMARCK_KLIP;
+    v.playsInline = true; v.setAttribute('playsinline','');
+    v.preload = 'auto';
+    let gaaet = false;
+    const videre = ()=>{ if(gaaet) return; gaaet = true; finish(); };
+    v.onended = videre;
+    v.onerror = videre;
+    v.onclick = ()=>{ if(v.paused){ v.play().catch(()=>{}); } else { v.pause(); } };
+    frame.appendChild(v);
+    v.play().catch(()=>{});
+    setTimeout(()=>{ if(!done && v.paused && v.currentTime === 0) videre(); }, 12000);
+  }
+
+  titleCard();
+}
+
 /* ---------- Slaget paa Faelleden (afspilles foer sag 13, spillets foerste punkt) ----------
    Laeg dit 10-sekunders klip i samme mappe som spillet under navnet faelleden.mp4
    (eller ret navnet nedenfor). Mangler filen, springes klippet over. */
@@ -843,14 +882,13 @@ const STAUNING_IMG = [
 ];
 
 const STAUNING_SLIDES = [
-  {k:'txt', dur:4000, kicker:'Baggrund \u00b7 1933', title:'Krisen og Kanslergade', sub:'Da Stauning samlede parterne'},
-  {k:'img', dur:6000, src:0},
-  {k:'img', dur:6000, src:1},
-  {k:'img', dur:6000, src:2},
-  {k:'img', dur:6000, src:3},
-  {k:'img', dur:6000, src:4},
-  {k:'img', dur:6000, src:5},
-  {k:'txt', dur:5000, kicker:'Fra arkivet til bordet', body:'Forliget blev symbolet p\u00e5 den danske tradition for brede kompromiser hen over midten. Men var det f\u00f8rst og fremmest en sejr for arbejderne, for landbruget eller for freden p\u00e5 arbejdsmarkedet? Det skal du nu tage stilling til.'}
+  {k:'txt', dur:3600, kicker:'Januar 1933', title:'Kanslergade'},
+  {k:'img', dur:4400, src:0},
+  {k:'img', dur:4400, src:1},
+  {k:'img', dur:4400, src:2},
+  {k:'img', dur:4400, src:3},
+  {k:'img', dur:4400, src:4},
+  {k:'img', dur:4400, src:5}
 ];
 
 function stauningInterlude(next){
@@ -954,6 +992,7 @@ function forside(){
   recordEl.style.display = 'none';
   caseCount.textContent = '';
   setUr(null);
+  document.getElementById('bar').style.display = 'none';   /* titlen staar allerede stort paa forsiden */
   app.innerHTML = `
     <div class="fors fade">
       <div class="fpraes">KlosKlos og Reagan Production pr\u00e6senterer</div>
@@ -1003,13 +1042,13 @@ function byggCollage(){
 }
 
 function intro(){
+  document.getElementById('bar').style.display = '';
   recordEl.style.display = 'none';
   caseCount.textContent = '';
   setUr(null);
   app.innerHTML = `
     <div class="panel fade">
       <div class="card">
-        <div class="stamp land">Natforhandling</div>
         <div class="meta">Forligsinstitutionen \u00b7 kl. 02:14</div>
         <h1 class="cover-title">Forlig før daggry</h1>
         <div class="cover-sub">En arbejdsmarkedspolitisk quiz</div>
@@ -1127,13 +1166,15 @@ function intro(){
         <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted-paper);text-align:center;margin:0 0 14px">Forligsinstitutionen · kl. 02:14</div>
         <div class="dossier">
           <div class="drow"><span class="dk">Emne</span><span class="dv">Dansk arbejdsmarkedspolitik</span></div>
-          <div class="drow"><span class="dk">Parterne</span><span class="dv">Simon Eriksen og Risette Larsen</span></div>
+          <div class="drow"><span class="dk">Parterne</span><span class="dv">DI og CO-industri</span></div>
+          <div class="drow"><span class="dk">Ved bordet</span><span class="dv">Simon Eriksen (DI) og Risette Larsen (CO-industri)</span></div>
+          <div class="drow"><span class="dk">Forhandlingen</span><span class="dv">Industriens overenskomst, normen for hele arbejdsmarkedet</span></div>
           <div class="drow"><span class="dk">Din rolle</span><span class="dv">Mediator, hvis du best\u00e5r pr\u00f8ven</span></div>
           <div class="drow"><span class="dk">Krav</span><span class="dv">Mindst ${BESTAAET} af ${RUNDE} rigtige</span></div>
           <div class="drow"><span class="dk">Best\u00e5r du</span><span class="dv">Danmarkshistoriens bedste aftale</span></div>
           <div class="drow"><span class="dk">Falder du</span><span class="dv">Strejke og lockout ved daggry</span></div>
         </div>
-        <p class="situation">Klokken er 02:14. Arbejdsgivernes formand <strong>Simon Eriksen</strong> og fagbev\u00e6gelsens forkvinde <strong>Risette Larsen</strong> er t\u00e6ttere p\u00e5 et historisk forlig end nogen havde turdet håbe. Alle vil vinde p\u00e5 det. Problemet er bare, at de to ikke kan holde ud at se p\u00e5 hinanden. Han t\u00f8mmer kaffekanden. Hun kigger demonstrativt ud ad vinduet. Ingen af dem siger et ord.</p>
+        <p class="situation">Klokken er 02:14. Arbejdsgivernes formand <strong>Simon Eriksen</strong> fra DI og fagbev\u00e6gelsens forkvinde <strong>Risette Larsen</strong> fra CO-industri er t\u00e6ttere p\u00e5 et historisk forlig end nogen havde turdet håbe. Alle vil vinde p\u00e5 det. Problemet er bare, at de to ikke kan holde ud at se p\u00e5 hinanden. Han t\u00f8mmer kaffekanden. Hun kigger demonstrativt ud ad vinduet. Ingen af dem siger et ord.</p>
         <p class="situation" style="margin-top:12px">Derfor er buddet faldet p\u00e5 dig. Du er kendt for at kunne f\u00e5 hvem som helst til at blive gode venner. Men parterne s\u00e6tter \u00e9n betingelse: De vil ikke have en mediator, der ikke kender historien bag det bord, man s\u00e6tter sig ved. F\u00f8rst en pr\u00f8ve.</p>
         <p class="situation" style="margin-top:12px"><strong>${RUNDE} sp\u00f8rgsm\u00e5l</strong> om dansk velf\u00e6rdshistorie og den danske model, fra Bismarcks Berlin over Septemberforliget og Kanslergade til slaget om mindstel\u00f8nnen. Tre svarmuligheder, alle plausible, kun \u00e9n er sand. Best\u00e5r du med mindst <strong>${BESTAAET} rigtige</strong>, f\u00e5r du s\u00e6det, og forliget kan lande. Falder du, g\u00e5r alt i strejke og lockout n\u00e5r solen st\u00e5r op.</p>
         <button class="btn go big" id="start" style="margin-top:18px">\ud83e\udd1d G\u00e5 til pr\u00f8ven \u25b8</button>
@@ -1143,7 +1184,7 @@ function intro(){
 }
 
 function startGame(){
-  state = { i:0, history:[], rigtige:0, slots:[], started:true, videoDone:false, stauningDone:false, ligelonDone:false, faelledDone:false, deck:FASTE.map(s=> LEVELS.findIndex(l=>l.sag===s)) };
+  state = { i:0, history:[], rigtige:0, slots:[], started:true, videoDone:false, stauningDone:false, ligelonDone:false, faelledDone:false, bismarckDone:false, deck:FASTE.map(s=> LEVELS.findIndex(l=>l.sag===s)) };
   recordEl.style.display = 'flex';
   renderRecord();
   /* Foerste punkt er Faelleden, saa scenen sættes inden det foerste spoergsmaal */
@@ -1258,7 +1299,13 @@ function choose(slot){
     } else {
       const nextLv = LEVELS[state.deck[state.i+1]];
       /* Foer sag 03 (Kanslergadeforliget) vises Stauning-filmen */
-      if(nextLv && nextLv.sag === "12" && !state.ligelonDone){
+      if(nextLv && nextLv.sag === "00" && !state.bismarckDone){
+        act.innerHTML = backHtml + `<button class="btn go big" id="next">\ud83c\udfac Filmen om Bismarck \u25b8</button>`;
+        document.getElementById('next').onclick = ()=>{
+          state.bismarckDone = true;
+          bismarckInterlude(()=>{ state.i++; showCase(); });
+        };
+      } else if(nextLv && nextLv.sag === "12" && !state.ligelonDone){
         act.innerHTML = backHtml + `<button class="btn go big" id="next">\ud83c\udfac Kvinderne kommer \u25b8</button>`;
         document.getElementById('next').onclick = ()=>{
           state.ligelonDone = true;
@@ -1292,24 +1339,24 @@ function ending(){
   let rubrik, under, citat;
   if(r === RUNDE){
     rubrik = 'MIRAKLET I FORLIGS\u00adINSTITUTIONEN';
-    under = 'Ukendt m\u00e6gler l\u00f8ser samtlige 13 knuder p\u00e5 \u00e9n nat. Danmarkshistoriens bedste aftale underskrevet kl. 05:52. Eksperter m\u00e5ll\u00f8se.';
-    citat = '<b>Simon Eriksen, arbejdsgiverformand</b>\u201dJeg s\u00e5 Risette smile i nat. Det var ubehageligt, men historisk.\u201d';
+    under = 'Ukendt m\u00e6gler l\u00f8ser samtlige 13 knuder p\u00e5 \u00e9n nat. DI og CO-industri underskrev kl. 05:52. Eksperter m\u00e5ll\u00f8se.';
+    citat = '<b>Simon Eriksen, formand, DI</b>\u201dJeg s\u00e5 Risette smile i nat. Det var ubehageligt, men historisk.\u201d';
   } else if(bestod && r >= 10){
     rubrik = 'HISTORISK AFTALE I HUS F\u00d8R DAGGRY';
-    under = 'Efter en lang nat i Forligsinstitutionen gav parterne h\u00e5nd kl. 05:52. En n\u00e6sten ukendt m\u00e6gler f\u00e5r \u00e6ren for gennembruddet.';
-    citat = '<b>Risette Larsen, forkvinde</b>\u201dSimon h\u00e6ldte faktisk kaffe op til mig kl. fire. S\u00e5 vidste jeg, at det nok skulle g\u00e5.\u201d';
+    under = 'Efter en lang nat i Forligsinstitutionen gav DI og CO-industri h\u00e5nd kl. 05:52. En n\u00e6sten ukendt m\u00e6gler f\u00e5r \u00e6ren for gennembruddet.';
+    citat = '<b>Risette Larsen, forkvinde, CO-industri</b>\u201dSimon h\u00e6ldte faktisk kaffe op til mig kl. fire. S\u00e5 vidste jeg, at det nok skulle g\u00e5.\u201d';
   } else if(bestod){
     rubrik = 'FORLIG I ALLERSIDSTE \u00d8JEBLIK';
     under = 'Aftalen kom i hus f\u00e5 minutter f\u00f8r solopgang. Enkelte knuder m\u00e5tte if\u00f8lge kilder l\u00f8ses med tape, men den holder.';
     citat = '<b>Kilde t\u00e6t p\u00e5 forhandlingerne</b>\u201dM\u00e6gleren var ikke n\u00f8dvendigvis den skarpeste i lokalet, men absolut den mest udholdende.\u201d';
   } else if(r >= 4){
     rubrik = 'STORKONFLIKT!';
-    under = 'Forhandlingerne br\u00f8d sammen kl. 05:47. Strejke og lockout tr\u00e6der i kraft fra i dag. Landet g\u00e5r i st\u00e5.';
-    citat = '<b>Simon Eriksen og Risette Larsen, f\u00e6lles udtalelse</b>\u201dVi er for f\u00f8rste gang nogensinde helt enige: Aldrig igen den m\u00e6gler.\u201d';
+    under = 'Forhandlingerne p\u00e5 industriens omr\u00e5de br\u00f8d sammen kl. 05:47. Strejke og lockout tr\u00e6der i kraft fra i dag. Landet g\u00e5r i st\u00e5.';
+    citat = '<b>DI og CO-industri, f\u00e6lles udtalelse</b>\u201dVi er for f\u00f8rste gang nogensinde helt enige: Aldrig igen den m\u00e6gler.\u201d';
   } else {
     rubrik = 'STORKONFLIKT! LANDET LUKKER';
     under = 'Nattens forhandlinger endte i \u00e5bent sk\u00e6nderi om, hvorn\u00e5r Kanslergadeforliget blev indg\u00e5et. Alt g\u00e5r i st\u00e5 fra i morges.';
-    citat = '<b>Risette Larsen, forkvinde</b>\u201dM\u00e6gleren troede, Septemberforliget var en slags h\u00f8stfest. S\u00e5 rejste Simon og jeg os. Sammen, faktisk.\u201d';
+    citat = '<b>Risette Larsen, forkvinde, CO-industri</b>\u201dM\u00e6gleren troede, Septemberforliget var en slags h\u00f8stfest. S\u00e5 rejste Simon og jeg os. Sammen, faktisk.\u201d';
   }
   const notits = bestod ? 'Side 9: Murerne f\u00e5r omsider deres time \u00b7 Vejret: Daggry, siden opklaring' : 'Side 2: S\u00e5dan hamstrer du kaffe \u00b7 Vejret: M\u00f8rke skyer';
 
@@ -1317,6 +1364,15 @@ function ending(){
   setUr('06:00');
   recordEl.style.display = 'flex';
   renderRecord();
+  const protokol = state.history.map((hv,i)=>{
+    const lv = LEVELS[state.deck[i]];
+    const b = parseBased(lv.based);
+    return `<div class="prow">
+      <div class="pmark ${hv?'r':'w'}">${hv?'\u2713':'\u2717'}</div>
+      <div><div class="pnm">${lv.titel}</div><div class="pln">${b.person} \u00b7 ${b.aar}</div></div>
+    </div>`;
+  }).join('');
+
   app.innerHTML = `
     <div class="panel fade">
       <div class="avis">
