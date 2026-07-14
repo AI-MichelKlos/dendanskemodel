@@ -6,12 +6,12 @@
 <title>Forlig før daggry · En arbejdsmarkedspolitisk quiz</title>
 <meta property="og:type" content="website">
 <meta property="og:title" content="Forlig før daggry: En arbejdsmarkedspolitisk quiz">
-<meta property="og:description" content="Klokken er over midnat i Forligsinstitutionen. 13 knuder skal løses inden daggry. Kender du dansk arbejdsmarkedspolitiks historie fra Bismarck til i dag?">
-<meta property="og:url" content="https://ai-michelklos.github.io/Michelsspil/flex-og-tryghed/">
-<meta property="og:image" content="https://ai-michelklos.github.io/Michelsspil/flex-og-tryghed/forhandling.jpg">
+<meta property="og:description" content="Klokken er over midnat i Forligsinstitutionen. 14 knuder skal løses inden daggry. Kender du dansk arbejdsmarkedspolitiks historie fra Bismarck til i dag?">
+<meta property="og:url" content="https://ai-michelklos.github.io/dendanskemodel/">
+<meta property="og:image" content="https://ai-michelklos.github.io/dendanskemodel/forhandling.JPG">
 <meta property="og:locale" content="da_DK">
 <meta name="twitter:card" content="summary">
-<meta name="description" content="Natforhandling om dansk arbejdsmarkedspolitik. 13 afgørende øjeblikke fra Fælleden over Kanslergade til i dag. Løs knuderne inden daggry.">
+<meta name="description" content="Natforhandling om dansk arbejdsmarkedspolitik. 14 afgørende øjeblikke fra Fælleden over Kanslergade til i dag. Løs knuderne inden daggry.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;700&family=Permanent+Marker&display=swap" rel="stylesheet">
@@ -258,7 +258,7 @@
   <div id="app"></div>
 
   <div class="footer">
-    Udviklet af <span>KlosKlos og Reagan Production</span>
+    Udviklet af <span>KlosKlos og Reagan Production \u00b7 <a href="images/CREDITS.md" style="color:var(--gold-dk);text-decoration:underline">Billedkreditering</a></span>
   </div>
 </div>
 
@@ -356,6 +356,16 @@ const LEVELS = [
     ],
     forklaring:"Citatet faldt i afskedstalen på LO's kongres den 16. februar 1982 og blev straks udødeligt. Nielsen pegede på paradokset: Fagbevægelsen havde skaffet medlemmerne parcelhus, bil og charterferie i et omfang, så mange ikke længere følte, at de havde brug for bevægelsen. Sejren var så total, at den truede med at underminere sammenholdet. Sætningen citeres stadig, hver gang debatten om fagbevægelsens fremtid blusser op. Om lidt kan du selv høre ham sige det." },
 
+  { sag:"14", titel:"Pension til de mange", based:"Danmark \u00b7 F\u00e6lleserkl\u00e6ringen \u00b7 1987-1993",
+    situation:"Du har lige set historien: I slutningen af 1980'erne havde de fleste l\u00f8nmodtagere kun folkepension og ATP at se frem til, mens funktion\u00e6rer og akademikere havde deres egne ordninger. I 1987 satte regeringen, LO og DA sig sammen om F\u00e6lleserkl\u00e6ringen: Flere skulle sikres pension. Men hvordan skulle det ske?",
+    spm:"Hvordan fik de fleste danske l\u00f8nmodtagere arbejdsmarkedspension?",
+    svar:[
+      {t:"Gennem overenskomsterne. Parterne aftalte ordningerne selv, f\u00f8rst for offentligt ansatte i 1989, s\u00e5 industrien i 1991 med indbetaling fra 1993, og derfra bredte de sig til resten af arbejdsmarkedet.", ok:true},
+      {t:"Ved lov. Folketinget vedtog i 1990 en obligatorisk till\u00e6gspension oven p\u00e5 folkepensionen for alle l\u00f8nmodtagere.", ok:false},
+      {t:"Gennem bankerne. Staten indf\u00f8rte et stort skattefradrag, der fik de fleste til selv at oprette private pensionsopsparinger.", ok:false}
+    ],
+    forklaring:"Det er den danske model i en n\u00f8ddeskal: Selv en velf\u00e6rdsopgave af den st\u00f8rrelse blev l\u00f8st ved bordet, ikke i Folketinget. F\u00e6lleserkl\u00e6ringen fra 1987 var startskuddet, gennembruddet kom for de offentligt ansatte i 1989, og med Industriens Pension i 1991 fulgte det private arbejdsmarked efter. I dag indbetales typisk 12 til 17 procent af l\u00f8nnen, og arbejdsmarkedspensionerne er en grundpille under den danske velf\u00e6rdsmodel med opsparinger p\u00e5 flere tusinde milliarder kroner." },
+
   { sag:"05", titel:"Flexicurity", based:"Danmark · Poul Nyrup Rasmussen · 1990'erne",
     situation:"Ledigheden har bidt sig fast over 10 procent, og udlandet undrer sig: Hvordan kan et land med nogle af verdens letteste fyringsregler samtidig have nogenlunde trygge lønmodtagere? I 1990'erne får én del af den danske model sit eget internationale navn.",
     spm:"Flexicurity er én af flere søjler i den danske model. Hvad består dens gyldne trekant af?",
@@ -418,14 +428,15 @@ const LEVELS = [
 ];
 
 const SLOTS = ["A","B","C"];
-const RUNDE = 13;
+const RUNDE = 14;
 const BESTAAET = 6;   /* minimum rigtige for at blive godkendt som mediator */
-const FASTE = ["13","00","01","02","03","12","04","05","06","07","08","09","10"];
-const TIDER = ["02:14","02:31","02:48","03:05","03:22","03:39","03:56","04:13","04:30","04:47","05:06","05:23","05:40"];
+const FASTE = ["13","00","01","02","03","12","04","14","05","06","07","08","09","10"];
+const TIDER = ["02:14","02:30","02:46","03:02","03:18","03:34","03:50","04:06","04:22","04:38","04:54","05:10","05:26","05:40"];
 
 /* Forhandlerligaen, rangeret 1 (mest legendarisk) → 7. Score-krav: 10→#1 … 5→#6; under 5 → #7 */
 
 const CITATER = {
+  "14": {t:"Fremtiden er ikke l\u00e6ngere kun den enkeltes ansvar.", k:"Arbejderfamilien i tegneserien, frit efter F\u00e6lleserkl\u00e6ringen 1987"},
   "13": {t:"I har i \u00e5rtusinder sk\u00e6nket os en bitter livsdrik. Vogt jer nu, m\u00e5let er fuldt.", k:"Louis Pio i Socialisten, 2. maj 1872, tre dage f\u00f8r slaget"},
   "12": {t:"Vi betaler 80 procent af billetten, for vi f\u00e5r 80 procent af l\u00f8nnen.", k:"Frit efter buskampagnen mod l\u00f8ngabet, K\u00f8benhavn, maj 1970"},
   "00": {t:"Den, der har udsigt til en pension, er langt mere tilfreds og langt lettere at regere.", k:"Otto von Bismarck, frit gengivet fra debatten om socialforsikringerne, 1880'erne"},
@@ -442,7 +453,7 @@ const CITATER = {
 };
 
 const PORTRAITS = {
-  "13":"pio.jpg", "00":"bismarck.jpg", "12":"anker.jpg", "01":"septemberforliget.jpg", "02":"akasse1907.jpg", "03":"stauning.jpg",
+  "13":"pio.jpg", "14":"panel-4-gennembruddet-1989.jpg", "00":"bismarck.jpg", "12":"anker.jpg", "01":"septemberforliget.jpg", "02":"akasse1907.jpg", "03":"stauning.jpg",
   "04":"thomasnielsen.jpg", "05":"nyrup.jpg", "06":"parterne.jpg",
   "07":"gaer.jpg", "08":"efterloen.jpg", "09":"dagpenge2010.jpg", "10":"eu.jpg"
 };
@@ -544,6 +555,62 @@ function videoInterlude(next){
 
 
 
+
+/* ---------- Pensions-tegneserien (afspilles foer sag 14) ----------
+   Seks paneler i images/-mappen. Tryk paa et panel gaar til naeste,
+   ellers skiftes der automatisk. Mangler et panel, springes det over. */
+const PENSION_PANELER = [
+  'images/panel-1-den-skaeve-alderdom.jpg',
+  'images/panel-2-faelleserklaeringen-1987.jpg',
+  'images/panel-3-kampen-om-modellen.jpg',
+  'images/panel-4-gennembruddet-1989.jpg',
+  'images/panel-5-industriens-pension.jpg',
+  'images/panel-6-pensionen-breder-sig.jpg'
+];
+const PANEL_TID = 9000;
+
+function tegneserieInterlude(next){
+  const ov = document.createElement('div');
+  ov.className = 'film-overlay';
+  ov.innerHTML = `<div class="ss-frame" id="ts-frame"></div>`;
+  document.body.appendChild(ov);
+  const skip = document.createElement('button');
+  skip.className = 'film-skip'; skip.textContent = 'Videre \u25b8';
+  document.body.appendChild(skip);
+  const frame = ov.querySelector('#ts-frame');
+
+  let done = false, prev = null, timer = null;
+  function finish(){
+    if(done) return; done = true;
+    if(timer) clearTimeout(timer);
+    ov.classList.add('out');
+    setTimeout(()=>{ ov.remove(); skip.remove(); next(); }, 460);
+  }
+  skip.onclick = finish;
+
+  function visPanel(i){
+    if(done) return;
+    if(i >= PENSION_PANELER.length){ finish(); return; }
+    const el = document.createElement('div');
+    el.className = 'ss-slide ss-imgslide';
+    const im = document.createElement('img');
+    im.className = 'ss-video';
+    im.src = PENSION_PANELER[i];
+    im.alt = '';
+    im.onerror = ()=>{ if(timer) clearTimeout(timer); visPanel(i+1); };
+    /* tryk gaar straks til naeste panel */
+    im.onclick = ()=>{ if(timer) clearTimeout(timer); visPanel(i+1); };
+    el.appendChild(im);
+    frame.appendChild(el);
+    requestAnimationFrame(()=>{ requestAnimationFrame(()=> el.classList.add('vis')); });
+    if(prev){ const p = prev; p.classList.remove('vis'); setTimeout(()=>{ if(p.parentNode) p.remove(); }, 720); }
+    prev = el;
+    timer = setTimeout(()=> visPanel(i+1), PANEL_TID);
+  }
+
+  visPanel(0);
+}
+
 /* ---------- Bismarck-filmen (afspilles foer sag 00) ----------
    Laeg videoen i samme mappe som spillet under navnet bismarck.mp4
    (eller ret navnet nedenfor). Mangler filen, springes den over. */
@@ -610,6 +677,8 @@ function bismarckInterlude(next){
    Laeg dit 10-sekunders klip i samme mappe som spillet under navnet faelleden.mp4
    (eller ret navnet nedenfor). Mangler filen, springes klippet over. */
 const FAELLED_KLIP = 'faelleden.mp4';
+/* Epilog: Pio sejler til Amerika. Filnavn: pio.mp4 i samme mappe. */
+const PIO_KLIP = 'louispiotilusa.mp4';
 
 const FAELLED_EFTER = [
   {dur:6000, kicker:'Hvad der skete', body:'Husarerne trak sablerne og red ind i m\u00e6ngden. Arbejderne veg ikke, men svarede igen med sten, knytn\u00e6ver og h\u00e5ndfulde snus i \u00f8jnene p\u00e5 heste og betjente. Slagsm\u00e5let b\u00f8lgede frem og tilbage i timevis.'},
@@ -794,7 +863,7 @@ function faelledInterlude(next){
   /* 3) Efterspillet over fire kort */
   function efterspil(i){
     if(done) return;
-    if(i >= FAELLED_EFTER.length){ finish(); return; }
+    if(i >= FAELLED_EFTER.length){ pioEpilog(); return; }
     const s = FAELLED_EFTER[i];
     const el = document.createElement('div');
     el.className = 'ss-slide';
@@ -803,6 +872,41 @@ function faelledInterlude(next){
       <div class="ss-body">${s.body}</div>
       <div class="ss-rule"></div>`;
     swap(el, s.dur, ()=> efterspil(i+1));
+  }
+
+  /* Epilog: fem aar senere sejler Pio selv vaek */
+  function pioEpilog(){
+    if(done) return;
+    const el = document.createElement('div');
+    el.className = 'ss-slide';
+    el.innerHTML = `
+      <div class="ss-kicker">Epilog \u00b7 1877</div>
+      <div class="ss-body">Louis Pio blev l\u00f8sladt, men aldrig ladt i fred. I marts 1877 sejlede han til Amerika, i al hemmelighed betalt af politiet for at rejse. Bev\u00e6gelsens stifter var v\u00e6k. Og hvad s\u00e5 med bev\u00e6gelsen?</div>
+      <div class="ss-rule"></div>`;
+    swap(el, 6500, pioVideo);
+  }
+
+  function pioVideo(){
+    if(done) return;
+    const v = document.createElement('video');
+    v.className = 'ss-video';
+    v.src = PIO_KLIP;
+    v.playsInline = true; v.setAttribute('playsinline','');
+    v.preload = 'auto';
+    const el = document.createElement('div');
+    el.className = 'ss-slide ss-imgslide';
+    let gaaet = false;
+    const videre = ()=>{ if(gaaet) return; gaaet = true; finish(); };
+    v.onended = videre;
+    v.onerror = videre;
+    v.onclick = ()=>{ if(v.paused){ v.play().catch(()=>{}); } else { v.pause(); } };
+    el.appendChild(v);
+    frame.appendChild(el);
+    requestAnimationFrame(()=>{ requestAnimationFrame(()=> el.classList.add('vis')); });
+    if(prev){ const p = prev; p.classList.remove('vis'); setTimeout(()=>{ if(p.parentNode) p.remove(); }, 720); }
+    prev = el;
+    v.play().catch(()=>{});
+    setTimeout(()=>{ if(!done && v.paused && v.currentTime === 0) videre(); }, 12000);
   }
 
   stedet();
@@ -1012,11 +1116,11 @@ function byggCollage(){
   if(!boks) return;
 
   const oensket = [
-    {src:'images/pio.jpg', crop:true},            /* Faelleden 1872 */
-    {src:'images/thomasnielsen.jpg', crop:true},  /* 1982 */
-    {src:STAUNING_IMG[4], crop:false},            /* underskriften, midterst */
-    {src:'images/anker.jpg', crop:true},          /* ligeloen 1971 */
-    {src:'images/bismarck.jpg', crop:true}        /* 1883 */
+    {src:'images/bismarck.jpg', crop:true},        /* 1883 */
+    {src:'images/septemberforliget.jpg', crop:true}, /* 1899 */
+    {src:STAUNING_IMG[4], crop:false},             /* Kanslergade 1933, midterst */
+    {src:'images/anker.jpg', crop:true},           /* ligeloen 1971 */
+    {src:'images/eu.jpg', crop:true}               /* 2025 */
   ];
   const reserve = [STAUNING_IMG[0], STAUNING_IMG[1], STAUNING_IMG[3], STAUNING_IMG[5], STAUNING_IMG[2]];
 
@@ -1053,7 +1157,7 @@ function intro(){
         <h1 class="cover-title">Forlig før daggry</h1>
         <div class="cover-sub">En arbejdsmarkedspolitisk quiz</div>
         <div class="playnote"><span>\ud83c\udfa7 Spilles bedst med lyd</span><span>Ca. 10 minutter</span></div>
-        <img class="fscene" src="forhandling.jpg" alt="Simon Eriksen og Risette Larsen ved forhandlingsbordet"
+        <img class="fscene" src="forhandling.JPG" alt="Simon Eriksen og Risette Larsen ved forhandlingsbordet"
              onerror="this.style.display='none';document.getElementById('fscene-svg').style.display='block'">
         <svg class="fscene" id="fscene-svg" style="display:none" viewBox="0 0 420 230" aria-hidden="true">
   <defs>
@@ -1186,7 +1290,7 @@ function intro(){
 }
 
 function startGame(){
-  state = { i:0, history:[], rigtige:0, slots:[], started:true, videoDone:false, stauningDone:false, ligelonDone:false, faelledDone:false, bismarckDone:false, deck:FASTE.map(s=> LEVELS.findIndex(l=>l.sag===s)) };
+  state = { i:0, history:[], rigtige:0, slots:[], started:true, videoDone:false, stauningDone:false, ligelonDone:false, faelledDone:false, bismarckDone:false, pensionDone:false, deck:FASTE.map(s=> LEVELS.findIndex(l=>l.sag===s)) };
   recordEl.style.display = 'flex';
   renderRecord();
   /* Foerste punkt er Faelleden, saa scenen sættes inden det foerste spoergsmaal */
@@ -1296,12 +1400,27 @@ function choose(slot){
       act.innerHTML = backHtml + `<button class="btn go big" id="next">\ud83c\udfac Se klippet fra 1982 \u25b8</button>`;
       document.getElementById('next').onclick = ()=>{
         state.videoDone = true;
-        videoInterlude(()=>{ state.i++; showCase(); });
+        videoInterlude(()=>{
+          state.i++;
+          const nyLv = LEVELS[state.deck[state.i]];
+          if(nyLv && nyLv.sag === "14" && !state.pensionDone){
+            state.pensionDone = true;
+            tegneserieInterlude(showCase);
+          } else {
+            showCase();
+          }
+        });
       };
     } else {
       const nextLv = LEVELS[state.deck[state.i+1]];
       /* Foer sag 03 (Kanslergadeforliget) vises Stauning-filmen */
-      if(nextLv && nextLv.sag === "00" && !state.bismarckDone){
+      if(nextLv && nextLv.sag === "14" && !state.pensionDone){
+        act.innerHTML = backHtml + `<button class="btn go big" id="next">\ud83d\udcd6 Historien om pensionen \u25b8</button>`;
+        document.getElementById('next').onclick = ()=>{
+          state.pensionDone = true;
+          tegneserieInterlude(()=>{ state.i++; showCase(); });
+        };
+      } else if(nextLv && nextLv.sag === "00" && !state.bismarckDone){
         act.innerHTML = backHtml + `<button class="btn go big" id="next">\ud83c\udfac Filmen om Bismarck \u25b8</button>`;
         document.getElementById('next').onclick = ()=>{
           state.bismarckDone = true;
@@ -1341,7 +1460,7 @@ function ending(){
   let rubrik, under, citat;
   if(r === RUNDE){
     rubrik = 'MIRAKLET I FORLIGS\u00adINSTITUTIONEN';
-    under = 'Ukendt m\u00e6gler l\u00f8ser samtlige 13 knuder p\u00e5 \u00e9n nat. DI og CO-industri underskrev kl. 05:52. Eksperter m\u00e5ll\u00f8se.';
+    under = 'Ukendt m\u00e6gler l\u00f8ser samtlige 14 knuder p\u00e5 \u00e9n nat. DI og CO-industri underskrev kl. 05:52. Eksperter m\u00e5ll\u00f8se.';
     citat = '<b>Simon Eriksen, formand, DI</b>\u201dJeg s\u00e5 Risette smile i nat. Det var ubehageligt, men historisk.\u201d';
   } else if(bestod && r >= 10){
     rubrik = 'HISTORISK AFTALE I HUS F\u00d8R DAGGRY';
