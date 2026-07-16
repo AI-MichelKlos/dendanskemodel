@@ -628,6 +628,18 @@ function bismarckInterlude(next){
   document.body.appendChild(skip);
   const frame = ov.querySelector('#bm-frame');
 
+  /* Opret og prim videoen i selve trykket, saa lyden faar lov paa iPhone */
+  const bmv = document.createElement('video');
+  bmv.className = 'ss-video';
+  bmv.src = BISMARCK_KLIP;
+  bmv.playsInline = true; bmv.setAttribute('playsinline','');
+  bmv.preload = 'auto';
+  try{
+    bmv.muted = true;
+    const p = bmv.play();
+    if(p) p.then(()=>{ bmv.pause(); bmv.currentTime = 0; bmv.muted = false; }).catch(()=>{ bmv.muted = false; });
+  }catch(_){ bmv.muted = false; }
+
   let done = false, prev = null;
   function finish(){
     if(done) return; done = true;
@@ -657,11 +669,9 @@ function bismarckInterlude(next){
 
   function spilVideo(){
     if(done) return;
-    const v = document.createElement('video');
-    v.className = 'ss-video';
-    v.src = BISMARCK_KLIP;
-    v.playsInline = true; v.setAttribute('playsinline','');
-    v.preload = 'auto';
+    const v = bmv;
+    v.muted = false;
+    try{ v.currentTime = 0; }catch(_){}
     let gaaet = false;
     const videre = ()=>{ if(gaaet) return; gaaet = true; finish(); };
     v.onended = videre;
@@ -700,17 +710,48 @@ function faelledInterlude(next){
   document.body.appendChild(skip);
   const frame = ov.querySelector('#fx-frame');
 
-  /* musik hen over hele forloebet */
+  /* musik hen over hele forloebet, med fade ind og ud via Web Audio
+     (almindelig volume ignoreres paa iPhone, en gain-knude goer det ikke) */
   const musik = new Audio(PIO_MUSIK);
   musik.loop = true;
+  let gain = null, actx = null;
+  try{
+    actx = new (window.AudioContext || window.webkitAudioContext)();
+    const kilde = actx.createMediaElementSource(musik);
+    gain = actx.createGain();
+    kilde.connect(gain); gain.connect(actx.destination);
+    gain.gain.setValueAtTime(0.0001, actx.currentTime);
+    gain.gain.linearRampToValueAtTime(1, actx.currentTime + 5.5);   /* fade ind */
+    if(actx.state === 'suspended') actx.resume();
+  }catch(_){ gain = null; }
   musik.play().catch(()=>{});
   const musikVis = ()=>{ if(document.hidden){ musik.pause(); } else if(!done){ musik.play().catch(()=>{}); } };
   document.addEventListener('visibilitychange', musikVis);
 
+  function musikUd(){
+    /* fade ud over 4 sekunder, saa stop */
+    if(gain && actx){
+      try{
+        gain.gain.cancelScheduledValues(actx.currentTime);
+        gain.gain.setValueAtTime(gain.gain.value, actx.currentTime);
+        gain.gain.linearRampToValueAtTime(0.0001, actx.currentTime + 4);
+        setTimeout(()=>{ try{ musik.pause(); actx.close(); }catch(_){} }, 4200);
+        return;
+      }catch(_){}
+    }
+    /* reserve uden Web Audio: trinvis volumen (virker paa pc) */
+    let v = musik.volume;
+    const trin = setInterval(()=>{
+      v -= 0.08;
+      if(v <= 0){ clearInterval(trin); try{ musik.pause(); }catch(_){} }
+      else { try{ musik.volume = v; }catch(_){} }
+    }, 320);
+  }
+
   let done = false, prev = null;
   function finish(){
     if(done) return; done = true;
-    try{ musik.pause(); }catch(_){}
+    musikUd();
     document.removeEventListener('visibilitychange', musikVis);
     frame.querySelectorAll('video').forEach(v=>{ try{ v.pause(); }catch(_){} });
     ov.classList.add('out');
@@ -745,6 +786,7 @@ function faelledInterlude(next){
     const v = document.createElement('video');
     v.className = 'ss-video';
     v.src = FAELLED_KLIP;
+    v.muted = true; v.setAttribute('muted','');   /* musikken ligger ovenpaa */
     v.playsInline = true; v.setAttribute('playsinline','');
     v.preload = 'auto';
     let gaaet = false;
@@ -793,6 +835,7 @@ function faelledInterlude(next){
     const v = document.createElement('video');
     v.className = 'ss-video';
     v.src = PIO_KLIP;
+    v.muted = true; v.setAttribute('muted','');   /* musikken ligger ovenpaa */
     v.playsInline = true; v.setAttribute('playsinline','');
     v.preload = 'auto';
     const el = document.createElement('div');
@@ -830,6 +873,22 @@ function ligelonInterlude(next){
   document.body.appendChild(skip);
   const frame = ov.querySelector('#lg-frame');
 
+  /* Opret og prim videoerne i selve trykket: Safari giver dem saa lov til
+     at spille med lyd, ogsaa naar de foerst vises efter titelkortet */
+  const klipEl = LIGELON_KLIP.map(src=>{
+    const v = document.createElement('video');
+    v.className = 'ss-video';
+    v.src = src;
+    v.playsInline = true; v.setAttribute('playsinline','');
+    v.preload = 'auto';
+    try{
+      v.muted = true;
+      const p = v.play();
+      if(p) p.then(()=>{ v.pause(); v.currentTime = 0; v.muted = false; }).catch(()=>{ v.muted = false; });
+    }catch(_){ v.muted = false; }
+    return v;
+  });
+
   let done = false;
   function finish(){
     if(done) return; done = true;
@@ -858,11 +917,9 @@ function ligelonInterlude(next){
   function playClip(i){
     if(done) return;
     if(i >= LIGELON_KLIP.length){ finish(); return; }
-    const v = document.createElement('video');
-    v.className = 'ss-video';
-    v.src = LIGELON_KLIP[i];
-    v.playsInline = true; v.setAttribute('playsinline','');
-    v.preload = 'auto';
+    const v = klipEl[i];
+    v.muted = false;
+    try{ v.currentTime = 0; }catch(_){}
     v.onended = ()=>{ v.remove(); playClip(i+1); };
     v.onerror = ()=>{ v.remove(); playClip(i+1); };
     v.onclick = ()=>{ if(v.paused){ v.play().catch(()=>{}); } else { v.pause(); } };
