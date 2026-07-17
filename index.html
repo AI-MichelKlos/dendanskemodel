@@ -695,9 +695,9 @@ const PIO_KLIP = 'louispiotilusa.mp4';
 const PIO_MUSIK = 'piomusik.mp3';
 
 const FAELLED_EFTER = [
-  {dur:10000, kicker:'Slaget', body:'Husarerne trak sablerne og red ind i m\u00e6ngden. Arbejderne veg ikke, men svarede igen med sten og bare n\u00e6ver. F\u00f8rst sidst p\u00e5 eftermiddagen var F\u00e6lleden ryddet. Ingen blev dr\u00e6bt, men der var s\u00e5rede p\u00e5 begge sider.'},
-  {dur:10000, kicker:'Lederne', body:'De tre ledere var der aldrig. Louis Pio, Harald Brix og Povl Geleff blev anholdt natten f\u00f8r. Dommene faldt h\u00e5rdt, h\u00e5rdest for Pio, og Internationale blev forbudt.'},
-  {dur:10000, kicker:'Bagefter', body:'Bev\u00e6gelsen stod uden ledere, uden organisation og uden avis. Man havde knust socialismen i Danmark, troede statsmagten. Sp\u00f8rgsm\u00e5let er, hvad der s\u00e5 skete.'}
+  {dur:4000, kicker:'Slaget', body:'Husarerne red ind i m\u00e6ngden. F\u00f8rst sidst p\u00e5 dagen var F\u00e6lleden ryddet.'},
+  {dur:4000, kicker:'Lederne', body:'Pio, Brix og Geleff var anholdt natten f\u00f8r. H\u00e5rde domme. Internationale forbudt.'},
+  {dur:4000, kicker:'Bagefter', body:'Socialismen i Danmark var knust, troede statsmagten.'}
 ];
 
 function faelledInterlude(next){
@@ -710,10 +710,23 @@ function faelledInterlude(next){
   document.body.appendChild(skip);
   const frame = ov.querySelector('#fx-frame');
 
+  /* Pio-videoen skal spille med lyd til sidst: opret og prim den allerede
+     i trykket, saa Safari giver lyden lov, naar den vises 30 sek senere */
+  const pv = document.createElement('video');
+  pv.className = 'ss-video';
+  pv.src = PIO_KLIP;
+  pv.playsInline = true; pv.setAttribute('playsinline','');
+  pv.preload = 'auto';
+  try{
+    pv.muted = true;
+    const pp = pv.play();
+    if(pp) pp.then(()=>{ pv.pause(); pv.currentTime = 0; pv.muted = false; }).catch(()=>{ pv.muted = false; });
+  }catch(_){ pv.muted = false; }
+
   /* musik hen over hele forloebet, med fade ind og ud via Web Audio
      (almindelig volume ignoreres paa iPhone, en gain-knude goer det ikke) */
   const musik = new Audio(PIO_MUSIK);
-  musik.loop = true;
+  musik.loop = false;   /* 30 sek, praecis forloebets laengde frem til Pio-videoen */
   let gain = null, actx = null;
   try{
     actx = new (window.AudioContext || window.webkitAudioContext)();
@@ -722,6 +735,8 @@ function faelledInterlude(next){
     kilde.connect(gain); gain.connect(actx.destination);
     gain.gain.setValueAtTime(0.0001, actx.currentTime);
     gain.gain.linearRampToValueAtTime(1, actx.currentTime + 5.5);   /* fade ind */
+    gain.gain.setValueAtTime(1, actx.currentTime + 26);
+    gain.gain.linearRampToValueAtTime(0.0001, actx.currentTime + 30); /* fade ud mod Pio-videoen */
     if(actx.state === 'suspended') actx.resume();
   }catch(_){ gain = null; }
   musik.play().catch(()=>{});
@@ -776,7 +791,7 @@ function faelledInterlude(next){
       <div class="ss-title">N\u00f8rre F\u00e6lled</div>
       <div class="ss-sub">S\u00f8ndag den 5. maj 1872</div>
       <div class="ss-rule"></div>`;
-    swap(el, 5000, klippet);
+    swap(el, 4000, klippet);
   }
 
   /* 2) De ti sekunder */
@@ -825,19 +840,16 @@ function faelledInterlude(next){
     el.className = 'ss-slide';
     el.innerHTML = `
       <div class="ss-kicker">Epilog \u00b7 1877</div>
-      <div class="ss-body">Louis Pio blev l\u00f8sladt, men aldrig ladt i fred. I marts 1877 sejlede han til Amerika, i al hemmelighed betalt af politiet for at rejse. Bev\u00e6gelsens stifter var v\u00e6k. Og hvad s\u00e5 med bev\u00e6gelsen?</div>
+      <div class="ss-body">Louis Pio sejlede til Amerika, i hemmelighed betalt af politiet. Og bev\u00e6gelsen?</div>
       <div class="ss-rule"></div>`;
-    swap(el, 8000, pioVideo);
+    swap(el, 4000, pioVideo);
   }
 
   function pioVideo(){
     if(done) return;
-    const v = document.createElement('video');
-    v.className = 'ss-video';
-    v.src = PIO_KLIP;
-    v.muted = true; v.setAttribute('muted','');   /* musikken ligger ovenpaa */
-    v.playsInline = true; v.setAttribute('playsinline','');
-    v.preload = 'auto';
+    const v = pv;
+    v.muted = false;                               /* egen lyd, musikken er faerdig */
+    try{ v.currentTime = 0; }catch(_){}
     const el = document.createElement('div');
     el.className = 'ss-slide ss-imgslide';
     let gaaet = false;
