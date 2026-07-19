@@ -1128,7 +1128,52 @@ function klargoer(){
       <div style="font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:1.6px;text-transform:uppercase;color:var(--muted);margin-top:14px">Varighed ca. 10 min.</div>
       <button class="gate-btn" id="klar-go" style="margin-top:34px">Videre \u25b8</button>
     </div>`;
-  document.getElementById('klar-go').onclick = intro;
+  document.getElementById('klar-go').onclick = titelsekvens;
+}
+
+function titelsekvens(){
+  /* Tre titelkort med musik, 10 sekunder i alt. Musikken startes i selve
+     trykket paa Videre, saa lyden har lov paa iPhone. */
+  const musik = new Audio('introquiz.mp3');
+  musik.play().catch(()=>{});
+
+  const ov = document.createElement('div');
+  ov.className = 'film-overlay';
+  ov.innerHTML = `<div class="ss-frame" id="tit-frame"></div>`;
+  document.body.appendChild(ov);
+  const skip = document.createElement('button');
+  skip.className = 'film-skip'; skip.textContent = 'Videre \u25b8';
+  document.body.appendChild(skip);
+  const frame = ov.querySelector('#tit-frame');
+
+  const KORT = [
+    {dur:3300, html:`<div class="ss-kicker" style="letter-spacing:2.4px">KlosKlos og Reagan Production</div><div class="ss-sub">pr\u00e6senterer</div>`},
+    {dur:3300, html:`<div class="ss-sub">I samarbejde med</div><div class="ss-kicker" style="letter-spacing:2.4px">Factum Labs og Jyske Penge</div>`},
+    {dur:3400, html:`<div class="ss-title" style="font-size:clamp(38px,11vw,64px)">Forlig f\u00f8r daggry</div><div class="ss-rule"></div>`}
+  ];
+
+  let done = false, prev = null;
+  function finish(){
+    if(done) return; done = true;
+    try{ musik.pause(); }catch(_){}
+    ov.classList.add('out');
+    setTimeout(()=>{ ov.remove(); skip.remove(); intro(); }, 460);
+  }
+  skip.onclick = finish;
+
+  function vis(i){
+    if(done) return;
+    if(i >= KORT.length){ finish(); return; }
+    const el = document.createElement('div');
+    el.className = 'ss-slide';
+    el.innerHTML = KORT[i].html;
+    frame.appendChild(el);
+    requestAnimationFrame(()=>{ requestAnimationFrame(()=> el.classList.add('vis')); });
+    if(prev){ const p = prev; p.classList.remove('vis'); setTimeout(()=>{ if(p.parentNode) p.remove(); }, 720); }
+    prev = el;
+    setTimeout(()=> vis(i+1), KORT[i].dur);
+  }
+  vis(0);
 }
 
 function intro(){
