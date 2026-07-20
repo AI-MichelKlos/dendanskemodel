@@ -840,9 +840,19 @@ function faelledInterlude(next){
     el.className = 'ss-slide';
     el.innerHTML = `
       <div class="ss-kicker">Epilog \u00b7 1877</div>
-      <div class="ss-body">Louis Pio sejlede til Amerika, i hemmelighed betalt af politiet. Og bev\u00e6gelsen?</div>
+      <div class="ss-body">Louis Pio sejlede til Amerika, i hemmelighed betalt af politiet.</div>
       <div class="ss-rule"></div>`;
     swap(el, 4000, pioVideo);
+  }
+
+  function slutkort(){
+    if(done) return;
+    const el = document.createElement('div');
+    el.className = 'ss-slide';
+    el.innerHTML = `
+      <div class="ss-body">Men hvad med bev\u00e6gelsen og de revolution\u00e6re kr\u00e6fter?</div>
+      <div class="ss-rule"></div>`;
+    swap(el, 5000, finish);
   }
 
   function pioVideo(){
@@ -853,7 +863,7 @@ function faelledInterlude(next){
     const el = document.createElement('div');
     el.className = 'ss-slide ss-imgslide';
     let gaaet = false;
-    const videre = ()=>{ if(gaaet) return; gaaet = true; finish(); };
+    const videre = ()=>{ if(gaaet) return; gaaet = true; slutkort(); };
     v.onended = videre;
     v.onerror = videre;
     v.onclick = ()=>{ if(v.paused){ v.play().catch(()=>{}); } else { v.pause(); } };
