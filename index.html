@@ -930,6 +930,24 @@ const LIGELON_KLIP = ['ligeloen1.mp4', 'ligeloen2.mp4'];
 
 /* Intro foer ligeloensfilmen. Vises som et kort i quizzens stil.
    Filmen startes foerst ved tryk paa knappen, saa Safari giver lyden lov. */
+/* Planche efter ligeloensfilmen, vises inden spoergsmaalet. */
+function ligelonPlanche(next){
+  let gaaet = false;
+  app.innerHTML = `
+    <div class="panel fade">
+      <div class="card">
+        <p class="situation">For mange kvinder betød indtræden på arbejdsmarkedet \u201dThe double burden\u201d eller det dobbelte arbejdsliv med lønarbejde og husarbejde.</p>
+        <div class="actions"><button class="btn go big" id="lg-videre">Videre \u25b8</button></div>
+      </div>
+    </div>`;
+  window.scrollTo(0, 0);
+  document.getElementById('lg-videre').onclick = ()=>{
+    if(gaaet) return;            /* dobbeltklik maa ikke springe et punkt over */
+    gaaet = true;
+    next();
+  };
+}
+
 function ligelonIntro(next){
   let startet = false;
   app.innerHTML = `
@@ -945,7 +963,7 @@ function ligelonIntro(next){
     if(startet) return;          /* dobbeltklik maa ikke starte sekvensen to gange */
     startet = true;
     state.ligelonDone = true;    /* saettes naar filmen faktisk startes */
-    ligelonInterlude(next);
+    ligelonInterlude(()=>{ ligelonPlanche(next); });
   };
 }
 
