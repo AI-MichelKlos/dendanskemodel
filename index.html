@@ -528,9 +528,10 @@ function videoInterlude(next){
   let done = false;
   function finish(){
     if(done) return; done = true;
-    ov.classList.add('out');
     clearTimeout(nedfald);
-    setTimeout(()=>{ ov.remove(); skip.remove(); next(); }, 460);
+    try{ next(); }catch(_){}          /* tegn naeste skaerm under overlayet */
+    ov.classList.add('out');
+    setTimeout(()=>{ ov.remove(); skip.remove(); }, 460);
   }
   skip.onclick = finish;
 
@@ -592,9 +593,10 @@ function tegneserieInterlude(next){
   function finish(){
     if(done) return; done = true;
     if(timer) clearTimeout(timer);
-    ov.classList.add('out');
     clearTimeout(nedfald);
-    setTimeout(()=>{ ov.remove(); skip.remove(); next(); }, 460);
+    try{ next(); }catch(_){}          /* tegn naeste skaerm under overlayet */
+    ov.classList.add('out');
+    setTimeout(()=>{ ov.remove(); skip.remove(); }, 460);
   }
   skip.onclick = finish;
 
@@ -655,9 +657,10 @@ function bismarckInterlude(next){
   function finish(){
     if(done) return; done = true;
     frame.querySelectorAll('video').forEach(v=>{ try{ v.pause(); }catch(_){} });
-    ov.classList.add('out');
     clearTimeout(nedfald);
-    setTimeout(()=>{ ov.remove(); skip.remove(); next(); }, 460);
+    try{ next(); }catch(_){}          /* tegn naeste skaerm under overlayet */
+    ov.classList.add('out');
+    setTimeout(()=>{ ov.remove(); skip.remove(); }, 460);
   }
   skip.onclick = finish;
 
@@ -784,9 +787,10 @@ function faelledInterlude(next){
     musikUd();
     document.removeEventListener('visibilitychange', musikVis);
     frame.querySelectorAll('video').forEach(v=>{ try{ v.pause(); }catch(_){} });
-    ov.classList.add('out');
     clearTimeout(nedfald);
-    setTimeout(()=>{ ov.remove(); skip.remove(); next(); }, 460);
+    try{ next(); }catch(_){}          /* tegn naeste skaerm under overlayet */
+    ov.classList.add('out');
+    setTimeout(()=>{ ov.remove(); skip.remove(); }, 460);
   }
   skip.onclick = finish;
 
@@ -934,9 +938,10 @@ function ligelonInterlude(next){
   function finish(){
     if(done) return; done = true;
     frame.querySelectorAll('video').forEach(v=>{ try{ v.pause(); }catch(_){} });
-    ov.classList.add('out');
     clearTimeout(nedfald);
-    setTimeout(()=>{ ov.remove(); skip.remove(); next(); }, 460);
+    try{ next(); }catch(_){}          /* tegn naeste skaerm under overlayet */
+    ov.classList.add('out');
+    setTimeout(()=>{ ov.remove(); skip.remove(); }, 460);
   }
   skip.onclick = finish;
 
@@ -1055,9 +1060,10 @@ function stauningInterlude(next){
     if(raf) cancelAnimationFrame(raf);
     try{ audio.pause(); }catch(_){}
     document.removeEventListener('visibilitychange', visHandler);
-    ov.classList.add('out');
     clearTimeout(nedfald);
-    setTimeout(()=>{ ov.remove(); skip.remove(); next(); }, 460);
+    try{ next(); }catch(_){}          /* tegn naeste skaerm under overlayet */
+    ov.classList.add('out');
+    setTimeout(()=>{ ov.remove(); skip.remove(); }, 460);
   }
 
   function tick(){
@@ -1193,9 +1199,10 @@ function titelsekvens(){
   function finish(){
     if(done) return; done = true;
     try{ musik.pause(); }catch(_){}
-    ov.classList.add('out');
     clearTimeout(nedfald);
-    setTimeout(()=>{ ov.remove(); skip.remove(); intro(); }, 460);
+    try{ intro(); }catch(_){}         /* tegn sagsmappen under overlayet */
+    ov.classList.add('out');
+    setTimeout(()=>{ ov.remove(); skip.remove(); }, 460);
   }
   skip.onclick = finish;
 
