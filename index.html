@@ -966,13 +966,21 @@ function ligelonInterlude(next){
     if(done) return;
     if(i >= LIGELON_KLIP.length){ finish(); return; }
     const v = klipEl[i];
+    /* Filen kan allerede vaere fejlet under primingen ovenfor. Saa er
+       error-haendelsen for laengst udsendt, og onerror fyrer aldrig igen.
+       Uden dette tjek staar sekvensen stille paa en sort skaerm. */
+    if(v.error || v.networkState === 3){ playClip(i+1); return; }
     v.muted = false;
     try{ v.currentTime = 0; }catch(_){}
-    v.onended = ()=>{ v.remove(); playClip(i+1); };
-    v.onerror = ()=>{ v.remove(); playClip(i+1); };
+    let gaaet = false;
+    const videre = ()=>{ if(gaaet) return; gaaet = true; v.remove(); playClip(i+1); };
+    v.onended = videre;
+    v.onerror = videre;
     v.onclick = ()=>{ if(v.paused){ v.play().catch(()=>{}); } else { v.pause(); } };
     frame.appendChild(v);
     v.play().catch(()=>{ /* hvis afspilning blokeres, kan man trykke paa videoen */ });
+    /* samme sikkerhedsnet som i de oevrige filmsekvenser */
+    setTimeout(()=>{ if(!done && !gaaet && v.paused && v.currentTime === 0) videre(); }, 12000);
   }
 
   titleCard();
