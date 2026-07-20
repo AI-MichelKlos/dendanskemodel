@@ -67,20 +67,20 @@
     box-shadow:0 1px 0 rgba(0,0,0,.05), 0 12px 0 -6px var(--paper-2), 0 13px 0 -5px rgba(0,0,0,.22), var(--shadow)}
   .card > *{position:relative;z-index:1}
   .card > .stamp{position:absolute;z-index:3}
-  .card::before{content:"FORLIGSINSTITUTIONEN \00b7 J.NR. 2026-114";position:absolute;top:0;left:24px;right:24px;padding:13px 0 9px;text-align:center;font-family:'IBM Plex Mono',monospace;font-size:9.5px;font-weight:700;letter-spacing:3.2px;color:var(--gold-dk);border-bottom:3px double rgba(143,116,51,.5);z-index:2}
+  .card::before{content:"FORLIGSINSTITUTIONEN";position:absolute;top:0;left:24px;right:24px;padding:13px 0 9px;text-align:center;font-family:'IBM Plex Mono',monospace;font-size:9.5px;font-weight:700;letter-spacing:3.2px;color:var(--gold-dk);border-bottom:3px double rgba(143,116,51,.5);z-index:2}
   .card::after{content:"";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-20deg);font-family:'Fraunces',serif;font-weight:700;font-size:clamp(34px,10vw,58px);letter-spacing:7px;color:rgba(14,59,46,.07);white-space:nowrap;pointer-events:none;z-index:0}
   .stamp{position:absolute;top:16px;right:-4px;transform:rotate(-6deg);font-family:'Permanent Marker','Fraunces',serif;font-weight:400;font-size:16px;letter-spacing:1.2px;text-transform:uppercase;color:var(--red);padding:3px 12px;opacity:.85;border:none;background:transparent}
   .stamp::before{content:"";position:absolute;left:-3px;right:-5px;top:-2px;bottom:-1px;border:2.5px solid var(--red);border-radius:9px 4px 10px 5px;transform:rotate(1.4deg) skewX(-2deg);opacity:.85;pointer-events:none}
   .stamp::after{content:"";position:absolute;left:1px;right:-1px;top:1px;bottom:2px;border-top:2px solid var(--red);border-right:1.5px solid var(--red);border-radius:5px 9px 3px 7px;transform:rotate(-0.8deg);opacity:.45;pointer-events:none}
   .portrait{position:absolute;top:18px;left:18px;width:64px;height:64px;border-radius:50%;overflow:hidden;border:3px solid #fbf7ea;box-shadow:0 4px 12px rgba(0,0,0,.3),0 0 0 1px rgba(143,116,51,.5);background:#2c2823;z-index:2}
   .portrait img{width:100%;height:100%;object-fit:cover;display:block;filter:contrast(1.05) sepia(.15) saturate(.85)}
-  .card.has-portrait .meta,.card.has-portrait .case-title,.card.has-portrait .country,.card.has-portrait .cardsub{padding-left:78px}
+  .card.has-portrait .meta,.card.has-portrait .country{padding-left:78px}
   .stamp.land{animation:stampIn .55s cubic-bezier(.18,1.25,.3,1) both}
   @keyframes stampIn{0%{opacity:0;transform:rotate(7deg) scale(2.7)}55%{opacity:.85;transform:rotate(7deg) scale(.9)}75%{transform:rotate(7deg) scale(1.05)}100%{opacity:.78;transform:rotate(7deg) scale(1)}}
   .intro-h1{margin-top:2px}
   .intro-kl{font-family:'IBM Plex Mono',monospace;font-size:clamp(15px,4.4vw,20px);letter-spacing:3px;text-transform:uppercase;color:var(--muted-paper);margin:2px 0 14px}
   .meta{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted-paper);letter-spacing:1px;text-transform:uppercase;margin:6px 0 2px}
-  .case-title{hyphens:auto;-webkit-hyphens:auto;overflow-wrap:break-word;font-family:'Fraunces',serif;font-weight:700;font-size:clamp(25px,6.6vw,36px);line-height:1.04;text-transform:uppercase;letter-spacing:.3px;margin:2px 0 12px;color:#221c10}
+  .case-title{hyphens:none;-webkit-hyphens:none;overflow-wrap:break-word;font-family:'Fraunces',serif;font-weight:700;font-size:clamp(25px,6.6vw,36px);line-height:1.04;text-transform:uppercase;letter-spacing:.3px;margin:2px 0 12px;color:#221c10}
   .situation{font-size:15.5px;line-height:1.55;color:#2c2823}
   .question{font-size:16px;line-height:1.45;color:#2c2823;font-weight:500;margin:0 0 14px}
   .answer{margin:4px 0 0;padding:12px 14px;background:rgba(46,107,79,.12);border-left:3px solid var(--green-dk);border-radius:4px;font-size:14.5px;line-height:1.5;color:#2a2620}
@@ -488,7 +488,7 @@ function renderRecord(){
     seg.textContent = state.history[i]===true ? '\u2713' : state.history[i]===false ? '\u2717' : '';
     if(i===state.i && state.history[i]===undefined) seg.classList.add('cur');
   });
-  recLbl.innerHTML = `<b>${state.rigtige}</b> knuder l\u00f8st`;
+  recLbl.innerHTML = `<b>${state.rigtige}</b> ${state.rigtige===1?'knude':'knuder'} l\u00f8st`;
 }
 
 /* ---------- Filmiske interludes ---------- */
@@ -1411,7 +1411,6 @@ function showCase(){
   app.innerHTML = `
     <div class="panel fade">
       <div class="card has-portrait">
-        <div class="stamp">P\u00e5 bordet</div>
         <div class="portrait"><img src="images/${PORTRAITS[lv.sag]}" alt="${b.person}" onerror="this.parentElement.style.display='none';this.closest('.card').classList.remove('has-portrait')"></div>
         <div class="meta">Punkt ${nr} \u00b7 nattens dagsorden</div>
         <div class="country">${b.land}</div>
