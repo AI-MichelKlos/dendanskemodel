@@ -206,6 +206,8 @@
   .film-title{font-family:'Fraunces',serif;text-transform:uppercase;letter-spacing:4px;font-size:clamp(22px,6vw,40px);color:#f2ede2}
   .film-sub{font-family:'IBM Plex Mono',monospace;font-size:13px;color:#8fa596;margin-top:14px;letter-spacing:1px}
   .film-skip{position:fixed;right:16px;bottom:16px;background:transparent;border:1px solid rgba(242,237,226,.3);color:rgba(242,237,226,.75);font-family:'Fraunces',serif;text-transform:uppercase;letter-spacing:2px;font-size:12px;padding:8px 14px;border-radius:5px;cursor:pointer;z-index:9999}
+  .videoframe{position:relative;width:100%;padding-top:56.25%;background:#000;border:1px solid var(--line);border-radius:6px;overflow:hidden;box-shadow:0 0 40px rgba(194,163,93,.12)}
+  .videoframe iframe,.videoframe #yt-player{position:absolute;inset:0;width:100%;height:100%;border:0}
   button{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
 
   /* ---------- Stauning-filmen ---------- */
@@ -270,6 +272,21 @@
    Portrætter kan lægges i images/ (filnavne i PORTRAITS),
    spillet virker også uden billeder.
 --------------------------------------------------------- */
+
+/* === VIDEOKLIP (YouTube) ===================================
+   Klippet vises som filmisk interlude lige efter sag 04
+   (Thomas Nielsens afskedstale). Ret id/start/stop her:
+   - id:    YouTube-videoens id
+   - start: sekunder inde i videoen (37 = 0:37)
+   - end:   sekunder hvor klippet stopper (61 = 1:01)
+=========================================================== */
+const VIDEO_KLIP = {
+  id: "OyT4KL6a3fI",
+  start: 37,
+  end: 61,
+  titel: "LO-formand Thomas Nielsens afskedstale",
+  under: "LO's kongres · 16. februar 1982"
+};
 
 const LEVELS = [
   { sag:"13", titel:"M\u00e5let er fuldt", based:"Danmark \u00b7 N\u00f8rre F\u00e6lled \u00b7 5. maj 1872",
@@ -340,7 +357,7 @@ const LEVELS = [
       {t:"At fagbevægelsen havde tabt kampen om velfærden og måtte starte forfra.", ok:false},
       {t:"At sejrene var købt for dyrt, fordi kontingentet var blevet alt for højt.", ok:false}
     ],
-    forklaring:"Citatet faldt i afskedstalen på LO's kongres den 16. februar 1982 og blev straks udødeligt. Nielsen pegede på paradokset: Fagbevægelsen havde skaffet medlemmerne parcelhus, bil og charterferie i et omfang, så mange ikke længere følte, at de havde brug for bevægelsen. Sejren var så total, at den truede med at underminere sammenholdet. Sætningen citeres stadig, hver gang debatten om fagbevægelsens fremtid blusser op." },
+    forklaring:"Citatet faldt i afskedstalen på LO's kongres den 16. februar 1982 og blev straks udødeligt. Nielsen pegede på paradokset: Fagbevægelsen havde skaffet medlemmerne parcelhus, bil og charterferie i et omfang, så mange ikke længere følte, at de havde brug for bevægelsen. Sejren var så total, at den truede med at underminere sammenholdet. Sætningen citeres stadig, hver gang debatten om fagbevægelsens fremtid blusser op. Om lidt kan du selv høre ham sige det." },
 
   { sag:"14", titel:"Pension til de mange", based:"Danmark \u00b7 F\u00e6lleserkl\u00e6ringen \u00b7 1987-1993",
     situation:"Du har lige set historien: I slutningen af 1980'erne havde de fleste l\u00f8nmodtagere kun folkepension og ATP at se frem til, mens funktion\u00e6rer og akademikere havde deres egne ordninger. I 1987 satte regeringen, LO og DA sig sammen om F\u00e6lleserkl\u00e6ringen: Flere skulle sikres pension. Men hvordan skulle det ske?",
@@ -500,6 +517,70 @@ function renderRecord(){
 /* ---------- Filmiske interludes ---------- */
 /* ---------- Video-interlude (Thomas Nielsen, 1982) ---------- */
 let ytApiLoaded = false;
+function loadYouTubeAPI(cb){
+  if(window.YT && window.YT.Player){ cb(); return; }
+  if(!ytApiLoaded){
+    ytApiLoaded = true;
+    const s = document.createElement('script');
+    s.src = "https://www.youtube.com/iframe_api";
+    document.head.appendChild(s);
+  }
+  const prev = window.onYouTubeIframeAPIReady;
+  window.onYouTubeIframeAPIReady = function(){ if(prev) prev(); cb(); };
+  /* fallback hvis API'et ikke loader inden 4 sek. */
+  setTimeout(()=>{ if(!(window.YT && window.YT.Player)) cb(); }, 4000);
+}
+
+function videoInterlude(next){
+  const ov = document.createElement('div');
+  ov.className = 'film-overlay';
+  ov.innerHTML = `
+    <div class="film-card vis">
+      <div class="film-title" style="font-size:clamp(17px,4.5vw,26px);margin-bottom:6px">Arkivet \u00b7 ${VIDEO_KLIP.titel}</div>
+      <div class="film-sub" style="margin:0 0 16px">${VIDEO_KLIP.under}</div>
+      <div class="videoframe"><div id="yt-player"></div></div>
+      <div class="film-sub" id="vid-hint" style="margin-top:12px">Tryk \u25b6 p\u00e5 videoen for at afspille klippet (0:37 til 1:01)</div>
+    </div>`;
+  document.body.appendChild(ov);
+  const skip = document.createElement('button');
+  skip.className = 'film-skip'; skip.textContent = 'Videre \u25b8';
+  /* skjult under normal afvikling, dukker op hvis noget haenger */
+  skip.style.display = 'none';
+  const nedfald = setTimeout(()=>{ skip.style.display = ''; }, 45000);
+  document.body.appendChild(skip);
+  let done = false;
+  function finish(){
+    if(done) return; done = true;
+    clearTimeout(nedfald);
+    try{ next(); }catch(_){}          /* tegn naeste skaerm under overlayet */
+    ov.classList.add('out');
+    setTimeout(()=>{ ov.remove(); skip.remove(); }, 460);
+  }
+  skip.onclick = finish;
+
+  loadYouTubeAPI(()=>{
+    if(window.YT && window.YT.Player){
+      new YT.Player('yt-player', {
+        videoId: VIDEO_KLIP.id,
+        playerVars: { start: VIDEO_KLIP.start, end: VIDEO_KLIP.end, autoplay: 1, rel: 0, modestbranding: 1, playsinline: 1 },
+        events: {
+          /* iOS blokerer autoplay med lyd, saa vi forsoeger, men regner ikke med det */
+          onReady: (e)=>{ try{ e.target.playVideo(); }catch(_){} },
+          onStateChange: (e)=>{
+            const hint = document.getElementById('vid-hint');
+            if(e.data === YT.PlayerState.PLAYING && hint) hint.style.visibility = 'hidden';
+            if(e.data === YT.PlayerState.ENDED) setTimeout(finish, 900);
+          }
+        }
+      });
+    } else {
+      /* nødplan: almindelig iframe, klippet stopper selv ved 1:01, brugeren trykker Videre */
+      document.getElementById('yt-player').outerHTML =
+        `<iframe src="https://www.youtube.com/embed/${VIDEO_KLIP.id}?start=${VIDEO_KLIP.start}&end=${VIDEO_KLIP.end}&autoplay=1&rel=0&playsinline=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+    }
+  });
+}
+
 
 
 
@@ -1364,7 +1445,7 @@ function intro(){
 }
 
 function startGame(){
-  state = { i:0, history:[], rigtige:0, slots:[], started:true, stauningDone:false, ligelonDone:false, faelledDone:false, bismarckDone:false, pensionDone:false, deck:FASTE.map(s=> LEVELS.findIndex(l=>l.sag===s)) };
+  state = { i:0, history:[], rigtige:0, slots:[], started:true, videoDone:false, stauningDone:false, ligelonDone:false, faelledDone:false, bismarckDone:false, pensionDone:false, deck:FASTE.map(s=> LEVELS.findIndex(l=>l.sag===s)) };
   recordEl.style.display = 'flex';
   renderRecord();
   /* Foerste punkt er Faelleden, saa scenen sættes inden det foerste spoergsmaal */
@@ -1468,7 +1549,23 @@ function choose(slot){
     act.innerHTML = backHtml + `<button class="btn go big" id="next">Se hvem der ringer \u25b8</button>`;
     document.getElementById('next').onclick = ()=> ending();
   } else {
-    {
+    /* Efter sag 04 (Thomas Nielsen) vises videoklippet som interlude */
+    if(lv.sag === "04" && !state.videoDone){
+      act.innerHTML = backHtml + `<button class="btn go big" id="next">\ud83c\udfac Se klippet fra 1982 \u25b8</button>`;
+      document.getElementById('next').onclick = ()=>{
+        state.videoDone = true;
+        videoInterlude(()=>{
+          state.i++;
+          const nyLv = LEVELS[state.deck[state.i]];
+          if(nyLv && nyLv.sag === "14" && !state.pensionDone){
+            state.pensionDone = true;
+            tegneserieInterlude(showCase);
+          } else {
+            showCase();
+          }
+        });
+      };
+    } else {
       const nextLv = LEVELS[state.deck[state.i+1]];
       /* Foer sag 03 (Kanslergadeforliget) vises Stauning-filmen */
       if(nextLv && nextLv.sag === "14" && !state.pensionDone){
@@ -1487,12 +1584,6 @@ function choose(slot){
         act.innerHTML = backHtml + `<button class="btn go big" id="next">Videre \u25b8</button>`;
         document.getElementById('next').onclick = ()=>{
           ligelonIntro(()=>{ state.i++; showCase(); });
-        };
-      } else if(nextLv && nextLv.sag === "03" && !state.stauningDone){
-        act.innerHTML = backHtml + `<button class="btn go big" id="next">\ud83c\udfac Se baggrunden \u25b8</button>`;
-        document.getElementById('next').onclick = ()=>{
-          state.stauningDone = true;
-          stauningInterlude(()=>{ state.i++; showCase(); });
         };
       } else {
         act.innerHTML = backHtml + `<button class="btn big" id="next">N\u00e6ste sag \u25b8</button>`;
