@@ -31,7 +31,8 @@
     --shadow:0 28px 55px -20px rgba(0,0,0,.6);
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  html,body{height:100%}
+  html{min-height:100svh}
+  html{overflow-y:auto;-webkit-text-size-adjust:100%}
   body{overflow-x:hidden}
   body{
     font-family:'Inter',system-ui,sans-serif;
@@ -41,9 +42,9 @@
       url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNjAiIGhlaWdodD0iMTYwIj48ZmlsdGVyIGlkPSJuIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iMC44IiBudW1PY3RhdmVzPSIyIiBzdGl0Y2hUaWxlcz0ic3RpdGNoIi8+PGZlQ29sb3JNYXRyaXggdHlwZT0ic2F0dXJhdGUiIHZhbHVlcz0iMCIvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSIxNjAiIGhlaWdodD0iMTYwIiBmaWx0ZXI9InVybCgjbikiIG9wYWNpdHk9IjAuNSIvPjwvc3ZnPg=="),
       var(--ink);
     background-blend-mode:normal,normal,soft-light,normal;
-    color:var(--paper);min-height:100%;
+    color:var(--paper);
     display:flex;flex-direction:column;align-items:center;
-    padding:18px 16px 40px;-webkit-font-smoothing:antialiased;
+    padding:18px 16px 24px;-webkit-font-smoothing:antialiased;
   }
   .stage{width:100%;max-width:640px;display:flex;flex-direction:column;gap:14px}
 
@@ -108,7 +109,7 @@
   .fscene{display:block;width:100%;height:auto;margin:10px 0 4px;border:1px solid var(--line-paper);border-radius:3px;box-shadow:0 10px 26px -12px rgba(0,0,0,.55)}
   .cover-title{hyphens:auto;-webkit-hyphens:auto;overflow-wrap:break-word;font-family:'Fraunces',serif;font-weight:700;font-size:clamp(33px,8.6vw,50px);line-height:1;text-transform:uppercase;letter-spacing:.5px;color:#221c10;margin:6px 0 2px}
   .cover-sub{font-family:'Fraunces',serif;font-weight:400;font-style:italic;font-size:clamp(15px,4vw,19px);letter-spacing:4px;text-transform:uppercase;color:var(--muted-paper);margin-bottom:16px}
-  .fors{min-height:72vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 10px 30px}
+  .fors{min-height:72svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 10px 30px}
   .fors .fpraes{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:20px}
   .fors .ftitle{hyphens:auto;-webkit-hyphens:auto;overflow-wrap:break-word;font-family:'Fraunces',serif;font-weight:700;font-size:clamp(44px,13.5vw,84px);line-height:.96;text-transform:uppercase;letter-spacing:.5px;color:#f2ede2;text-shadow:0 0 46px rgba(194,163,93,.22)}
   .fors .fsub{font-family:'Fraunces',serif;font-style:italic;font-size:clamp(16px,4.6vw,22px);letter-spacing:3.5px;text-transform:uppercase;color:var(--muted);margin-top:16px}
@@ -260,7 +261,7 @@
   <div id="app"></div>
 
   <div class="footer">
-    Udviklet af <span>KlosKlos og Reagan Production \u00b7 <a href="images/CREDITS.md" style="color:var(--gold-dk);text-decoration:underline">Billedkreditering</a></span>
+    Udviklet af <span>KlosKlos og Reagan Production · <a href="images/CREDITS.md" style="color:var(--gold-dk);text-decoration:underline">Billedkreditering</a></span>
   </div>
 </div>
 
@@ -1162,7 +1163,7 @@ function klargoer(){
   caseCount.textContent = '';
   setUr(null);
   app.innerHTML = `
-    <div class="fors fade" style="min-height:64vh">
+    <div class="fors fade" style="min-height:64svh">
       <div style="font-size:34px;margin-bottom:20px">\ud83c\udfa7</div>
       <div class="fsub" style="margin-top:0">Spilles bedst med lyd</div>
       <div style="font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:1.6px;text-transform:uppercase;color:var(--muted);margin-top:14px">Varighed ca. 10 min.</div>
