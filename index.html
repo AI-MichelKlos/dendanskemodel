@@ -665,18 +665,18 @@ function bismarckInterlude(next){
     const el = document.createElement('div');
     el.className = 'ss-slide';
     el.innerHTML = `
-      <div class="ss-kicker">Berlin \u00b7 1883</div>
-      <div class="ss-title">Jernkansleren</div>
-      <div class="ss-sub">Manden der opfandt socialforsikringen, for at sl\u00e5 socialisterne</div>
-      <div class="ss-rule"></div>`;
+      <div class="ss-body">Vi skal lige kortvarigt syd for gr\u00e6nsen med et lille filmklip.</div>
+      <div class="ss-rule"></div>
+      <button class="gate-btn" id="bm-start" style="margin-top:26px">Se filmklip \u25b8</button>`;
     frame.appendChild(el);
     requestAnimationFrame(()=>{ requestAnimationFrame(()=> el.classList.add('vis')); });
     prev = el;
-    setTimeout(()=>{
+    /* videoen startes af et rigtigt tryk, saa lyden altid faar lov paa iPhone */
+    el.querySelector('#bm-start').onclick = ()=>{
       if(done) return;
       el.classList.remove('vis');
-      setTimeout(()=>{ if(el.parentNode) el.remove(); spilVideo(); }, 720);
-    }, 3200);
+      setTimeout(()=>{ if(el.parentNode) el.remove(); spilVideo(); }, 500);
+    };
   }
 
   function spilVideo(){
@@ -1499,7 +1499,7 @@ function choose(slot){
           tegneserieInterlude(()=>{ state.i++; showCase(); });
         };
       } else if(nextLv && nextLv.sag === "00" && !state.bismarckDone){
-        act.innerHTML = backHtml + `<button class="btn go big" id="next">\ud83c\udfac Filmen om Bismarck \u25b8</button>`;
+        act.innerHTML = backHtml + `<button class="btn go big" id="next">Videre \u25b8</button>`;
         document.getElementById('next').onclick = ()=>{
           state.bismarckDone = true;
           bismarckInterlude(()=>{ state.i++; showCase(); });
