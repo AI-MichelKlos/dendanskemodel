@@ -521,11 +521,15 @@ function videoInterlude(next){
   document.body.appendChild(ov);
   const skip = document.createElement('button');
   skip.className = 'film-skip'; skip.textContent = 'Videre \u25b8';
+  /* skjult under normal afvikling, dukker op hvis noget haenger */
+  skip.style.display = 'none';
+  const nedfald = setTimeout(()=>{ skip.style.display = ''; }, 45000);
   document.body.appendChild(skip);
   let done = false;
   function finish(){
     if(done) return; done = true;
     ov.classList.add('out');
+    clearTimeout(nedfald);
     setTimeout(()=>{ ov.remove(); skip.remove(); next(); }, 460);
   }
   skip.onclick = finish;
@@ -578,6 +582,9 @@ function tegneserieInterlude(next){
   document.body.appendChild(ov);
   const skip = document.createElement('button');
   skip.className = 'film-skip'; skip.textContent = 'Videre \u25b8';
+  /* skjult under normal afvikling, dukker op hvis noget haenger */
+  skip.style.display = 'none';
+  const nedfald = setTimeout(()=>{ skip.style.display = ''; }, 45000);
   document.body.appendChild(skip);
   const frame = ov.querySelector('#ts-frame');
 
@@ -586,6 +593,7 @@ function tegneserieInterlude(next){
     if(done) return; done = true;
     if(timer) clearTimeout(timer);
     ov.classList.add('out');
+    clearTimeout(nedfald);
     setTimeout(()=>{ ov.remove(); skip.remove(); next(); }, 460);
   }
   skip.onclick = finish;
@@ -625,6 +633,9 @@ function bismarckInterlude(next){
   document.body.appendChild(ov);
   const skip = document.createElement('button');
   skip.className = 'film-skip'; skip.textContent = 'Videre \u25b8';
+  /* skjult under normal afvikling, dukker op hvis noget haenger */
+  skip.style.display = 'none';
+  const nedfald = setTimeout(()=>{ skip.style.display = ''; }, 45000);
   document.body.appendChild(skip);
   const frame = ov.querySelector('#bm-frame');
 
@@ -645,6 +656,7 @@ function bismarckInterlude(next){
     if(done) return; done = true;
     frame.querySelectorAll('video').forEach(v=>{ try{ v.pause(); }catch(_){} });
     ov.classList.add('out');
+    clearTimeout(nedfald);
     setTimeout(()=>{ ov.remove(); skip.remove(); next(); }, 460);
   }
   skip.onclick = finish;
@@ -707,6 +719,9 @@ function faelledInterlude(next){
   document.body.appendChild(ov);
   const skip = document.createElement('button');
   skip.className = 'film-skip'; skip.textContent = 'Videre \u25b8';
+  /* skjult under normal afvikling, dukker op hvis noget haenger */
+  skip.style.display = 'none';
+  const nedfald = setTimeout(()=>{ skip.style.display = ''; }, 45000);
   document.body.appendChild(skip);
   const frame = ov.querySelector('#fx-frame');
 
@@ -770,6 +785,7 @@ function faelledInterlude(next){
     document.removeEventListener('visibilitychange', musikVis);
     frame.querySelectorAll('video').forEach(v=>{ try{ v.pause(); }catch(_){} });
     ov.classList.add('out');
+    clearTimeout(nedfald);
     setTimeout(()=>{ ov.remove(); skip.remove(); next(); }, 460);
   }
   skip.onclick = finish;
@@ -892,6 +908,9 @@ function ligelonInterlude(next){
   document.body.appendChild(ov);
   const skip = document.createElement('button');
   skip.className = 'film-skip'; skip.textContent = 'Videre \u25b8';
+  /* skjult under normal afvikling, dukker op hvis noget haenger */
+  skip.style.display = 'none';
+  const nedfald = setTimeout(()=>{ skip.style.display = ''; }, 45000);
   document.body.appendChild(skip);
   const frame = ov.querySelector('#lg-frame');
 
@@ -916,6 +935,7 @@ function ligelonInterlude(next){
     if(done) return; done = true;
     frame.querySelectorAll('video').forEach(v=>{ try{ v.pause(); }catch(_){} });
     ov.classList.add('out');
+    clearTimeout(nedfald);
     setTimeout(()=>{ ov.remove(); skip.remove(); next(); }, 460);
   }
   skip.onclick = finish;
@@ -986,6 +1006,9 @@ function stauningInterlude(next){
   document.body.appendChild(ov);
   const skip = document.createElement('button');
   skip.className = 'film-skip'; skip.textContent = 'Videre \u25b8';
+  /* skjult under normal afvikling, dukker op hvis noget haenger */
+  skip.style.display = 'none';
+  const nedfald = setTimeout(()=>{ skip.style.display = ''; }, 45000);
   document.body.appendChild(skip);
 
   const frame = ov.querySelector('#ss-frame');
@@ -1033,6 +1056,7 @@ function stauningInterlude(next){
     try{ audio.pause(); }catch(_){}
     document.removeEventListener('visibilitychange', visHandler);
     ov.classList.add('out');
+    clearTimeout(nedfald);
     setTimeout(()=>{ ov.remove(); skip.remove(); next(); }, 460);
   }
 
@@ -1153,6 +1177,9 @@ function titelsekvens(){
   document.body.appendChild(ov);
   const skip = document.createElement('button');
   skip.className = 'film-skip'; skip.textContent = 'Videre \u25b8';
+  /* skjult under normal afvikling, dukker op hvis noget haenger */
+  skip.style.display = 'none';
+  const nedfald = setTimeout(()=>{ skip.style.display = ''; }, 45000);
   document.body.appendChild(skip);
   const frame = ov.querySelector('#tit-frame');
 
@@ -1167,6 +1194,7 @@ function titelsekvens(){
     if(done) return; done = true;
     try{ musik.pause(); }catch(_){}
     ov.classList.add('out');
+    clearTimeout(nedfald);
     setTimeout(()=>{ ov.remove(); skip.remove(); intro(); }, 460);
   }
   skip.onclick = finish;
