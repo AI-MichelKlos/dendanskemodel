@@ -1184,9 +1184,9 @@ function titelsekvens(){
   const frame = ov.querySelector('#tit-frame');
 
   const KORT = [
-    {dur:4000, html:`<div class="ss-title" style="font-size:clamp(26px,7.4vw,44px);hyphens:none;-webkit-hyphens:none">KlosKlos og Reagan Production</div><div class="ss-sub">pr\u00e6senterer</div>`},
-    {dur:4000, html:`<div class="ss-sub">i samarbejde med</div><div class="ss-title" style="font-size:clamp(26px,7.4vw,44px);hyphens:none;-webkit-hyphens:none">Factum Labs og Jyske Penge</div>`},
-    {dur:4000, html:`<div class="ss-title" style="font-size:clamp(38px,11vw,64px)">Forlig f\u00f8r daggry</div><div class="ss-rule"></div>`}
+    {dur:3700, html:`<div class="ss-title" style="font-size:clamp(26px,7.4vw,44px);hyphens:none;-webkit-hyphens:none">KlosKlos og Reagan Production</div><div class="ss-sub">pr\u00e6senterer</div>`},
+    {dur:3700, html:`<div class="ss-sub">i samarbejde med</div><div class="ss-title" style="font-size:clamp(26px,7.4vw,44px);hyphens:none;-webkit-hyphens:none">Factum Labs og Jyske Penge</div>`},
+    {dur:3600, html:`<div class="ss-title" style="font-size:clamp(38px,11vw,64px)">Forlig f\u00f8r daggry</div><div class="ss-rule"></div>`}
   ];
 
   let done = false, prev = null;
@@ -1202,14 +1202,25 @@ function titelsekvens(){
   function vis(i){
     if(done) return;
     if(i >= KORT.length){ finish(); return; }
-    const el = document.createElement('div');
-    el.className = 'ss-slide';
-    el.innerHTML = KORT[i].html;
-    frame.appendChild(el);
-    requestAnimationFrame(()=>{ requestAnimationFrame(()=> el.classList.add('vis')); });
-    if(prev){ const p = prev; p.classList.remove('vis'); setTimeout(()=>{ if(p.parentNode) p.remove(); }, 720); }
-    prev = el;
-    setTimeout(()=> vis(i+1), KORT[i].dur);
+    /* tegn kortet foerst naar det forrige er tonet helt ud, saa to kort
+       aldrig staar oven i hinanden midt i et krydsfade */
+    const tegn = ()=>{
+      if(done) return;
+      const el = document.createElement('div');
+      el.className = 'ss-slide';
+      el.innerHTML = KORT[i].html;
+      frame.appendChild(el);
+      requestAnimationFrame(()=>{ requestAnimationFrame(()=> el.classList.add('vis')); });
+      prev = el;
+      setTimeout(()=> vis(i+1), KORT[i].dur);
+    };
+    if(prev){
+      const p = prev; prev = null;
+      p.classList.remove('vis');
+      setTimeout(()=>{ if(p.parentNode) p.remove(); tegn(); }, 500);
+    } else {
+      tegn();
+    }
   }
   vis(0);
 }
