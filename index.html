@@ -928,6 +928,27 @@ function faelledInterlude(next){
    automatisk over. */
 const LIGELON_KLIP = ['ligeloen1.mp4', 'ligeloen2.mp4'];
 
+/* Intro foer ligeloensfilmen. Vises som et kort i quizzens stil.
+   Filmen startes foerst ved tryk paa knappen, saa Safari giver lyden lov. */
+function ligelonIntro(next){
+  let startet = false;
+  app.innerHTML = `
+    <div class="panel fade">
+      <div class="card">
+        <h2 class="case-title">Samme arbejde. Forskellig løn.</h2>
+        <p class="situation">Kvinderne er kommet ud på arbejdsmarkedet, men overenskomsterne deler stadig lønnen op i satser for mænd og kvinder. Nu bliver ligeløn et krav, som fagbevægelsen ikke længere kan skubbe til side.</p>
+        <div class="actions"><button class="btn go big" id="lg-start">Kvinderne kommer \u25b8</button></div>
+      </div>
+    </div>`;
+  window.scrollTo(0, 0);
+  document.getElementById('lg-start').onclick = ()=>{
+    if(startet) return;          /* dobbeltklik maa ikke starte sekvensen to gange */
+    startet = true;
+    state.ligelonDone = true;    /* saettes naar filmen faktisk startes */
+    ligelonInterlude(next);
+  };
+}
+
 function ligelonInterlude(next){
   const ov = document.createElement('div');
   ov.className = 'film-overlay';
@@ -1542,10 +1563,9 @@ function choose(slot){
           bismarckInterlude(()=>{ state.i++; showCase(); });
         };
       } else if(nextLv && nextLv.sag === "12" && !state.ligelonDone){
-        act.innerHTML = backHtml + `<button class="btn go big" id="next">\ud83c\udfac Kvinderne kommer \u25b8</button>`;
+        act.innerHTML = backHtml + `<button class="btn go big" id="next">Videre \u25b8</button>`;
         document.getElementById('next').onclick = ()=>{
-          state.ligelonDone = true;
-          ligelonInterlude(()=>{ state.i++; showCase(); });
+          ligelonIntro(()=>{ state.i++; showCase(); });
         };
       } else if(nextLv && nextLv.sag === "03" && !state.stauningDone){
         act.innerHTML = backHtml + `<button class="btn go big" id="next">\ud83c\udfac Se baggrunden \u25b8</button>`;
