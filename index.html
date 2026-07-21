@@ -168,15 +168,23 @@
   .scoreline{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--muted);margin-top:4px}
 
 
-  /* ---------- Morgenavisen ---------- */
-  .avis{background:linear-gradient(180deg,#f7f2e2 0%,#efe7d0 100%);color:#221d13;border-radius:2px;padding:20px 20px 16px;border:1px solid var(--line-paper);transform:rotate(.4deg);box-shadow:0 1px 0 rgba(0,0,0,.05),0 14px 0 -7px #e6dcc0,0 15px 0 -6px rgba(0,0,0,.2),var(--shadow);margin-bottom:16px}
-  .avis .ahoved{overflow-wrap:break-word;font-family:'Fraunces',serif;font-weight:700;font-size:clamp(24px,7vw,34px);letter-spacing:4px;text-align:center;text-transform:uppercase;border-bottom:3.5px double #221d13;padding-bottom:8px}
-  .avis .adato{display:flex;justify-content:space-between;font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:1px;text-transform:uppercase;color:#6b6457;border-bottom:1px solid #c9bd9d;padding:6px 2px}
-  .avis .arubrik{hyphens:auto;-webkit-hyphens:auto;overflow-wrap:break-word;font-family:'Fraunces',serif;font-weight:700;font-size:clamp(30px,8.8vw,46px);line-height:1.0;text-transform:uppercase;text-align:center;margin:18px 4px 10px}
-  .avis .aunder{font-family:'Fraunces',serif;font-style:italic;font-size:clamp(14.5px,4.2vw,17px);line-height:1.45;text-align:center;color:#3f3a2e;margin:0 8px 14px}
-  .avis .acitat{border-top:1px solid #c9bd9d;border-bottom:1px solid #c9bd9d;padding:11px 10px;font-size:13.5px;line-height:1.5;text-align:center;color:#33302a}
-  .avis .acitat b{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#8f7433;display:block;margin-bottom:4px}
-  .avis .anotits{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.6px;color:#6b6457;text-align:center;margin-top:11px}
+  /* ---------- Aktuelt: slutskaermens avisforside ---------- */
+  .avis{background:#f7f4ec;color:#16130d;border-radius:2px;padding:22px 20px 18px;border:1px solid #c9c0ad;box-shadow:0 1px 0 rgba(0,0,0,.05),0 14px 0 -7px #efe9da,0 15px 0 -6px rgba(0,0,0,.18),var(--shadow);margin-bottom:16px}
+  .avis .ahoved{overflow-wrap:break-word;font-family:'Fraunces',serif;font-weight:700;font-size:clamp(40px,13vw,66px);letter-spacing:2px;text-align:center;text-transform:uppercase;line-height:.9;margin-bottom:2px}
+  .avis .aslogan{font-family:'Fraunces',serif;font-style:italic;font-size:clamp(12.5px,3.6vw,15px);text-align:center;color:#3a352b;padding-bottom:9px;border-bottom:3px solid #16130d}
+  .avis .adato{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:1.5px;text-transform:uppercase;text-align:center;color:#16130d;border-bottom:1px solid #c9c0ad;padding:6px 2px}
+  .avis .aover{font-family:'IBM Plex Mono',monospace;font-weight:700;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:#8a2b1d;text-align:center;margin:15px 0 6px}
+  .avis .arubrik{hyphens:auto;-webkit-hyphens:auto;overflow-wrap:break-word;font-family:'Fraunces',serif;font-weight:700;font-size:clamp(28px,8vw,42px);line-height:1.02;text-align:center;margin:0 2px 10px}
+  .avis .amanchet{font-family:'Fraunces',serif;font-style:italic;font-size:clamp(14px,4vw,16.5px);line-height:1.45;text-align:center;color:#3a352b;padding-bottom:12px;border-bottom:1px solid #c9c0ad;margin:0 6px 12px}
+  .avis .abyline{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:#7d745d;text-align:center;margin-bottom:13px}
+  .avis .abrod{font-family:'Fraunces',serif;font-size:13px;line-height:1.5;color:#16130d;columns:2;column-gap:20px;column-rule:1px solid #c9c0ad;text-align:justify;hyphens:auto;-webkit-hyphens:auto}
+  .avis .abrod::first-letter{float:left;font-family:'Fraunces',serif;font-weight:700;font-size:33px;line-height:.82;padding:3px 6px 0 0;color:#16130d}
+  .avis .aresultat{margin-top:16px;border:1.5px solid #16130d;padding:11px 13px}
+  .avis .ares-h{font-family:'IBM Plex Mono',monospace;font-weight:700;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#16130d;text-align:center;border-bottom:1px solid #c9c0ad;padding-bottom:7px;margin-bottom:10px}
+  .avis .ares-row{display:flex;align-items:center;gap:16px}
+  .avis .ares-score{font-family:'Fraunces',serif;font-weight:700;font-size:46px;line-height:1;color:#16130d;flex:none}
+  .avis .ares-score span{font-size:19px;color:#7d745d}
+  .avis .ares-grid{font-size:18px;letter-spacing:2px;line-height:1.45;word-break:break-word;min-width:0}
   .fade{animation:fade .45s ease}
   @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 
@@ -1631,30 +1639,30 @@ function ending(){
   const bestod = r >= BESTAAET;
   const udfald = bestod ? 'Historisk overenskomst' : 'Strejke og lockout';
 
-  /* Morgenavisens forside afhaenger af nattens resultat */
-  let rubrik, under, citat;
+  /* Forsiden i Aktuelt afhaenger af nattens resultat */
+  const over = bestod ? 'Overenskomst' : 'Storkonflikt';
+  let rubrik, manchet, brod;
   if(r === RUNDE){
-    rubrik = 'MIRAKLET I FORLIGS\u00adINSTITUTIONEN';
-    under = 'Ukendt m\u00e6gler l\u00f8ser samtlige ' + RUNDE + ' knuder p\u00e5 \u00e9n nat. DI og CO-industri underskrev kl. 05:52. Eksperter m\u00e5ll\u00f8se.';
-    citat = '<b>Simon Eriksen, formand, DI</b>\u201dJeg s\u00e5 Risette smile i nat. Det var ubehageligt, men historisk.\u201d';
+    rubrik = 'Miraklet i Forligsinstitutionen';
+    manchet = 'Et resultat uden fortilf\u00e6lde i Forligsinstitutionens historie. Parterne underskrev, mens byen endnu sov.';
+    brod = 'Der findes ikke fortilf\u00e6lde. En m\u00e6gler, hvis navn ingen p\u00e5 Christiansborg kunne udtale i forg\u00e5rs, har p\u00e5 \u00e9n nat afviklet samtlige seksten stridspunkter uden en eneste uds\u00e6ttelse. Arbejdsgiverne kalder resultatet uhyggeligt. Fagbev\u00e6gelsen har indkaldt til ekstraordin\u00e6rt hovedbestyrelsesm\u00f8de for at finde ud af, hvad der skete.';
   } else if(bestod && r >= 10){
-    rubrik = 'HISTORISK AFTALE I HUS F\u00d8R DAGGRY';
-    under = 'Efter en lang nat i Forligsinstitutionen gav DI og CO-industri h\u00e5nd kl. 05:52. En n\u00e6sten ukendt m\u00e6gler f\u00e5r \u00e6ren for gennembruddet.';
-    citat = '<b>Risette Larsen, forkvinde, CO-industri</b>\u201dSimon h\u00e6ldte faktisk kaffe op til mig kl. fire. S\u00e5 vidste jeg, at det nok skulle g\u00e5.\u201d';
+    rubrik = 'Historisk aftale i hus f\u00f8r daggry';
+    manchet = 'En lang nat ved bordet endte i h\u00e5ndslag. Gennembruddet krediteres en n\u00e6sten ukendt m\u00e6gler.';
+    brod = 'En n\u00e6sten ukendt m\u00e6gler f\u00e5r \u00e6ren for, at landet v\u00e5gner til forlig og ikke til konflikt. Ved firetiden l\u00e5 de tungeste knuder stadig ul\u00f8st hen p\u00e5 bordet, og kilder t\u00e6t p\u00e5 forhandlingerne beskriver stemningen som ansp\u00e6ndt. Da underskrifterne endelig faldt, var solen p\u00e5 vej op over byen.';
   } else if(bestod){
-    rubrik = 'FORLIG I ALLERSIDSTE \u00d8JEBLIK';
-    under = 'Aftalen kom i hus f\u00e5 minutter f\u00f8r solopgang. Enkelte knuder m\u00e5tte if\u00f8lge kilder l\u00f8ses med tape, men den holder.';
-    citat = '<b>Kilde t\u00e6t p\u00e5 forhandlingerne</b>\u201dM\u00e6gleren var ikke n\u00f8dvendigvis den skarpeste i lokalet, men absolut den mest udholdende.\u201d';
+    rubrik = 'Forlig i allersidste \u00f8jeblik';
+    manchet = 'Et forlig af den slags, ingen praler af. Holdbart, lyder vurderingen, men n\u00e6ppe l\u00e6ngere end til n\u00e6ste runde.';
+    brod = 'Aftalen kom i hus f\u00e5 minutter f\u00f8r solopgang, og ingen af parterne ville i nat s\u00e6tte navn p\u00e5, hvad der blev givet k\u00f8b p\u00e5. Enkelte knuder m\u00e5tte if\u00f8lge kilder l\u00f8ses med tape. Den holder, lyder vurderingen fra begge lejre, men n\u00e6ppe l\u00e6ngere end til n\u00e6ste overenskomstrunde.';
   } else if(r >= 4){
-    rubrik = 'STORKONFLIKT!';
-    under = 'Forhandlingerne p\u00e5 industriens omr\u00e5de br\u00f8d sammen kl. 05:47. Strejke og lockout tr\u00e6der i kraft fra i dag. Landet g\u00e5r i st\u00e5.';
-    citat = '<b>DI og CO-industri, f\u00e6lles udtalelse</b>\u201dVi er for f\u00f8rste gang nogensinde helt enige: Aldrig igen den m\u00e6gler.\u201d';
+    rubrik = 'Sammenbrud p\u00e5 m\u00e5lstregen';
+    manchet = 'Flere knuder blev l\u00f8st i nattens l\u00f8b, men de sidste og tungeste v\u00e6ltede forliget kort f\u00f8r daggry.';
+    brod = 'L\u00e6nge s\u00e5 det ud til at lykkes. Ved firetiden havde m\u00e6gleren f\u00e5et hul p\u00e5 flere af de fastl\u00e5ste punkter, og optimismen bredte sig i vandrehallen. Men de tungeste knuder lod sig ikke l\u00f8se, og ved femtiden rejste den ene part sig fra bordet. Strejke og lockout tr\u00e6der i kraft fra i dag. Det var t\u00e6t p\u00e5, lyder det samstemmende fra begge lejre. Men t\u00e6t p\u00e5 har som bekendt aldrig sat en eneste medarbejder i arbejde.';
   } else {
-    rubrik = 'STORKONFLIKT! LANDET LUKKER';
-    under = 'Nattens forhandlinger endte i \u00e5bent sk\u00e6nderi om, hvorn\u00e5r Kanslergadeforliget blev indg\u00e5et. Alt g\u00e5r i st\u00e5 fra i morges.';
-    citat = '<b>Risette Larsen, forkvinde, CO-industri</b>\u201dM\u00e6gleren troede, Septemberforliget var en slags h\u00f8stfest. S\u00e5 rejste Simon og jeg os. Sammen, faktisk.\u201d';
+    rubrik = 'Storkonflikt! Landet lukker';
+    manchet = 'Ikke engang enigheden om uenigheden holdt natten ud. Alt g\u00e5r i st\u00e5 fra i morgen.';
+    brod = 'Nattens forhandlinger endte i \u00e5bent sk\u00e6nderi om, hvorn\u00e5r Kanslergadeforliget egentlig blev indg\u00e5et. Da uenigheden var bilagt, var klokken over seks, og forligsmanden havde forladt bygningen. Alt g\u00e5r i st\u00e5 fra i morgen. Parterne er forel\u00f8big enige om \u00e9n ting: at det var den andens skyld.';
   }
-  const notits = bestod ? 'Side 9: Murerne f\u00e5r omsider deres time \u00b7 Vejret: Daggry, siden opklaring' : 'Side 2: S\u00e5dan hamstrer du kaffe \u00b7 Vejret: M\u00f8rke skyer';
 
   caseCount.textContent = 'KL. 06:00 \u00b7 DAGGRY';
   setUr('06:00');
@@ -1672,28 +1680,31 @@ function ending(){
   app.innerHTML = `
     <div class="panel fade">
       <div class="avis">
-        <div class="ahoved">Morgenposten</div>
-        <div class="adato"><span>Mandag morgen</span><span>kl. 06:12</span><span>25 \u00f8re</span></div>
+        <div class="ahoved">Aktuelt</div>
+        <div class="aslogan">Det man siger er man selv, for det st\u00e5r i\u2026</div>
+        <div class="adato">Morgenudgaven \u00b7 Kl. 06.00 \u00b7 Nr. 16</div>
+        <div class="aover">${over}</div>
         <div class="arubrik">${rubrik}</div>
-        <div class="aunder">${under}</div>
-        <div class="acitat">${citat}</div>
-        <div class="anotits">${notits}</div>
+        <div class="amanchet">${manchet}</div>
+        <div class="abyline">Af vor udsendte medarbejder</div>
+        <div class="abrod">${brod}</div>
+        <div class="aresultat">
+          <div class="ares-h">Nattens forl\u00f8b</div>
+          <div class="ares-row">
+            <div class="ares-score">${r}<span>/${RUNDE}</span></div>
+            <div class="ares-grid">${grid}</div>
+          </div>
+        </div>
       </div>
     </div>
     <div class="screen fade" style="text-align:center">
-      <div class="phone">\ud83d\udcde</div>
-      <div class="kicker">Kl. 06:00 \u00b7 ${udfald}</div>
-      <div class="bigscore">${r}<span style="font-size:26px;color:var(--muted)">/${RUNDE}</span></div>
-      <div class="scoreline">knuder l\u00f8st ved nattens bord</div>
-      <div class="sharegrid">${grid}</div>
-      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:18px">
+      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
         <button class="btn go" id="share">Del dit resultat</button>
         <button class="btn" id="again">Pr\u00f8v igen \u25b8</button>
       </div>
-
       <div class="protokol">
         <h3>Protokollen</h3>
-        <div class="psub">Dine ti sager, som de blev f\u00f8rt til protokols.</div>
+        <div class="psub">Dine seksten sager, som de blev f\u00f8rt til protokols.</div>
         ${protokol}
       </div>
     </div>`;
