@@ -391,16 +391,6 @@ const LEVELS = [
     ],
     forklaring:"Danmark og Sverige stemte som de eneste imod, da EU i 2022 vedtog direktivet om passende mindstelønninger, og Danmark tog derefter det sjældne skridt at lægge sag an mod Ministerrådet og Europa-Parlamentet ved EU-Domstolen. Frygten var, at direktivet ville åbne for lovbestemt løndannelse og undergrave overenskomstmodellen. I november 2025 afsagde Domstolen dom: Direktivet består, men centrale bestemmelser om kriterier for lovbestemte mindstelønninger blev annulleret, og lande som Danmark uden lovfastsat mindsteløn skal ikke indføre en. Begge sider erklærede sig som vindere, og debatten om EU og den danske model er langtfra slut." },
 
-  { sag:"15", titel:"Stemmerne bindes sammen", based:"Danmark \u00b7 Forligsinstitutionen \u00b7 1934",
-    situation:"Forhandlingerne er brudt sammen på flere overenskomstområder, og en omfattende konflikt nærmer sig. Forligsmanden har fremlagt et samlet mæglingsforslag. Nogle faggrupper er tilfredse, mens andre mener, at deres krav er blevet ofret for at få den store aftale på plads. Nu skal medlemmerne stemme.",
-    spm:"Hvad betyder det, når afstemningerne om et mæglingsforslag bliver sammenkædet?",
-    svar:[
-      {t:"Stemmerne fra flere overenskomstområder regnes sammen, så det samlede resultat afgør, om mæglingsforslaget bliver vedtaget.", ok:true},
-      {t:"Alle lønmodtagere får den samme løn og arbejdstid, uanset hvilken overenskomst de arbejder under.", ok:false},
-      {t:"Fagforeningerne bliver slået sammen til én organisation, indtil forhandlingerne er afsluttet.", ok:false}
-    ],
-    forklaring:"Sammenkædningen er forligsmandens stærkeste redskab. Med forligsmandsloven fra 1934 fik forligsmanden adgang til at fremsætte ét samlet mæglingsforslag for flere overenskomstområder og bestemme, at stemmerne gøres op under ét. Formålet var at forhindre, at enkelte grupper kunne vælte et helt forhandlingsresultat og trække hele arbejdsmarkedet ud i konflikt. Prisen er, at et mindretalsområde kan blive bundet af et resultat, det selv har stemt nej til. Netop derfor er sammenkædningen et af de mest omdiskuterede elementer i den danske model." },
-
   { sag:"16", titel:"Et nej der blev til et ja", based:"Danmark \u00b7 Forligsinstitutionen \u00b7 1934",
     situation:"På et stort overenskomstområde er utilfredsheden tydelig. Et flertal af medlemmerne stemmer nej til mæglingsforslaget. Alligevel meddeler Forligsinstitutionen kort efter, at det samlede forslag er vedtaget, og den varslede konflikt bliver afblæst.",
     spm:"Hvordan kan et overenskomstområde stemme nej, selv om det samlede mæglingsforslag bliver vedtaget?",
@@ -413,10 +403,10 @@ const LEVELS = [
 ];
 
 const SLOTS = ["A","B","C"];
-const RUNDE = 13;
+const RUNDE = 12;
 const BESTAAET = 7;   /* minimum rigtige for at blive godkendt som mediator */
-const FASTE = ["13","00","01","02","03","15","16","12","14","06","07","08","10"];
-const TIDER = ["01:40","02:00","02:20","02:40","03:00","03:20","03:40","04:00","04:20","04:40","05:00","05:20","05:40"];
+const FASTE = ["13","00","01","02","03","16","12","14","06","07","08","10"];
+const TIDER = ["02:00","02:20","02:40","03:00","03:20","03:40","04:00","04:20","04:40","05:00","05:20","05:40"];
 
 /* Forhandlerligaen, rangeret 1 (mest legendarisk) → 7. Score-krav: 10→#1 … 5→#6; under 5 → #7 */
 
@@ -432,7 +422,6 @@ const CITATER = {
   "07":{ t:"Man skal ikke gå i panik. Men køb nu bare den gær.", k:"Folkevid under gærkrisen, 1998" },
   "08":{ t:"Man kan trygt stemme på Socialdemokratiet, hvis man vil bevare efterlønnen.", k:"Poul Nyrup Rasmussen, valgkampen 1998" },
   "10":{ t:"Løn fastsættes ved forhandlingsbordet, ikke ved lov.", k:"Fælles dansk melding til Bruxelles" },
-  "15":{ t:"Ét samlet forslag, én samlet afstemning.", k:"Princippet bag sammenkædningen" },
   "16":{ t:"Flertallet på gulvet er ikke altid flertallet i urnen.", k:"Om afstemningsreglerne i Forligsinstitutionen" }
 };
 
@@ -1667,7 +1656,7 @@ function ending(){
       <div class="avis">
         <div class="ahoved">Aktuelt</div>
         <div class="aslogan">Det man siger er man selv, for det st\u00e5r i\u2026</div>
-        <div class="adato">Morgenudgaven \u00b7 Kl. 06.00 \u00b7 Nr. 13</div>
+        <div class="adato">Morgenudgaven \u00b7 Kl. 06.00 \u00b7 Nr. 12</div>
         <div class="aover">${over}</div>
         <div class="arubrik">${rubrik}</div>
         <div class="amanchet">${manchet}</div>
