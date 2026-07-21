@@ -598,11 +598,19 @@ function bismarckInterlude(next){
   bmv.src = BISMARCK_KLIP;
   bmv.playsInline = true; bmv.setAttribute('playsinline','');
   bmv.preload = 'auto';
+  bmv._overtaget = false;
+  /* Prim videoen STUMT i selve trykket, saa lyden faar lov paa iPhone.
+     Den forbliver muted her: ellers kan et loesrevet, endnu-spillende klip
+     naa at blive hoerbart under titelkortet, foer man trykker. spilVideo
+     slaar lyden til paa det rigtige tryk. */
   try{
-    bmv.muted = true;
+    bmv.muted = true; bmv.setAttribute('muted','');
     const p = bmv.play();
-    if(p) p.then(()=>{ bmv.pause(); bmv.currentTime = 0; bmv.muted = false; }).catch(()=>{ bmv.muted = false; });
-  }catch(_){ bmv.muted = false; }
+    if(p) p.then(()=>{
+      if(bmv._overtaget) return;
+      bmv.pause(); bmv.currentTime = 0;
+    }).catch(()=>{});
+  }catch(_){}
 
   let done = false, prev = null;
   function finish(){
@@ -636,7 +644,8 @@ function bismarckInterlude(next){
   function spilVideo(){
     if(done) return;
     const v = bmv;
-    v.muted = false;
+    v._overtaget = true;                 /* primingen maa ikke pause dette klip */
+    v.removeAttribute('muted'); v.muted = false;
     try{ v.currentTime = 0; }catch(_){}
     let gaaet = false;
     const videre = ()=>{ if(gaaet) return; gaaet = true; finish(); };
