@@ -842,6 +842,100 @@ function faelledInterlude(next){
   stedet();
 }
 
+/* ---------- Gaerklippene (afspilles foer sag 07) ----------
+   To korte animationsklip om gaermanglen under storkonflikten i 1998.
+   Mangler en fil, springes den automatisk over. */
+const GAER_KLIP = ['gaer1.mp4', 'gaer2.mp4'];
+
+/* Intro foer gaerklippene. Klippene startes foerst ved tryk paa knappen,
+   saa Safari giver lyden lov. */
+function gaerIntro(next){
+  let startet = false;
+  app.innerHTML = `
+    <div class="panel fade">
+      <div class="card">
+        <h2 class="case-title">Landet løber tør</h2>
+        <p class="situation">Storkonflikten har lammet Danmark. Lastbilerne holder stille, og hylderne tømmes i butikkerne. Men det er en lille og ydmyg vare, danskerne kommer til at savne allermest.</p>
+        <div class="actions"><button class="btn go big" id="gr-start">Se hvad der skete \u25b8</button></div>
+      </div>
+    </div>`;
+  window.scrollTo(0, 0);
+  document.getElementById('gr-start').onclick = ()=>{
+    if(startet) return;          /* dobbeltklik maa ikke starte sekvensen to gange */
+    startet = true;
+    state.gaerDone = true;       /* saettes naar klippene faktisk startes */
+    gaerInterlude(next);
+  };
+}
+
+function gaerInterlude(next){
+  const ov = document.createElement('div');
+  ov.className = 'film-overlay';
+  ov.innerHTML = `<div class="ss-frame" id="gr-frame"></div>`;
+  document.body.appendChild(ov);
+  const skip = document.createElement('button');
+  skip.className = 'film-skip'; skip.textContent = 'Videre \u25b8';
+  skip.style.display = 'none';
+  const nedfald = setTimeout(()=>{ skip.style.display = ''; }, 45000);
+  document.body.appendChild(skip);
+  const frame = ov.querySelector('#gr-frame');
+
+  /* Prim klippene i selve trykket, saa Safari giver dem lov til at spille med lyd */
+  const klipEl = GAER_KLIP.map(src=>{
+    const v = document.createElement('video');
+    v.className = 'ss-video';
+    v.src = src;
+    v.playsInline = true; v.setAttribute('playsinline','');
+    v.preload = 'auto';
+    v._overtaget = false;
+    try{
+      v.muted = true;
+      const p = v.play();
+      /* Loeftet kan lande efter at playClip har startet klippet. Uden dette
+         tjek pauser primingen et klip der er i gang, og sekvensen gaar i staa. */
+      if(p) p.then(()=>{
+        if(v._overtaget) return;
+        v.pause(); v.currentTime = 0; v.muted = false;
+      }).catch(()=>{ v.muted = false; });
+    }catch(_){ v.muted = false; }
+    return v;
+  });
+
+  let done = false;
+  function finish(){
+    if(done) return; done = true;
+    frame.querySelectorAll('video').forEach(v=>{ try{ v.pause(); }catch(_){} });
+    clearTimeout(nedfald);
+    try{ next(); }catch(_){}          /* tegn naeste skaerm under overlayet */
+    ov.classList.add('out');
+    setTimeout(()=>{ ov.remove(); skip.remove(); }, 460);
+  }
+  skip.onclick = finish;
+
+  function playClip(i){
+    if(done) return;
+    if(i >= GAER_KLIP.length){ finish(); return; }
+    const v = klipEl[i];
+    /* Er filen allerede fejlet, er error-haendelsen for laengst udsendt,
+       og onerror fyrer aldrig igen. Tjek derfor v.error direkte.
+       networkState duer ikke: den er kortvarigt 3 lige efter src saettes. */
+    if(v.error){ playClip(i+1); return; }
+    v._overtaget = true;
+    v.muted = false;
+    try{ v.currentTime = 0; }catch(_){}
+    let gaaet = false;
+    const videre = ()=>{ if(gaaet) return; gaaet = true; v.remove(); playClip(i+1); };
+    v.onended = videre;
+    v.onerror = videre;
+    v.onclick = ()=>{ if(v.paused){ v.play().catch(()=>{}); } else { v.pause(); } };
+    frame.appendChild(v);
+    v.play().catch(()=>{ /* hvis afspilning blokeres, kan man trykke paa videoen */ });
+    setTimeout(()=>{ if(!done && !gaaet && v.paused && v.currentTime === 0) videre(); }, 12000);
+  }
+
+  playClip(0);
+}
+
 /* ---------- Ligeloens-klippene (afspilles foer sag 12) ----------
    Laeg dine to tegnefilm i samme mappe som spillet med navnene
    nedenfor, eller ret navnene her. Mangler en fil, springes den
@@ -908,10 +1002,16 @@ function ligelonInterlude(next){
     v.src = src;
     v.playsInline = true; v.setAttribute('playsinline','');
     v.preload = 'auto';
+    v._overtaget = false;
     try{
       v.muted = true;
       const p = v.play();
-      if(p) p.then(()=>{ v.pause(); v.currentTime = 0; v.muted = false; }).catch(()=>{ v.muted = false; });
+      /* Loeftet kan lande efter at playClip har startet klippet. Uden dette
+         tjek pauser primingen et klip der er i gang, og sekvensen gaar i staa. */
+      if(p) p.then(()=>{
+        if(v._overtaget) return;
+        v.pause(); v.currentTime = 0; v.muted = false;
+      }).catch(()=>{ v.muted = false; });
     }catch(_){ v.muted = false; }
     return v;
   });
@@ -950,7 +1050,8 @@ function ligelonInterlude(next){
     /* Filen kan allerede vaere fejlet under primingen ovenfor. Saa er
        error-haendelsen for laengst udsendt, og onerror fyrer aldrig igen.
        Uden dette tjek staar sekvensen stille paa en sort skaerm. */
-    if(v.error || v.networkState === 3){ playClip(i+1); return; }
+    if(v.error){ playClip(i+1); return; }
+    v._overtaget = true;
     v.muted = false;
     try{ v.currentTime = 0; }catch(_){}
     let gaaet = false;
@@ -1371,7 +1472,7 @@ function intro(){
 }
 
 function startGame(){
-  state = { i:0, history:[], rigtige:0, slots:[], started:true, stauningDone:false, ligelonDone:false, faelledDone:false, bismarckDone:false, pensionDone:false, deck:FASTE.map(s=> LEVELS.findIndex(l=>l.sag===s)) };
+  state = { i:0, history:[], rigtige:0, slots:[], started:true, gaerDone:false, stauningDone:false, ligelonDone:false, faelledDone:false, bismarckDone:false, pensionDone:false, deck:FASTE.map(s=> LEVELS.findIndex(l=>l.sag===s)) };
   recordEl.style.display = 'flex';
   renderRecord();
   /* Foerste punkt er Faelleden, saa scenen sættes inden det foerste spoergsmaal */
@@ -1494,6 +1595,14 @@ function choose(slot){
         act.innerHTML = backHtml + `<button class="btn go big" id="next">Videre \u25b8</button>`;
         document.getElementById('next').onclick = ()=>{
           ligelonIntro(()=>{ state.i++; showCase(); });
+        };
+      } else if(nextLv && nextLv.sag === "07" && !state.gaerDone){
+        act.innerHTML = backHtml + `<button class="btn go big" id="next">Videre \u25b8</button>`;
+        let gstart = false;
+        document.getElementById('next').onclick = ()=>{
+          if(gstart) return;
+          gstart = true;
+          gaerIntro(()=>{ state.i++; showCase(); });
         };
       } else if(nextLv && nextLv.sag === "03" && !state.stauningDone){
         act.innerHTML = backHtml + `<button class="btn go big" id="next">Videre \u25b8</button>`;
