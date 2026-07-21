@@ -227,7 +227,7 @@
   .ss-rule{width:46px;height:2px;background:var(--gold);opacity:.7;margin:22px auto 0}
   .ss-imgslide{padding:22px 18px;display:flex;flex-direction:column;justify-content:center}
   .ss-imgwrap{position:relative;flex:1 1 auto;min-height:0;width:100%;display:flex;align-items:center;justify-content:center}
-  .ss-cap{flex:0 0 auto;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);opacity:.92;margin-top:14px;line-height:1.5;text-align:center}
+  .ss-cap{flex:0 0 auto;font-family:'IBM Plex Mono',monospace;font-size:clamp(13.5px,3.8vw,16px);letter-spacing:2px;text-transform:uppercase;color:var(--gold);opacity:.92;margin-top:14px;line-height:1.5;text-align:center}
   .ss-imgwrap img{max-width:100%;max-height:100%;object-fit:contain;border:1px solid rgba(194,163,93,.5);border-radius:3px;box-shadow:0 20px 60px -18px rgba(0,0,0,.75);will-change:transform}
   .ss-kb{animation:sskb var(--kb,5s) ease-out both}
   @keyframes sskb{from{transform:scale(1.015)}to{transform:scale(1.075)}}
@@ -627,7 +627,7 @@ function bismarckInterlude(next){
     const el = document.createElement('div');
     el.className = 'ss-slide';
     el.innerHTML = `
-      <div class="ss-body">Vi skal lige kortvarigt syd for gr\u00e6nsen med et lille filmklip.</div>
+      <div class="ss-body">Vi skal lige kortvarigt syd for gr\u00e6nsen med et lille filmklip</div>
       <div class="ss-rule"></div>
       <button class="gate-btn" id="bm-start" style="margin-top:26px">Se filmklip \u25b8</button>`;
     frame.appendChild(el);
@@ -670,9 +670,9 @@ const PIO_KLIP = 'louispiotilusa.mp4';
 const PIO_MUSIK = 'piomusik.mp3';
 
 const FAELLED_EFTER = [
-  {dur:4000, kicker:'Slaget', body:'Husarerne red ind i m\u00e6ngden. F\u00f8rst sidst p\u00e5 dagen var F\u00e6lleden ryddet.'},
-  {dur:4000, kicker:'Lederne', body:'Pio, Brix og Geleff var anholdt natten f\u00f8r. H\u00e5rde domme. Internationale forbudt.'},
-  {dur:4000, kicker:'Bagefter', body:'Socialismen i Danmark var knust, troede statsmagten.'}
+  {dur:4000, kicker:'Slaget', body:'Husarerne red ind i m\u00e6ngden. F\u00f8rst sidst p\u00e5 dagen var F\u00e6lleden ryddet'},
+  {dur:4000, kicker:'Lederne', body:'Pio, Brix og Geleff var anholdt natten f\u00f8r. H\u00e5rde domme. Internationale forbudt'},
+  {dur:4000, kicker:'Bagefter', body:'Socialismen i Danmark var knust, troede statsmagten'}
 ];
 
 function faelledInterlude(next){
@@ -695,11 +695,15 @@ function faelledInterlude(next){
   pv.src = PIO_KLIP;
   pv.playsInline = true; pv.setAttribute('playsinline','');
   pv.preload = 'auto';
+  pv._overtaget = false;
   try{
-    pv.muted = true;
+    pv.muted = true; pv.setAttribute('muted','');
     const pp = pv.play();
-    if(pp) pp.then(()=>{ pv.pause(); pv.currentTime = 0; pv.muted = false; }).catch(()=>{ pv.muted = false; });
-  }catch(_){ pv.muted = false; }
+    if(pp) pp.then(()=>{
+      if(pv._overtaget) return;
+      pv.pause(); pv.currentTime = 0;
+    }).catch(()=>{});
+  }catch(_){}
 
   /* musik hen over hele forloebet, med fade ind og ud via Web Audio
      (almindelig volume ignoreres paa iPhone, en gain-knude goer det ikke) */
@@ -830,7 +834,7 @@ function faelledInterlude(next){
     const el = document.createElement('div');
     el.className = 'ss-slide';
     el.innerHTML = `
-      <div class="ss-body">Ja, han blev betalt af dansk regering for at rejse til USA.</div>
+      <div class="ss-body">Ja, han blev betalt af den danske regering for at rejse til USA</div>
       <div class="ss-rule"></div>`;
     swap(el, 5000, finish);
   }
@@ -838,7 +842,8 @@ function faelledInterlude(next){
   function pioVideo(){
     if(done) return;
     const v = pv;
-    v.muted = false;                               /* egen lyd, musikken er faerdig */
+    v._overtaget = true;
+    v.removeAttribute('muted'); v.muted = false;   /* egen lyd, musikken er faerdig */
     try{ v.currentTime = 0; }catch(_){}
     const el = document.createElement('div');
     el.className = 'ss-slide ss-imgslide';
@@ -906,15 +911,17 @@ function gaerInterlude(next){
     v.preload = 'auto';
     v._overtaget = false;
     try{
-      v.muted = true;
+      v.muted = true; v.setAttribute('muted','');
       const p = v.play();
       /* Loeftet kan lande efter at playClip har startet klippet. Uden dette
-         tjek pauser primingen et klip der er i gang, og sekvensen gaar i staa. */
+         tjek pauser primingen et klip der er i gang, og sekvensen gaar i staa.
+         Videoen forbliver STUM her, ellers kan et loesrevet klip naa at blive
+         hoerbart under titelkortet. playClip slaar lyden til paa det rigtige tryk. */
       if(p) p.then(()=>{
         if(v._overtaget) return;
-        v.pause(); v.currentTime = 0; v.muted = false;
-      }).catch(()=>{ v.muted = false; });
-    }catch(_){ v.muted = false; }
+        v.pause(); v.currentTime = 0;
+      }).catch(()=>{});
+    }catch(_){}
     return v;
   });
 
@@ -938,7 +945,7 @@ function gaerInterlude(next){
        networkState duer ikke: den er kortvarigt 3 lige efter src saettes. */
     if(v.error){ playClip(i+1); return; }
     v._overtaget = true;
-    v.muted = false;
+    v.removeAttribute('muted'); v.muted = false;
     try{ v.currentTime = 0; }catch(_){}
     let gaaet = false;
     const videre = ()=>{ if(gaaet) return; gaaet = true; v.remove(); playClip(i+1); };
@@ -967,7 +974,7 @@ function ligelonPlanche(next){
   app.innerHTML = `
     <div class="panel fade">
       <div class="card">
-        <p class="situation">For mange kvinder betød indtoget på arbejdsmarkedet \u201dthe double burden\u201d eller det dobbelte arbejdsliv med lønarbejde og husarbejde.</p>
+        <p class="situation">For mange kvinder betød indtoget på arbejdsmarkedet \u201dthe double burden\u201d eller det dobbelte arbejdsliv med lønarbejde og husarbejde</p>
         <div class="actions"><button class="btn go big" id="lg-videre">Videre \u25b8</button></div>
       </div>
     </div>`;
@@ -1021,15 +1028,17 @@ function ligelonInterlude(next){
     v.preload = 'auto';
     v._overtaget = false;
     try{
-      v.muted = true;
+      v.muted = true; v.setAttribute('muted','');
       const p = v.play();
       /* Loeftet kan lande efter at playClip har startet klippet. Uden dette
-         tjek pauser primingen et klip der er i gang, og sekvensen gaar i staa. */
+         tjek pauser primingen et klip der er i gang, og sekvensen gaar i staa.
+         Videoen forbliver STUM her, ellers kan et loesrevet klip naa at blive
+         hoerbart under titelkortet. playClip slaar lyden til paa det rigtige tryk. */
       if(p) p.then(()=>{
         if(v._overtaget) return;
-        v.pause(); v.currentTime = 0; v.muted = false;
-      }).catch(()=>{ v.muted = false; });
-    }catch(_){ v.muted = false; }
+        v.pause(); v.currentTime = 0;
+      }).catch(()=>{});
+    }catch(_){}
     return v;
   });
 
@@ -1069,7 +1078,7 @@ function ligelonInterlude(next){
        Uden dette tjek staar sekvensen stille paa en sort skaerm. */
     if(v.error){ playClip(i+1); return; }
     v._overtaget = true;
-    v.muted = false;
+    v.removeAttribute('muted'); v.muted = false;
     try{ v.currentTime = 0; }catch(_){}
     let gaaet = false;
     const videre = ()=>{ if(gaaet) return; gaaet = true; v.remove(); playClip(i+1); };
@@ -1098,19 +1107,19 @@ const STAUNING_IMG = [
 
 
 const STAUNING_SLIDES = [
-  {k:'txt', dur:3800, kicker:'Vinteren 1933', title:'Krisen kradser',
-   body:'Depressionen har ramt Danmark. Arbejdsl\u00f8sheden er rekordh\u00f8j, landbruget bl\u00f8der, og arbejdsgiverne varsler lockout.'},
-  {k:'txt', dur:3800, kicker:'29. januar 1933', title:'Et sidste fors\u00f8g',
-   body:'Stauning kalder partierne hjem i sin egen lejlighed i Kanslergade. Uden en aftale venter en konflikt, ingen har r\u00e5d til.'},
+  {k:'txt', dur:5200, kicker:'Vinteren 1933', title:'Krisen kradser',
+   body:'Depressionen har ramt Danmark. Arbejdsl\u00f8sheden er rekordh\u00f8j, landbruget bl\u00f8der, og arbejdsgiverne varsler lockout'},
+  {k:'txt', dur:5200, kicker:'29. januar 1933', title:'Et sidste fors\u00f8g',
+   body:'Stauning kalder partierne hjem i sin egen lejlighed i Kanslergade. Uden en aftale venter en konflikt, ingen har r\u00e5d til'},
   {k:'img', dur:4000, src:0, cap:'Januar 1933 \u00b7 arbejdsl\u00f8shed og uro i gaderne'},
   {k:'img', dur:4000, src:1, cap:'Natten til 30. januar \u00b7 partierne m\u00f8des i Staunings lejlighed'},
   {k:'img', dur:4000, src:2, cap:'30. januar 1933 \u00b7 aftalen pr\u00e6senteres'},
   {k:'txt', dur:3700, kicker:'Forliget', title:'Hvad de blev enige om',
-   body:'Kronen blev devalueret for at redde landbrugets eksport. L\u00f8nnen blev l\u00e5st, og konflikt forbudt i et \u00e5r.'},
+   body:'Kronen blev devalueret for at redde landbrugets eksport. L\u00f8nnen blev l\u00e5st, og konflikt forbudt i et \u00e5r'},
   {k:'txt', dur:3700, kicker:'Socialreformen', title:'Fra almisse til ret',
-   body:'Til geng\u00e6ld kom Steinckes socialreform igennem. Hj\u00e6lp var ikke l\u00e6ngere en n\u00e5de, men noget borgeren havde krav p\u00e5.'},
+   body:'Til geng\u00e6ld kom Steinckes socialreform igennem. Hj\u00e6lp var ikke l\u00e6ngere en n\u00e5de, men noget borgeren havde krav p\u00e5'},
   {k:'txt', dur:3700, kicker:'Samme dag i Berlin', title:'30. januar 1933',
-   body:'Mens forliget faldt p\u00e5 plads, blev Hitler udn\u00e6vnt til rigskansler. To veje ud af den samme krise.'}
+   body:'Mens forliget faldt p\u00e5 plads, blev Hitler udn\u00e6vnt til rigskansler. To veje ud af den samme krise'}
 ];
 
 
