@@ -235,7 +235,7 @@
   .fx-scene{display:block;width:100%;max-width:520px;height:auto;margin:0 auto 22px;border:1px solid rgba(194,163,93,.45);border-radius:3px;box-shadow:0 18px 44px -18px rgba(0,0,0,.8)}
   .ss-video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#000}
   .ss-bar{position:absolute;left:0;right:0;bottom:0;height:3px;background:rgba(255,255,255,.08)}
-  .ss-fill{height:100%;width:0;background:linear-gradient(90deg,var(--gold-dk),var(--gold))}
+  .ss-fill{height:100%;width:100%;transform:scaleX(0);transform-origin:left;will-change:transform;background:linear-gradient(90deg,var(--gold-dk),var(--gold))}
   .ss-paused .ss-kb{animation-play-state:paused}
   .ss-pauselbl{position:absolute;top:18px;left:0;right:0;text-align:center;font-family:'Fraunces',serif;text-transform:uppercase;letter-spacing:4px;font-size:15px;color:#f2ede2;opacity:0;transition:opacity .2s;pointer-events:none}
   .ss-paused .ss-pauselbl{opacity:.9}
@@ -1149,6 +1149,9 @@ function stauningInterlude(next){
   const frame = ov.querySelector('#ss-frame');
   const fill = ov.querySelector('#ss-fill');
   const S = STAUNING_SLIDES;
+  /* Forudindlaes og afkod billederne under de foerste tekst-slides, saa
+     Ken Burns-panoreringen ikke hakker naar billederne vises */
+  STAUNING_IMG.forEach(src=>{ const im = new Image(); im.src = src; if(im.decode){ im.decode().catch(()=>{}); } });
   const TOTAL = S.reduce((a,s)=>a+s.dur,0);
   const starts = []; let acc = 0;
   for(const s of S){ starts.push(acc); acc += s.dur; }
@@ -1200,7 +1203,7 @@ function stauningInterlude(next){
   function tick(){
     if(done || paused) return;
     const el = performance.now() - t0 - pausedAcc;
-    fill.style.width = Math.min(el/TOTAL*100, 100) + '%';
+    fill.style.transform = 'scaleX(' + Math.min(el/TOTAL, 1) + ')';
     let idx = 0;
     for(let i=0;i<starts.length;i++){ if(el >= starts[i]) idx = i; }
     if(idx !== cur){ cur = idx; show(idx); }
