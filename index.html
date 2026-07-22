@@ -626,7 +626,22 @@ function bismarckInterlude(next){
     v.removeAttribute('muted'); v.muted = false;
     try{ v.currentTime = 0; }catch(_){}
     let gaaet = false;
-    const videre = ()=>{ if(gaaet) return; gaaet = true; finish(); };
+    /* efter klippet: en kort reveal-slide, foer vi gaar videre til spoergsmaalet */
+    const afsloer = ()=>{
+      try{ v.pause(); }catch(_){}
+      const el = document.createElement('div');
+      el.className = 'ss-slide';
+      el.innerHTML = `
+        <div class="ss-kicker">Ja, du så rigtigt</div>
+        <div class="ss-body">Det var Otto von Bismarck</div>
+        <div class="ss-rule"></div>`;
+      el.onclick = ()=>{ if(!done) finish(); };
+      frame.appendChild(el);
+      requestAnimationFrame(()=>{ requestAnimationFrame(()=> el.classList.add('vis')); });
+      setTimeout(()=>{ if(v.parentNode) v.remove(); }, 720);
+      setTimeout(()=>{ if(!done) finish(); }, 4500);
+    };
+    const videre = ()=>{ if(gaaet) return; gaaet = true; afsloer(); };
     v.onended = videre;
     v.onerror = videre;
     v.onclick = ()=>{ if(v.paused){ v.play().catch(()=>{}); } else { v.pause(); } };
