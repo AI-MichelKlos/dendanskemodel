@@ -185,6 +185,7 @@
   .avis .ares-score{font-family:'Fraunces',serif;font-weight:700;font-size:46px;line-height:1;color:#16130d;flex:none}
   .avis .ares-score span{font-size:19px;color:#7d745d}
   .avis .ares-grid{font-size:18px;letter-spacing:2px;line-height:1.45;word-break:break-word;min-width:0}
+  .avis-img{display:block;width:100%;height:auto;border-radius:2px;border:1px solid #c9c0ad;box-shadow:0 1px 0 rgba(0,0,0,.05),0 14px 0 -7px #efe9da,0 15px 0 -6px rgba(0,0,0,.18),var(--shadow);margin-bottom:8px}
   .fade{animation:fade .45s ease}
   @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 
@@ -1689,6 +1690,13 @@ function ending(){
     brod = 'Nattens forhandlinger endte i \u00e5bent sk\u00e6nderi om, hvorn\u00e5r Kanslergadeforliget egentlig blev indg\u00e5et. Da uenigheden var bilagt, var klokken over seks, og forligsmanden havde forladt bygningen. Alt g\u00e5r i st\u00e5 fra i morgen. Parterne er forel\u00f8big enige om \u00e9n ting: at det var den andens skyld.';
   }
 
+  let bild;
+  if(r === RUNDE) bild = 'aktuelt-13-rigtige-miraklet.jpg';
+  else if(bestod && r >= 10) bild = 'aktuelt-10-12-rigtige-historisk-aftale.jpg';
+  else if(bestod) bild = 'aktuelt-7-9-rigtige-forlig-sidste-oejeblik.jpg';
+  else if(r >= 4) bild = 'aktuelt-4-6-rigtige-sammenbrud.jpg';
+  else bild = 'aktuelt-0-3-rigtige-storkonflikt.jpg';
+
   caseCount.textContent = 'KL. 06:00 \u00b7 DAGGRY';
   setUr('06:00');
   recordEl.style.display = 'flex';
@@ -1704,32 +1712,19 @@ function ending(){
 
   app.innerHTML = `
     <div class="panel fade">
-      <div class="avis">
-        <div class="ahoved">Aktuelt</div>
-        <div class="aslogan">Det man siger er man selv, for det st\u00e5r i\u2026</div>
-        <div class="adato">Morgenudgaven \u00b7 Kl. 06.00 \u00b7 Nr. 13</div>
-        <div class="aover">${over}</div>
-        <div class="arubrik">${rubrik}</div>
-        <div class="amanchet">${manchet}</div>
-        <div class="abyline">Af vor udsendte medarbejder</div>
-        <div class="abrod">${brod}</div>
-        <div class="aresultat">
-          <div class="ares-h">Nattens forl\u00f8b</div>
-          <div class="ares-row">
-            <div class="ares-score">${r}<span>/${RUNDE}</span></div>
-            <div class="ares-grid">${grid}</div>
-          </div>
-        </div>
-      </div>
+      <img class="avis-img" src="images/${bild}" alt="Avisforside: ${rubrik}" onerror="this.style.display='none'">
     </div>
     <div class="screen fade" style="text-align:center">
-      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+      <div class="bigscore">${r}<span style="font-size:26px;color:var(--muted)">/${RUNDE}</span></div>
+      <div class="scoreline">knuder l\u00f8st ved nattens bord</div>
+      <div class="sharegrid">${grid}</div>
+      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:18px">
         <button class="btn go" id="share">Del dit resultat</button>
         <button class="btn" id="again">Pr\u00f8v igen \u25b8</button>
       </div>
       <div class="protokol">
         <h3>Protokollen</h3>
-        <div class="psub">Dine seksten sager, som de blev f\u00f8rt til protokols.</div>
+        <div class="psub">Dine ${RUNDE} sager, som de blev f\u00f8rt til protokols.</div>
         ${protokol}
       </div>
     </div>`;
