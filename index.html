@@ -6,12 +6,12 @@
 <title>Forlig før daggry · En arbejdsmarkedshistorisk quiz</title>
 <meta property="og:type" content="website">
 <meta property="og:title" content="Forlig før daggry: En arbejdsmarkedshistorisk quiz">
-<meta property="og:description" content="Klokken er over midnat i Forligsinstitutionen. 16 knuder skal løses inden daggry. Kender du dansk arbejdsmarkedspolitiks historie fra Bismarck til i dag?">
+<meta property="og:description" content="Klokken er over midnat i Forligsinstitutionen. 13 knuder skal løses inden daggry. Kender du dansk arbejdsmarkedspolitiks historie fra Bismarck til i dag?">
 <meta property="og:url" content="https://ai-michelklos.github.io/dendanskemodel/">
 <meta property="og:image" content="https://ai-michelklos.github.io/dendanskemodel/forhandling.JPG">
 <meta property="og:locale" content="da_DK">
 <meta name="twitter:card" content="summary">
-<meta name="description" content="Natforhandling om dansk arbejdsmarkedspolitik. 16 afgørende øjeblikke fra Fælleden over Kanslergade til i dag. Løs knuderne inden daggry.">
+<meta name="description" content="Natforhandling om dansk arbejdsmarkedspolitik. 13 afgørende øjeblikke fra Fælleden over Kanslergade til i dag. Løs knuderne inden daggry.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;700&family=Permanent+Marker&display=swap" rel="stylesheet">
@@ -276,7 +276,7 @@
 <script>
 /* ---------------------------------------------------------
    FLEX & TRYGHED · DEN DANSKE MODEL
-   10 sager fra 1899 til i dag. Tre svar pr. sag, kun ét er sandt.
+   13 sager fra 1872 til i dag. Tre svar pr. sag, kun ét er sandt.
    Portrætter kan lægges i images/ (filnavne i PORTRAITS),
    spillet virker også uden billeder.
 --------------------------------------------------------- */
@@ -286,7 +286,7 @@ const LEVELS = [
     situation:"Du l\u00e6ste selv, at F\u00e6lleden blev ryddet med magt. Lederne kom i f\u00e6ngsel og Internationale blev forbudt. Statsmagten var overbevist om, at den havde knust den socialistiske arbejderbev\u00e6gelse i Danmark \u00e9n gang for alle.",
     spm:"Hvad blev den langsigtede virkning af nederlaget og forbuddet?",
     svar:[
-      {t:"Forbuddet gav bagslag. Vreden over myndighedernes fremf\u00e6rd drev arbejderne ind i fagforeningerne i stedet, over 20 nye om \u00e5ret i midten af 1870'erne, og i 1874 samlede de sig i en f\u00e6lles centralbestyrelse.", ok:true},
+      {t:"Forbuddet gav bagslag. Vreden drev arbejderne ind i fagforeningerne, og i 1874 samlede de sig i en f\u00e6lles centralbestyrelse.", ok:true},
       {t:"Bev\u00e6gelsen l\u00e5 reelt d\u00f8d i et par \u00e5rtier, og f\u00f8rst Septemberforliget i 1899 fik den p\u00e5 benene igen.", ok:false},
       {t:"Regeringen fortr\u00f8d hurtigt, oph\u00e6vede forbuddet og gav til geng\u00e6ld arbejderne strejkeret ved lov.", ok:false}
     ],
@@ -333,10 +333,10 @@ const LEVELS = [
     forklaring:"Natten mellem den 29. og 30. januar 1933 indgik Socialdemokratiet, Radikale og Venstre det bredeste kriseforlig i danmarkshistorien. Den varslede storlockout blev afværget ved at forlænge overenskomsterne ved lov i et år, kronen blev devalueret for at hjælpe landbruget, og Steinckes socialreform gjorde almisser til rettigheder. Samme nat blev Hitler udnævnt til rigskansler i Berlin. Forliget cementerede traditionen for brede kompromiser hen over midten, når krisen kradser." },
 
   { sag:"12", titel:"Ti \u00f8re og en musketered", based:"Danmark \u00b7 Overenskomstforhandlingerne \u00b7 1971",
-    situation:"Kvinderne er str\u00f8mmet ud p\u00e5 arbejdsmarkedet, men overenskomsterne fasts\u00e6tter stadig deres l\u00f8n langt under m\u00e6ndenes. F\u00f8r forhandlingerne i 1971 har KAD's formand Edith Olsen indg\u00e5et en musketered med Anker J\u00f8rgensen fra Arbejdsmandsforbundet: De to lavtl\u00f8nsforbund st\u00e5r sammen om ligel\u00f8n. F\u00f8rste forslag kasseres, fordi det stadig har k\u00f8nsopdelte l\u00f8nsatser. S\u00e5 indkalder LO-formand Thomas Nielsen til et lille lukket m\u00f8de. Edith Olsen er ikke inviteret.",
+    situation:"Kvinderne er str\u00f8mmet ud p\u00e5 arbejdsmarkedet, men overenskomsterne holder deres l\u00f8n under m\u00e6ndenes. F\u00f8r forhandlingerne i 1971 har KAD's Edith Olsen sluttet en musketered med Anker J\u00f8rgensen: de to lavtl\u00f8nsforbund st\u00e5r sammen om ligel\u00f8n. Da f\u00f8rste forslag kasseres for sine k\u00f8nsopdelte satser, indkalder LO-formand Thomas Nielsen til et lukket m\u00f8de. Edith Olsen er ikke inviteret.",
     spm:"Hvad skete der p\u00e5 det lukkede m\u00f8de?",
     svar:[
-      {t:"Anker J\u00f8rgensen accepterede en aftale, hvor ufagl\u00e6rte m\u00e6nd steg 20 \u00f8re i timen, mens kvinderne kun fik 10 \u00f8re, og f\u00f8rst et \u00e5r senere. Musketereden knak, og ligel\u00f8nnen faldt.", ok:true},
+      {t:"Anker J\u00f8rgensen accepterede en aftale, hvor m\u00e6ndene steg 20 \u00f8re, mens kvinderne kun fik 10 \u00f8re og f\u00f8rst et \u00e5r senere. Musketereden knak.", ok:true},
       {t:"Anker J\u00f8rgensen holdt fast i musketereden, og ligel\u00f8nnen kom igennem allerede i 1971.", ok:false},
       {t:"M\u00f8det endte uden aftale, og regeringen greb i stedet ind med en ligel\u00f8nslov samme \u00e5r.", ok:false}
     ],
@@ -346,7 +346,7 @@ const LEVELS = [
     situation:"Du har lige set historien: I slutningen af 1980'erne havde de fleste l\u00f8nmodtagere kun folkepension og ATP at se frem til, mens funktion\u00e6rer og akademikere havde deres egne ordninger. I 1987 satte regeringen, LO og DA sig sammen om F\u00e6lleserkl\u00e6ringen: Flere skulle sikres pension. Men hvordan skulle det ske?",
     spm:"Hvordan fik de fleste danske l\u00f8nmodtagere arbejdsmarkedspension?",
     svar:[
-      {t:"Gennem overenskomsterne. Parterne aftalte ordningerne selv, f\u00f8rst for offentligt ansatte i 1989, s\u00e5 industrien i 1991 med indbetaling fra 1993, og derfra bredte de sig til resten af arbejdsmarkedet.", ok:true},
+      {t:"Gennem overenskomsterne. Parterne aftalte ordningerne selv, f\u00f8rst for offentligt ansatte i 1989 og siden industrien i 1991.", ok:true},
       {t:"Ved lov. Folketinget vedtog i 1990 en obligatorisk till\u00e6gspension oven p\u00e5 folkepensionen for alle l\u00f8nmodtagere.", ok:false},
       {t:"Gennem bankerne. Staten indf\u00f8rte et stort skattefradrag, der fik de fleste til selv at oprette private pensionsopsparinger.", ok:false}
     ],
@@ -630,6 +630,8 @@ function bismarckInterlude(next){
     /* efter klippet: en kort reveal-slide, foer vi gaar videre til spoergsmaalet */
     const afsloer = ()=>{
       try{ v.pause(); }catch(_){}
+      v.style.transition = 'opacity .45s ease';
+      v.style.opacity = '0';               /* ton filmen ud, saa reveal-teksten staar rent paa moerk bund */
       const el = document.createElement('div');
       el.className = 'ss-slide';
       el.innerHTML = `
