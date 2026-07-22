@@ -683,6 +683,23 @@ function faelledInterlude(next){
     }).catch(()=>{});
   }catch(_){}
 
+  /* Faelleden-videoen vises 4 sek inde i forloebet. Opret og prim den her
+     i trykket (stumt), saa den starter paalideligt naar klippet vises. */
+  const fv = document.createElement('video');
+  fv.className = 'ss-video';
+  fv.src = FAELLED_KLIP;
+  fv.muted = true; fv.setAttribute('muted','');   /* musikken ligger ovenpaa */
+  fv.playsInline = true; fv.setAttribute('playsinline','');
+  fv.preload = 'auto';
+  fv._overtaget = false;
+  try{
+    const fp = fv.play();
+    if(fp) fp.then(()=>{
+      if(fv._overtaget) return;
+      fv.pause(); fv.currentTime = 0;
+    }).catch(()=>{});
+  }catch(_){}
+
   /* musik hen over hele forloebet, med fade ind og ud via Web Audio
      (almindelig volume ignoreres paa iPhone, en gain-knude goer det ikke) */
   const musik = new Audio(PIO_MUSIK);
@@ -760,12 +777,8 @@ function faelledInterlude(next){
   function klippet(){
     const el = document.createElement('div');
     el.className = 'ss-slide ss-imgslide';
-    const v = document.createElement('video');
-    v.className = 'ss-video';
-    v.src = FAELLED_KLIP;
-    v.muted = true; v.setAttribute('muted','');   /* musikken ligger ovenpaa */
-    v.playsInline = true; v.setAttribute('playsinline','');
-    v.preload = 'auto';
+    const v = fv;
+    v._overtaget = true;                 /* primingen maa ikke pause dette klip */
     let gaaet = false;
     const videre = ()=>{ if(gaaet) return; gaaet = true; efterspil(0); };
     v.onended = videre;
@@ -776,6 +789,7 @@ function faelledInterlude(next){
     requestAnimationFrame(()=>{ requestAnimationFrame(()=> el.classList.add('vis')); });
     if(prev){ const p = prev; p.classList.remove('vis'); setTimeout(()=>{ if(p.parentNode) p.remove(); }, 720); }
     prev = el;
+    try{ v.currentTime = 0; }catch(_){}
     v.play().catch(()=>{});
     /* sikkerhedsnet, hvis videoen hverken spiller eller fejler */
     setTimeout(()=>{ if(!done && v.paused && v.currentTime === 0) videre(); }, 12000);
