@@ -227,9 +227,9 @@
   .ss-body{font-family:'Fraunces',serif;font-weight:400;font-size:clamp(19px,5.4vw,26px);line-height:1.5;color:#eef1ea;max-width:21ch;margin-top:4px}
   .ss-rule{width:46px;height:2px;background:var(--gold);opacity:.7;margin:22px auto 0}
   .ss-imgslide{padding:22px 18px;display:flex;flex-direction:column;justify-content:center}
-  .ss-imgwrap{position:relative;flex:1 1 auto;min-height:0;width:100%;display:flex;align-items:center;justify-content:center}
+  .ss-imgwrap{position:relative;flex:0 1 auto;min-height:0;width:100%;display:flex;align-items:center;justify-content:center}
   .ss-cap{flex:0 0 auto;font-family:'IBM Plex Mono',monospace;font-size:clamp(13.5px,3.8vw,16px);letter-spacing:2px;text-transform:uppercase;color:var(--gold);opacity:.92;margin-top:14px;line-height:1.5;text-align:center}
-  .ss-imgwrap img{max-width:100%;max-height:100%;object-fit:contain;border:1px solid rgba(194,163,93,.5);border-radius:3px;box-shadow:0 20px 60px -18px rgba(0,0,0,.75);will-change:transform}
+  .ss-imgwrap img{max-width:100%;max-height:68vh;object-fit:contain;border:1px solid rgba(194,163,93,.5);border-radius:3px;box-shadow:0 20px 60px -18px rgba(0,0,0,.75);will-change:transform}
   .ss-kb{animation:sskb var(--kb,5s) ease-out both}
   @keyframes sskb{from{transform:scale(1.015)}to{transform:scale(1.075)}}
   .fx-scene{display:block;width:100%;max-width:520px;height:auto;margin:0 auto 22px;border:1px solid rgba(194,163,93,.45);border-radius:3px;box-shadow:0 18px 44px -18px rgba(0,0,0,.8)}
@@ -1117,18 +1117,18 @@ const STAUNING_IMG = [
 
 
 const STAUNING_SLIDES = [
-  {k:'txt', dur:5200, kicker:'Vinteren 1933', title:'Krisen kradser',
+  {k:'txt', dur:6200, kicker:'Vinteren 1933', title:'Krisen kradser',
    body:'Depressionen har ramt Danmark. Arbejdsl\u00f8sheden er rekordh\u00f8j, landbruget bl\u00f8der, og arbejdsgiverne varsler lockout'},
-  {k:'txt', dur:5200, kicker:'29. januar 1933', title:'Et sidste fors\u00f8g',
+  {k:'txt', dur:6200, kicker:'29. januar 1933', title:'Et sidste fors\u00f8g',
    body:'Stauning kalder partierne hjem i sin egen lejlighed i Kanslergade. Uden en aftale venter en konflikt, ingen har r\u00e5d til'},
   {k:'img', dur:4000, src:0, cap:'Januar 1933 \u00b7 arbejdsl\u00f8shed og uro i gaderne'},
   {k:'img', dur:4000, src:1, cap:'Natten til 30. januar \u00b7 partierne m\u00f8des i Staunings lejlighed'},
   {k:'img', dur:4000, src:2, cap:'30. januar 1933 \u00b7 aftalen pr\u00e6senteres'},
-  {k:'txt', dur:3700, kicker:'Forliget', title:'Hvad de blev enige om',
+  {k:'txt', dur:6200, kicker:'Forliget', title:'Hvad de blev enige om',
    body:'Kronen blev devalueret for at redde landbrugets eksport. L\u00f8nnen blev l\u00e5st, og konflikt forbudt i et \u00e5r'},
-  {k:'txt', dur:3700, kicker:'Socialreformen', title:'Fra almisse til ret',
+  {k:'txt', dur:6200, kicker:'Socialreformen', title:'Fra almisse til ret',
    body:'Til geng\u00e6ld kom Steinckes socialreform igennem. Hj\u00e6lp var ikke l\u00e6ngere en n\u00e5de, men noget borgeren havde krav p\u00e5'},
-  {k:'txt', dur:3700, kicker:'Samme dag i Berlin', title:'30. januar 1933',
+  {k:'txt', dur:6200, kicker:'Samme dag i Berlin', title:'30. januar 1933',
    body:'Mens forliget faldt p\u00e5 plads, blev Hitler udn\u00e6vnt til rigskansler. To veje ud af den samme krise'}
 ];
 
