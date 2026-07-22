@@ -484,15 +484,15 @@ let ytApiLoaded = false;
 /* ---------- Pensions-tegneserien (afspilles foer sag 14) ----------
    Seks paneler i images/-mappen. Tryk paa et panel gaar til naeste,
    ellers skiftes der automatisk. Mangler et panel, springes det over. */
-const PENSION_PANELER = [
-  'images/panel-1-den-skaeve-alderdom.jpg',
-  'images/panel-2-faelleserklaeringen-1987.jpg',
-  'images/panel-3-kampen-om-modellen.jpg',
-  'images/panel-4-gennembruddet-1989.jpg',
-  'images/panel-5-industriens-pension.jpg',
-  'images/panel-6-pensionen-breder-sig.jpg'
+const PENSION_SLIDES = [
+  {k:'txt', dur:4500, kicker:'Næste stop', title:'Arbejdsmarkedspensionen',
+   body:'Nu skal vi lige forbi et af den danske models største resultater'},
+  {k:'txt', dur:6800, kicker:'Ikke af sig selv', title:'Et unikt dansk produkt',
+   body:'Arbejdsmarkedspensionen kom ikke bare af sig selv. Den er bygget oven på folkepensionen og ATP, forhandlet på plads mellem parterne'},
+  {k:'img', dur:4000, src:'images/pension1.jpg'},
+  {k:'img', dur:4000, src:'images/pension2.jpg'},
+  {k:'img', dur:4000, src:'images/pension3.jpg'}
 ];
-const PANEL_TID = 9000;
 
 function tegneserieInterlude(next){
   const ov = document.createElement('div');
@@ -518,27 +518,38 @@ function tegneserieInterlude(next){
   }
   skip.onclick = finish;
 
-  function visPanel(i){
+  function vis(i){
     if(done) return;
-    if(i >= PENSION_PANELER.length){ finish(); return; }
+    if(i >= PENSION_SLIDES.length){ finish(); return; }
+    const sl = PENSION_SLIDES[i];
     const el = document.createElement('div');
-    el.className = 'ss-slide ss-imgslide';
-    const im = document.createElement('img');
-    im.className = 'ss-video';
-    im.src = PENSION_PANELER[i];
-    im.alt = '';
-    im.onerror = ()=>{ if(timer) clearTimeout(timer); visPanel(i+1); };
-    /* tryk gaar straks til naeste panel */
-    im.onclick = ()=>{ if(timer) clearTimeout(timer); visPanel(i+1); };
-    el.appendChild(im);
+    if(sl.k === 'img'){
+      el.className = 'ss-slide ss-imgslide';
+      const im = document.createElement('img');
+      im.className = 'ss-video';
+      im.src = sl.src; im.alt = '';
+      /* mangler filen, springes den over; tryk gaar straks videre */
+      im.onerror = ()=>{ if(timer) clearTimeout(timer); vis(i+1); };
+      im.onclick = ()=>{ if(timer) clearTimeout(timer); vis(i+1); };
+      el.appendChild(im);
+    } else {
+      el.className = 'ss-slide';
+      let m = '';
+      if(sl.kicker) m += `<div class="ss-kicker">${sl.kicker}</div>`;
+      if(sl.title)  m += `<div class="ss-title">${sl.title}</div>`;
+      if(sl.body)   m += `<div class="ss-body">${sl.body}</div>`;
+      m += `<div class="ss-rule"></div>`;
+      el.innerHTML = m;
+      el.onclick = ()=>{ if(timer) clearTimeout(timer); vis(i+1); };
+    }
     frame.appendChild(el);
     requestAnimationFrame(()=>{ requestAnimationFrame(()=> el.classList.add('vis')); });
-    if(prev){ const p = prev; p.classList.remove('vis'); setTimeout(()=>{ if(p.parentNode) p.remove(); }, 720); }
+    if(prev){ const pp = prev; pp.classList.remove('vis'); setTimeout(()=>{ if(pp.parentNode) pp.remove(); }, 720); }
     prev = el;
-    timer = setTimeout(()=> visPanel(i+1), PANEL_TID);
+    timer = setTimeout(()=> vis(i+1), sl.dur);
   }
 
-  visPanel(0);
+  vis(0);
 }
 
 /* ---------- Bismarck-filmen (afspilles foer sag 00) ----------
