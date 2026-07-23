@@ -1663,6 +1663,17 @@ function choose(slot){
 }
 
 function ending(){
+  /* Kort afslutningsmelodi, starter 1 sek efter resultatet vises.
+     Prim stumt i selve trykket, saa iPhone tillader den forsinkede start. */
+  const slutmusik = new Audio('udmodel.mp3');
+  slutmusik.preload = 'auto';
+  try{
+    slutmusik.muted = true; slutmusik.setAttribute('muted','');
+    const pm = slutmusik.play();
+    if(pm) pm.then(()=>{ slutmusik.pause(); slutmusik.currentTime = 0; }).catch(()=>{});
+  }catch(_){}
+  setTimeout(()=>{ try{ slutmusik.removeAttribute('muted'); slutmusik.muted = false; slutmusik.currentTime = 0; slutmusik.play().catch(()=>{}); }catch(_){} }, 1000);
+
   const r = state.rigtige;  const grid = state.history.map(h=> h ? '\u2705' : '\u274c').join('');
   const bestod = r >= BESTAAET;
   const udfald = bestod ? 'Historisk overenskomst' : 'Strejke og lockout';
