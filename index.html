@@ -107,7 +107,7 @@
   .country{display:inline-block;font-family:'Fraunces',serif;font-weight:700;font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--paper);background:var(--ink-3);padding:4px 11px;border-radius:4px;margin:2px 0 9px}
   .cardsub{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted-paper);letter-spacing:.5px;margin:-4px 0 14px}
   .fscene{display:block;width:100%;height:auto;margin:10px 0 4px;border:1px solid var(--line-paper);border-radius:3px;box-shadow:0 10px 26px -12px rgba(0,0,0,.55)}
-  .cover-title{hyphens:auto;-webkit-hyphens:auto;overflow-wrap:break-word;font-family:'Fraunces',serif;font-weight:700;font-size:clamp(33px,8.6vw,50px);line-height:1;text-transform:uppercase;letter-spacing:.5px;color:#221c10;margin:6px 0 2px}
+  .cover-title{hyphens:none;-webkit-hyphens:none;overflow-wrap:break-word;font-family:'Fraunces',serif;font-weight:700;font-size:clamp(33px,8.6vw,50px);line-height:1;text-transform:uppercase;letter-spacing:.5px;color:#221c10;margin:6px 0 2px}
   .cover-sub{font-family:'Fraunces',serif;font-weight:400;font-style:italic;font-size:clamp(15px,4vw,19px);letter-spacing:4px;text-transform:uppercase;color:var(--muted-paper);margin-bottom:16px}
   .fors{min-height:72svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 10px 30px}
   .fors .fpraes{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:20px}
@@ -222,7 +222,7 @@
   .ss-slide{position:absolute;inset:0;opacity:0;transition:opacity .7s ease;display:flex;align-items:center;justify-content:center;padding:34px 30px;flex-direction:column;text-align:center}
   .ss-slide.vis{opacity:1}
   .ss-kicker{font-family:'IBM Plex Mono',monospace;font-size:12.5px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:20px}
-  .ss-title{hyphens:auto;-webkit-hyphens:auto;overflow-wrap:break-word;font-family:'Fraunces',serif;font-weight:700;font-size:clamp(32px,9.5vw,54px);line-height:1.02;text-transform:uppercase;letter-spacing:1px;color:#f2ede2}
+  .ss-title{hyphens:none;-webkit-hyphens:none;overflow-wrap:break-word;font-family:'Fraunces',serif;font-weight:700;font-size:clamp(32px,9.5vw,54px);line-height:1.02;text-transform:uppercase;letter-spacing:1px;color:#f2ede2}
   .ss-sub{font-family:'Fraunces',serif;font-style:italic;font-size:clamp(14px,4.2vw,19px);letter-spacing:3px;text-transform:uppercase;color:#8fa596;margin-top:14px}
   .ss-body{font-family:'Fraunces',serif;font-weight:400;font-size:clamp(19px,5.4vw,26px);line-height:1.5;color:#eef1ea;max-width:21ch;margin-top:4px}
   .ss-rule{width:46px;height:2px;background:var(--gold);opacity:.7;margin:22px auto 0}
@@ -235,7 +235,7 @@
   .fx-scene{display:block;width:100%;max-width:520px;height:auto;margin:0 auto 22px;border:1px solid rgba(194,163,93,.45);border-radius:3px;box-shadow:0 18px 44px -18px rgba(0,0,0,.8)}
   .ss-video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#000}
   .ss-bar{position:absolute;left:0;right:0;bottom:0;height:3px;background:rgba(255,255,255,.08)}
-  .ss-fill{height:100%;width:0;background:linear-gradient(90deg,var(--gold-dk),var(--gold))}
+  .ss-fill{height:100%;width:100%;transform:scaleX(0);transform-origin:left;will-change:transform;background:linear-gradient(90deg,var(--gold-dk),var(--gold))}
   .ss-paused .ss-kb{animation-play-state:paused}
   .ss-pauselbl{position:absolute;top:18px;left:0;right:0;text-align:center;font-family:'Fraunces',serif;text-transform:uppercase;letter-spacing:4px;font-size:15px;color:#f2ede2;opacity:0;transition:opacity .2s;pointer-events:none}
   .ss-paused .ss-pauselbl{opacity:.9}
@@ -486,7 +486,7 @@ let ytApiLoaded = false;
    Seks paneler i images/-mappen. Tryk paa et panel gaar til naeste,
    ellers skiftes der automatisk. Mangler et panel, springes det over. */
 const PENSION_SLIDES = [
-  {k:'txt', dur:4500, kicker:'Næste stop', title:'Arbejdsmarkedspensionen',
+  {k:'txt', dur:4500, kicker:'Næste stop', title:'Arbejdsmarkeds<wbr>pensionen',
    body:'Nu skal vi lige forbi et af den danske models største resultater'},
   {k:'txt', dur:6800, kicker:'Ikke af sig selv', title:'Et unikt dansk produkt',
    body:'Arbejdsmarkedspensionen kom ikke bare af sig selv. Den er bygget oven på folkepensionen og ATP, forhandlet på plads mellem parterne'},
@@ -508,9 +508,44 @@ function tegneserieInterlude(next){
   document.body.appendChild(skip);
   const frame = ov.querySelector('#ts-frame');
 
+  /* Baggrundsmusik hen over pensionsfilmen. Musikken er laengere end filmen,
+     saa den holdes fuld og fader langsomt ud over de sidste 5 sek.
+     Web Audio, saa fade ogsaa virker paa iPhone. */
+  const pmusik = new Audio('pensionsmusik.mp3');
+  pmusik.preload = 'auto';
+  const PTOTAL = PENSION_SLIDES.reduce((a,x)=>a+x.dur,0) / 1000;
+  let pgain = null, pactx = null;
+  try{
+    pactx = new (window.AudioContext || window.webkitAudioContext)();
+    const kilde = pactx.createMediaElementSource(pmusik);
+    pgain = pactx.createGain();
+    kilde.connect(pgain); pgain.connect(pactx.destination);
+    pgain.gain.setValueAtTime(1, pactx.currentTime);
+    pgain.gain.setValueAtTime(1, pactx.currentTime + Math.max(PTOTAL - 5, 0));
+    pgain.gain.linearRampToValueAtTime(0.0001, pactx.currentTime + PTOTAL);
+    if(pactx.state === 'suspended') pactx.resume();
+  }catch(_){ pgain = null; }
+  pmusik.play().catch(()=>{});
+  const pmusikVis = ()=>{ if(document.hidden){ try{ pmusik.pause(); }catch(_){} } else if(!done){ pmusik.play().catch(()=>{}); } };
+  document.addEventListener('visibilitychange', pmusikVis);
+  function musikUd(){
+    document.removeEventListener('visibilitychange', pmusikVis);
+    if(pgain && pactx){
+      try{
+        pgain.gain.cancelScheduledValues(pactx.currentTime);
+        pgain.gain.setValueAtTime(Math.max(pgain.gain.value, 0.0001), pactx.currentTime);
+        pgain.gain.linearRampToValueAtTime(0.0001, pactx.currentTime + 1.2);
+        setTimeout(()=>{ try{ pmusik.pause(); pactx.close(); }catch(_){} }, 1400);
+        return;
+      }catch(_){}
+    }
+    try{ pmusik.pause(); }catch(_){}
+  }
+
   let done = false, prev = null, timer = null;
   function finish(){
     if(done) return; done = true;
+    musikUd();
     if(timer) clearTimeout(timer);
     clearTimeout(nedfald);
     try{ next(); }catch(_){}          /* tegn naeste skaerm under overlayet */
@@ -1151,6 +1186,9 @@ function stauningInterlude(next){
   const frame = ov.querySelector('#ss-frame');
   const fill = ov.querySelector('#ss-fill');
   const S = STAUNING_SLIDES;
+  /* Forudindlaes og afkod billederne under de foerste tekst-slides, saa de er
+     klar naar de vises (ellers ses billedteksten et sekund foer billedet). */
+  STAUNING_IMG.forEach(src=>{ const im = new Image(); im.src = src; if(im.decode){ im.decode().catch(()=>{}); } });
   const TOTAL = S.reduce((a,s)=>a+s.dur,0);
   const starts = []; let acc = 0;
   for(const s of S){ starts.push(acc); acc += s.dur; }
@@ -1202,7 +1240,7 @@ function stauningInterlude(next){
   function tick(){
     if(done || paused) return;
     const el = performance.now() - t0 - pausedAcc;
-    fill.style.width = Math.min(el/TOTAL*100, 100) + '%';
+    fill.style.transform = 'scaleX(' + Math.min(el/TOTAL, 1) + ')';
     let idx = 0;
     for(let i=0;i<starts.length;i++){ if(el >= starts[i]) idx = i; }
     if(idx !== cur){ cur = idx; show(idx); }
@@ -1373,7 +1411,7 @@ function intro(){
   app.innerHTML = `
     <div class="panel fade">
       <div class="card">
-        <h1 class="cover-title intro-h1">Forligsinstitutionen</h1>
+        <h1 class="cover-title intro-h1">Forligs<wbr>institutionen</h1>
         <div class="intro-kl">kl. 01:12</div>
         <img class="fscene" src="forhandling.JPG" alt="Simon Eriksen og Risette Larsen ved forhandlingsbordet"
              onerror="this.style.display='none';document.getElementById('fscene-svg').style.display='block'">
