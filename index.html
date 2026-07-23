@@ -81,7 +81,7 @@
   .intro-h1{margin-top:2px}
   .intro-kl{font-family:'IBM Plex Mono',monospace;font-size:clamp(15px,4.4vw,20px);letter-spacing:3px;text-transform:uppercase;color:var(--muted-paper);margin:2px 0 14px}
   .meta{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted-paper);letter-spacing:1px;text-transform:uppercase;margin:6px 0 2px}
-  .case-title{hyphens:auto;-webkit-hyphens:auto;overflow-wrap:break-word;font-family:'Fraunces',serif;font-weight:700;font-size:clamp(25px,6.6vw,36px);line-height:1.04;text-transform:uppercase;letter-spacing:.3px;margin:2px 0 12px;color:#221c10}
+  .case-title{hyphens:none;-webkit-hyphens:none;overflow-wrap:break-word;font-family:'Fraunces',serif;font-weight:700;font-size:clamp(25px,6.6vw,36px);line-height:1.04;text-transform:uppercase;letter-spacing:.3px;margin:2px 0 12px;color:#221c10}
   .situation{font-size:15.5px;line-height:1.55;color:#2c2823}
   .question{font-size:16px;line-height:1.45;color:#2c2823;font-weight:500;margin:0 0 14px}
   .answer{margin:4px 0 0;padding:12px 14px;background:rgba(46,107,79,.12);border-left:3px solid var(--green-dk);border-radius:4px;font-size:14.5px;line-height:1.5;color:#2a2620}
@@ -635,8 +635,8 @@ function bismarckInterlude(next){
       const el = document.createElement('div');
       el.className = 'ss-slide';
       el.innerHTML = `
-        <div class="ss-kicker">Ja, du så rigtigt</div>
-        <div class="ss-body">Det var Otto von Bismarck</div>
+        <div class="ss-kicker">Ja, den er god nok</div>
+        <div class="ss-body">Den flotte fyr er Otto von Bismarck</div>
         <div class="ss-rule"></div>`;
       el.onclick = ()=>{ if(!done) finish(); };
       frame.appendChild(el);
@@ -1667,12 +1667,13 @@ function ending(){
      Prim stumt i selve trykket, saa iPhone tillader den forsinkede start. */
   const slutmusik = new Audio('udmodel.mp3');
   slutmusik.preload = 'auto';
+  slutmusik._start = false;
   try{
     slutmusik.muted = true; slutmusik.setAttribute('muted','');
     const pm = slutmusik.play();
-    if(pm) pm.then(()=>{ slutmusik.pause(); slutmusik.currentTime = 0; }).catch(()=>{});
+    if(pm) pm.then(()=>{ if(slutmusik._start) return; slutmusik.pause(); slutmusik.currentTime = 0; }).catch(()=>{});
   }catch(_){}
-  setTimeout(()=>{ try{ slutmusik.removeAttribute('muted'); slutmusik.muted = false; slutmusik.currentTime = 0; slutmusik.play().catch(()=>{}); }catch(_){} }, 1000);
+  setTimeout(()=>{ try{ slutmusik._start = true; slutmusik.removeAttribute('muted'); slutmusik.muted = false; slutmusik.currentTime = 0; slutmusik.play().catch(()=>{}); }catch(_){} }, 1000);
 
   const r = state.rigtige;  const grid = state.history.map(h=> h ? '\u2705' : '\u274c').join('');
   const bestod = r >= BESTAAET;
