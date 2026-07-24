@@ -143,6 +143,7 @@
   .share-btn .ico.x{background:#000}
   .share-btn .ico.wa{background:#25d366}
   .share-btn .ico.tg{background:#229ed9}
+  .share-btn .ico.sms{background:#34c759}
   .share-btn .ico.cp{background:var(--gold);color:#1a1710}
   .share-close{margin-top:14px;width:100%;padding:10px;background:transparent;border:1px solid rgba(0,0,0,.2);border-radius:5px;font-family:'Fraunces',serif;text-transform:uppercase;letter-spacing:1px;font-size:12px;color:#4a443a;cursor:pointer}
   .sharegrid{font-size:20px;letter-spacing:3px;margin:14px 0 2px}
@@ -1336,7 +1337,7 @@ function klargoer(){
   app.innerHTML = `
     <div class="fors fade" style="min-height:64svh">
       <div style="font-size:34px;margin-bottom:20px">\ud83c\udfa7</div>
-      <div class="fsub" style="margin-top:0">Spilles bedst med lyd</div>
+      <div class="fsub" style="margin-top:0;font-size:clamp(24px,6.8vw,34px)">Skal spilles med lyd på</div>
       <div style="font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:1.6px;text-transform:uppercase;color:var(--muted);margin-top:14px">Varighed ca. 10 min.</div>
       <button class="gate-btn" id="klar-go" style="margin-top:34px">Videre \u25b8</button>
     </div>`;
@@ -1799,7 +1800,7 @@ function showShareMenu(r, grid){
         <a class="share-btn" href="https://www.facebook.com/sharer/sharer.php?u=${eUrl}" target="_blank" rel="noopener"><span class="ico fb">f</span>Facebook</a>
         <a class="share-btn" href="https://twitter.com/intent/tweet?text=${eText}" target="_blank" rel="noopener"><span class="ico x">\ud835\udd4f</span>X</a>
         <a class="share-btn" href="https://wa.me/?text=${eText}" target="_blank" rel="noopener"><span class="ico wa">\u2706</span>WhatsApp</a>
-        <a class="share-btn" href="https://t.me/share/url?url=${eUrl}&text=${eText}" target="_blank" rel="noopener"><span class="ico tg">\u2708</span>Telegram</a>
+        <a class="share-btn" href="sms:?&body=${eText}"><span class="ico sms">\u2709</span>SMS</a>
         <button class="share-btn" id="share-copy"><span class="ico cp">\u2398</span>Kopi\u00e9r resultat</button>
       </div>
       <button class="share-close" id="share-close">Luk</button>
