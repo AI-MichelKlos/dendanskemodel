@@ -242,6 +242,7 @@
   .ss-paused .ss-pauselbl{opacity:.9}
   @media (prefers-reduced-motion:reduce){.ss-kb{animation:none}}
 </style>
+<script data-goatcounter="https://michelklos.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
 <body>
 <div class="stage">
@@ -1548,6 +1549,7 @@ function intro(){
 }
 
 function startGame(){
+  if(window.goatcounter&&goatcounter.count) goatcounter.count({path:'spil-startet',title:'Spil startet',event:true});
   state = { i:0, history:[], rigtige:0, slots:[], started:true, gaerDone:false, stauningDone:false, ligelonDone:false, faelledDone:false, bismarckDone:false, pensionDone:false, deck:FASTE.map(s=> LEVELS.findIndex(l=>l.sag===s)) };
   recordEl.style.display = 'flex';
   renderRecord();
@@ -1716,6 +1718,7 @@ function ending(){
   setTimeout(()=>{ try{ slutmusik._start = true; slutmusik.removeAttribute('muted'); slutmusik.muted = false; slutmusik.currentTime = 0; slutmusik.play().catch(()=>{}); }catch(_){} }, 1000);
 
   const r = state.rigtige;  const grid = state.history.map(h=> h ? '\u2705' : '\u274c').join('');
+  if(window.goatcounter&&goatcounter.count){ goatcounter.count({path:'spil-gennemfoert',title:'Spil gennemfoert',event:true}); goatcounter.count({path:'score-'+r+'-af-'+RUNDE,title:'Score '+r+' af '+RUNDE,event:true}); }
   const bestod = r >= BESTAAET;
   const udfald = bestod ? 'Historisk overenskomst' : 'Strejke og lockout';
 
